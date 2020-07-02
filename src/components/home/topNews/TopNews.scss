@@ -1,0 +1,14 @@
+$edge-boder: rgb(221, 221, 221);
+$menu-backgroud: rgb(215, 75, 51);
+
+.sidebar-news {
+  font-size: 12px;
+  border: 1px solid $edge-boder;
+  .title {
+    padding: 10px;
+    background: $menu-backgroud;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+  }
+}

@@ -1,0 +1,23 @@
+.news-category {
+  margin: 30px 0;
+  .news-category-content {
+    margin-top: 30px;
+  }
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .news-category {
+    .news-item {
+      flex-direction: column !important;
+      .item-content {
+        width: 100% !important;
+      }
+      .item-img {
+        width: 100% !important;
+        img {
+          object-fit: cover;
+          max-height: 140px;
+        }
+      }
+    }
+  }
+}

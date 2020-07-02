@@ -1,0 +1,106 @@
+.forgetpassword-bottom {
+  overflow: hidden;
+  .forgetpassword-title {
+    margin-top: 10px;
+    border-bottom: 1px solid #d74b33;
+    .title {
+      background: #d74b33;
+      color: #fff;
+      display: inline-block;
+      font-size: 17px;
+      padding: 7px 12px;
+      position: relative;
+      margin: 0px !important;
+    }
+  }
+  .fade.in {
+    margin-top: 20px;
+    opacity: 1;
+  }
+  .alert-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+  }
+  .alert {
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+  .form-horizontal {
+    margin-top: 20px;
+    .form-group {
+      display: flex;
+      align-items: center;
+    }
+    .control-label {
+      text-align: end;
+      display: inline-block;
+      font-weight: bold;
+      margin-right: 10px;
+      margin: 0px;
+      .warning {
+        color: #d74b33;
+        padding-left: 10px;
+      }
+    }
+    .btn-primary {
+      border-radius: 0;
+      color: #ffffff;
+      border: none;
+      padding: 9px 15px;
+      margin-bottom: 0;
+      line-height: 1em;
+      background-color: #d74b33;
+      color: #ffffff;
+      &:hover {
+        background-color: #333;
+      }
+    }
+    .register {
+      padding-left: 5px;
+      color: #d74b33;
+    }
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .forgetpassword-bottom {
+    .form-horizontal {
+      .form-group {
+        margin-left: -90px;
+      }
+    }
+  }
+}
+@media (min-width: 480px) and (max-width: 767px) {
+  .forgetpassword-bottom {
+    .form-horizontal {
+      .form-group {
+        margin-left: -90px;
+        display: block;
+        .control-label {
+          text-align: left;
+        }
+        .form-control {
+          width: 85%;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 0px) and (max-width: 479px) {
+  .forgetpassword-bottom {
+    .form-horizontal {
+      .form-group {
+        margin-left: -50px;
+        display: block;
+        .control-label {
+          text-align: left;
+        }
+        .form-control {
+          width: 85%;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.banner-container {
+  .carousel {
+    overflow: hidden;
+    .carousel-control-prev {
+      left: -48px;
+    }
+    .carousel-control-next {
+      right: -48px;
+    }
+    .carousel-control-next-icon,
+    .carousel-control-prev-icon {
+      width: 41px;
+      height: 48px;
+    }
+  }
+  .carousel-image {
+    margin: 10px 0;
+    img {
+      width: 100%;
+    }
+  }
+}

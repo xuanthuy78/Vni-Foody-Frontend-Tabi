@@ -1,0 +1,51 @@
+$edge-boder: rgb(221, 221, 221);
+$link-color: black;
+$menu-backgroud: rgb(215, 75, 51);
+.sidebar-account {
+  margin-top: 30px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  .sidebar-title {
+    background: #403d3b;
+
+    border: 1px solid #dddddd;
+    .title {
+      background-color: #d74b33;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 15px 10px;
+      text-transform: uppercase;
+      margin: 0;
+      position: relative;
+    }
+  }
+  .menu-main {
+    border: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    .nav-item {
+      margin-left: 10px;
+      .nav-link {
+        color: #6a6a6a;
+        font-weight: normal;
+        display: block;
+        position: relative;
+        padding: 7px 15px;
+        &:hover {
+          color: #d74b33;
+        }
+      }
+      .icon-border {
+        border-bottom: 1px dotted #c3c3c3;
+      }
+      .silebar-border {
+        border-bottom: 1px dotted #c3c3c3;
+        margin-right: 10px;
+      }
+      .icon-text {
+        margin-left: 5px;
+      }
+    }
+  }
+}

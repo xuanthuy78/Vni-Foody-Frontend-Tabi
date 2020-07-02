@@ -1,0 +1,18 @@
+$menu-backgroud: rgb(215, 75, 51);
+.product-category {
+  margin: 30px 0;
+  .product-category-top {
+    border-bottom: 1px solid $menu-backgroud;
+    .product-title {
+      background: $menu-backgroud;
+      padding: 5px 10px 0 10px;
+      font-size: 24px;
+      h3 {
+        color: white;
+      }
+    }
+  }
+  .product-category-content {
+    margin-bottom: 30px;
+  }
+}

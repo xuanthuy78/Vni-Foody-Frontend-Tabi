@@ -1,0 +1,108 @@
+.login-content {
+  overflow: hidden;
+  h1 {
+    border-bottom: 1px solid #d74b33;
+    .title {
+      line-height: 21px !important;
+      font-weight: 100 !important;
+      margin-bottom: 10px;
+      margin-top: 0px;
+    }
+    span {
+      background: #d74b33 none repeat scroll 0 0;
+      color: #fff;
+      font-size: 17px;
+      position: relative;
+      padding: 5px 12px;
+    }
+  }
+  .form-horizontal {
+    .form-group {
+      display: flex;
+      align-items: center;
+      .control-label {
+        font-weight: bold;
+        text-align: end;
+      }
+      .btn-primary {
+        background-color: #d74b33;
+        color: #ffffff;
+        border: #d74b33;
+        &:hover {
+          background-color: #333;
+          border: #333;
+        }
+      }
+      .btn {
+        display: inline-block;
+        padding: 9px 15px;
+        margin-bottom: 0;
+        font-size: 12px;
+        text-transform: uppercase;
+        line-height: 1em;
+        text-align: center;
+        color: #ffffff;
+        border-radius: 0;
+        border: none;
+      }
+      .forgetpassword {
+        font-size: 14px;
+        line-height: 1em;
+        color: #d74b33;
+        padding-left: 5px;
+      }
+    }
+    .button-login {
+      margin-left: 0px;
+    }
+  }
+}
+@media (min-width: 992px) and (max-width: 1236px) {
+  .login-content {
+    .form-horizontal {
+      .form-group {
+        .forgetpassword {
+          display: -ms-inline-grid;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 480px) and (max-width: 767px) {
+  .login-content {
+    .form-horizontal {
+      .form-group {
+        margin-left: -18px;
+        display: block;
+        .control-label {
+          text-align: left;
+        }
+        .form-control {
+          width: 105%;
+        }
+      }
+      .forrget-button {
+        display: block;
+      }
+    }
+  }
+}
+@media (min-width: 0px) and (max-width: 479px) {
+  .login-content {
+    .form-horizontal {
+      .form-group {
+        margin-left: -18px;
+        display: block;
+        .control-label {
+          text-align: left;
+        }
+        .form-control {
+          width: 105%;
+        }
+      }
+      .forrget-button {
+        display: block;
+      }
+    }
+  }
+}

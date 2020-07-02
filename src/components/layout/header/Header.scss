@@ -1,0 +1,100 @@
+$menu-backgroud: rgb(215, 75, 51);
+$hover-color: white;
+.header-container {
+  .header-link {
+    background: $menu-backgroud !important;
+    .navbar-sm {
+      display: none;
+    }
+    .navbar {
+      padding: 0px 10px !important;
+      font-size: 12px !important;
+      .navbar-brand {
+        font-size: 14px !important;
+      }
+      .fa {
+        padding-right: 5px !important;
+      }
+      .navbar-collapse {
+        .navbar-nav {
+          .nav-link {
+            color: $hover-color;
+            &:hover {
+              background: #eee;
+              color: red;
+            }
+          }
+        }
+      }
+    }
+  }
+  .header-content {
+    .navbar {
+      background: rgb(235, 234, 234) !important;
+      .form-inline {
+        .input-group {
+          width: 100% !important;
+        }
+        color: black !important;
+        .form-control,
+        .btn-dark {
+          border-radius: 0px !important;
+        }
+        .form-control {
+          color: black !important;
+        }
+      }
+    }
+  }
+  .header-menu {
+    border-bottom: 1px solid rgb(235, 234, 234);
+    .nav {
+      background: #ffff !important;
+      .selected,
+      .nav-item:hover {
+        background: $menu-backgroud;
+        .nav-link {
+          color: white !important;
+        }
+        .menu-caret {
+          z-index: 9000;
+          position: absolute;
+          top: 100%;
+          left: 0px;
+          height: 20px;
+          width: calc(100%);
+          background: $menu-backgroud;
+          &:after {
+            content: '';
+            width: 19px;
+            height: 21px;
+            position: absolute;
+            left: 90%;
+            top: -1.5px;
+            background: $menu-backgroud !important;
+            transform: skew(-38deg);
+            -moz-transform: skew(-38deg);
+            -webkit-transform: skew(-38deg);
+            -o-transform: skew(-38deg);
+            -ms-transform: skew(-38deg);
+          }
+        }
+      }
+      .nav-item {
+        position: relative;
+        .nav-link {
+          color: black;
+          &:hover {
+            color: $hover-color !important;
+          }
+        }
+      }
+      .selected {
+        color: $hover-color !important;
+      }
+      .menu-icon {
+        padding: 0.5rem 0.9rem;
+      }
+    }
+  }
+}

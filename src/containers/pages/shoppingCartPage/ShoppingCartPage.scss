@@ -1,0 +1,91 @@
+$backgroud-cart: #aaaaaa;
+$backgroud-number: #d0d0d0;
+$backgroud-active: rgb(215, 75, 51);
+.shopping {
+  margin-top: 30px;
+  .shopping-content {
+    margin: 40px 0;
+    .table-product {
+      .content-table {
+        thead {
+          th {
+            white-space: nowrap;
+            background: rgb(235, 234, 234) !important;
+          }
+        }
+        tbody {
+          td {
+            white-space: nowrap;
+            vertical-align: middle;
+            font-size: 15px;
+          }
+          .price,
+          .total,
+          .icon {
+            color: $backgroud-active !important ;
+          }
+          .image {
+            width: 150px;
+            .link-image {
+              width: 100px;
+              height: 100px;
+              overflow: hidden;
+              img {
+                width: 100%;
+                object-fit: cover;
+              }
+            }
+          }
+          .name {
+            a {
+              color: black;
+              &:hover {
+                color: $backgroud-active !important;
+              }
+            }
+          }
+          .quantity {
+            input {
+              border: 1px solid $backgroud-cart;
+              width: 70px;
+              text-align: center;
+            }
+          }
+          .icon {
+            font-size: 20px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .content-total {
+      text-align: end;
+      .total-price {
+        font-weight: 600;
+        margin-bottom: 20px;
+        .title {
+          color: black;
+          padding-right: 30px;
+        }
+        .price {
+          font-size: 24px;
+          color: $backgroud-active;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .shopping {
+    .table-product {
+      .content-table {
+        tbody {
+          img {
+            width: 50px !important;
+            height: 50px !important;
+          }
+        }
+      }
+    }
+  }
+}

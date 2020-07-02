@@ -1,0 +1,47 @@
+$backgroud-cart: #aaaaaa;
+$backgroud-number: #d0d0d0;
+$backgroud-active: rgb(215, 75, 51);
+.shopping-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  .item {
+    border-bottom: 2px solid $backgroud-cart;
+    position: relative;
+    text-align: center;
+    width: 240px;
+    padding-bottom: 20px;
+    font-size: 14px !important;
+    font-weight: bold;
+    color: $backgroud-cart;
+    .block {
+      width: 100%;
+      text-align: center;
+      .fa {
+        font-size: 20px !important;
+      }
+    }
+    .circle {
+      position: absolute;
+      bottom: -11px;
+      .number {
+        border: 1px solid $backgroud-cart;
+        background: $backgroud-number;
+        padding: 0 5px;
+        border-radius: 50%;
+        color: white !important;
+        cursor: pointer;
+      }
+    }
+  }
+  .active {
+    color: $backgroud-active;
+    border-bottom: 2px solid $backgroud-active;
+    .circle {
+      .number {
+        border: 1px solid $backgroud-active;
+        background: $backgroud-active;
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.news-page {
+  margin-top: 30px;
+  .news-detail {
+    .pagination {
+      margin-bottom: 20px;
+    }
+  }
+  .news-sidebar {
+    .news-sidebar-top {
+      margin-bottom: 20px;
+    }
+  }
+  .product-bottom {
+    margin-top: 10px;
+  }
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .news-page {
+    .news-item {
+      flex-direction: column !important;
+      .item-content {
+        width: 100% !important;
+      }
+      .item-img {
+        width: 100% !important;
+        img {
+          object-fit: cover;
+          max-height: 140px;
+        }
+      }
+    }
+  }
+}

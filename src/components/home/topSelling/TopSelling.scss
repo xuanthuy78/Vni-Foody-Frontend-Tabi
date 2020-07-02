@@ -1,0 +1,47 @@
+$menu-backgroud: rgb(215, 75, 51);
+$pride-color: rgb(90, 7, 0);
+.top-selling {
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 10px !important;
+  }
+  .owl-carousel {
+    &:hover {
+      .owl-nav {
+        opacity: 1 !important;
+      }
+    }
+    .owl-nav {
+      opacity: 0 !important;
+      .owl-prev,
+      .owl-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        background: $menu-backgroud;
+        font-size: 16px;
+        display: block;
+        color: white !important;
+        border-radius: 0 !important;
+        &:hover {
+          background: black;
+          color: $menu-backgroud !important;
+        }
+      }
+      .owl-prev {
+        left: -0.3rem;
+      }
+
+      .owl-next {
+        right: -0.3rem;
+      }
+    }
+    .owl-dots {
+      display: none;
+    }
+  }
+}

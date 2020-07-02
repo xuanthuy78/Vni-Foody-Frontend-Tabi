@@ -1,0 +1,39 @@
+$edge-boder: rgb(221, 221, 221);
+$link-color: black;
+$menu-backgroud: rgb(215, 75, 51);
+.news {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  padding: 5px;
+  border-bottom: 1px solid $edge-boder;
+  .news-title {
+    padding-left: 5px;
+    .link-title {
+      color: $link-color;
+      font-weight: bold;
+      &:hover {
+        color: $menu-backgroud;
+      }
+    }
+  }
+  .news-img {
+    img {
+      width: 100%;
+      max-height: 60px !important;
+      object-fit: cover;
+    }
+  }
+  .news-content,
+  .news-title a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+  .news-content {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    -webkit-line-clamp: 2;
+  }
+}

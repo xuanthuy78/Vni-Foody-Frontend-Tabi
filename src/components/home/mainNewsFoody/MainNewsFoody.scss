@@ -1,0 +1,27 @@
+$menu-backgroud: rgb(215, 75, 51);
+.product-bottom {
+  .card {
+    .card-body {
+      text-align: justify;
+      padding: 0 !important;
+      .card-name,
+      .card-content p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+      }
+      .card-name {
+        .link-name {
+          font-weight: 500;
+          font-size: 14px;
+          color: black;
+          &:hover {
+            color: $menu-backgroud;
+          }
+        }
+      }
+    }
+  }
+}

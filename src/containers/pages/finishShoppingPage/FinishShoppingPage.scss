@@ -1,0 +1,42 @@
+$backgroud-gray: rgb(235, 234, 234);
+$color-red: rgb(215, 75, 51);
+.finish {
+  .end {
+    text-align: end;
+  }
+  margin-top: 30px;
+  .finish-content {
+    position: relative;
+    border: 1px solid $backgroud-gray;
+    padding: 30px;
+    .detail {
+      .table-product {
+        .title {
+          font-size: 16px;
+          color: $color-red;
+        }
+        .table {
+          .thead-color {
+            background: $backgroud-gray !important;
+            tr {
+              white-space: nowrap;
+              th {
+                padding: 4px;
+              }
+            }
+          }
+          tbody {
+            .price {
+              color: $color-red;
+            }
+          }
+        }
+      }
+    }
+    .scan {
+      position: absolute;
+      top: -30px;
+      left: 0;
+    }
+  }
+}

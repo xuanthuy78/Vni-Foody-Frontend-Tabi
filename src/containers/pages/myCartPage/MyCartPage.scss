@@ -1,0 +1,108 @@
+$menu-backgroud: rgb(215, 75, 51);
+.container {
+  .mycart {
+    .mycart-menu {
+      margin-top: 23px;
+      margin-bottom: 5px;
+      .nav {
+        .nav-item {
+          .nav-link {
+            margin-left: 5px;
+          }
+        }
+
+        .active {
+          margin-left: 5px;
+        }
+      }
+    }
+    .about-mycart {
+      h1 {
+        border-bottom: 1px solid #d74b33;
+        .title {
+          line-height: 21px !important;
+          font-weight: 100 !important;
+          margin-bottom: 10px;
+          margin-top: 0px;
+        }
+        span {
+          background: #d74b33 none repeat scroll 0 0;
+          color: #fff;
+          font-size: 17px;
+          position: relative;
+          padding: 5px 12px;
+        }
+      }
+      .my-order {
+        .table {
+          border: 1px solid #dddddd;
+          thead {
+            background-color: #d74b33;
+            color: #ffffff;
+            th {
+              padding: 8px;
+              font-size: 14px;
+              line-height: 2em;
+            }
+          }
+          tbody {
+            tr {
+              td {
+                .code-order {
+                  color: #d74b33;
+                }
+                .user-name {
+                  color: #d74b33;
+                }
+                .order {
+                  color: #d74b33;
+                  .fa {
+                    margin-right: 5px;
+                  }
+                }
+              }
+            }
+            tr:nth-child(even) {
+              background-color: #dddddd;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: 480px) and (max-width: 767px) {
+  .container {
+    .mycart {
+      .about-mycart {
+        .my-order {
+          border: 1px solid #dddddd;
+          .table {
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: 0px) and (max-width: 479px) {
+  .container {
+    .mycart {
+      .mycart-menu {
+        .nav {
+          .active {
+            margin-left: 5px;
+          }
+        }
+      }
+      .about-mycart {
+        .my-order {
+          border: 1px solid #dddddd;
+          .table {
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+}

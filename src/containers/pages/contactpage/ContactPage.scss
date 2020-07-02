@@ -1,0 +1,58 @@
+$edge-boder: rgb(221, 221, 221);
+$link-color: black;
+$menu-backgroud: rgb(215, 75, 51);
+.contact-content {
+  padding: 0px;
+  margin: 0px;
+  background: white;
+  .about-sendiformationcontact {
+    margin-bottom: 10px;
+  }
+  .contact-menu {
+    margin-top: 30px;
+  }
+  .about-support {
+    border: 1px solid $edge-boder;
+    margin-top: -30px;
+    margin-bottom: 80px;
+
+    .title {
+      background-color: #d74b33;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 15px 10px;
+      margin: 0;
+      font-family: inherit;
+      line-height: 1.1;
+    }
+    .information-support {
+      margin-bottom: 15px;
+      text-align: center;
+      .ng-binding {
+        color: #d74b33;
+      }
+    }
+  }
+}
+@media (min-width: 992px) and (max-width: 1236px) {
+  .contact-content {
+    .about-support {
+      margin-right: 0px;
+    }
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .contact-content {
+    .about-support {
+      margin-right: 0px;
+    }
+  }
+}
+@media (min-width: 480px) and (max-width: 767px) {
+  .contact-content {
+    .about-support {
+      margin-right: 0px;
+    }
+  }
+}

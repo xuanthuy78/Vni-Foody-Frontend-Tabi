@@ -1,0 +1,67 @@
+.script-product {
+  .script-title {
+    margin-top: 15px;
+    .title {
+      font-size: 14px;
+      background: #d74b33;
+      padding: 5px 10px 0 10px;
+      color: white;
+      margin-bottom: 0px;
+      margin-right: 2px;
+      line-height: 2em;
+      border-radius: 4px 4px 0 0;
+      width: 140px;
+      height: 40px;
+      border-bottom: 1px solid #ddd;
+    }
+  }
+  .script-content {
+    padding: 15px;
+    border: 1px solid #dddddd;
+    line-height: 30px;
+  }
+  .script {
+    margin-top: 10px;
+    margin-left: 15px;
+  }
+  .photo {
+    text-align: center;
+  }
+  .comment {
+    border-radius: 4px 4px 0 0;
+    margin-top: 10px;
+    background: white;
+    padding: 5px;
+    border: 1px solid #d9d9d9;
+    background-color: #f6f6f6;
+    label {
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+    button {
+      background-color: #d74b33;
+      color: whitesmoke;
+      &:hover {
+        background-color: gray;
+      }
+    }
+  }
+  .content-comment {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    .fa {
+      padding-right: 20px;
+      font-size: 50px;
+    }
+    .info-user {
+      font-weight: 400;
+      span {
+        color: #d74b33;
+      }
+    }
+    .content {
+      font-weight: 700;
+    }
+  }
+}

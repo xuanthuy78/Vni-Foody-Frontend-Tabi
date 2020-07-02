@@ -1,0 +1,42 @@
+$menu-backgroud: rgb(215, 75, 51);
+$pride-color: rgb(90, 7, 0);
+.card {
+  padding: 10px;
+  margin-left: 1px;
+  .card-body {
+    text-align: center;
+    .card-name {
+      .link-product {
+        color: black !important;
+        &:hover {
+          text-decoration: none !important;
+          color: $menu-backgroud !important;
+        }
+      }
+    }
+    .card-pride {
+      padding: 10px;
+      color: $pride-color !important;
+      font-size: 16px;
+    }
+    .card-cart {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      .cart-button {
+        button {
+          color: white;
+          background: $menu-backgroud;
+          border: 1px solid $menu-backgroud;
+        }
+      }
+
+      .cart-icon {
+        background: white;
+        border: 1px solid $menu-backgroud;
+        padding: 0 5px;
+        color: $menu-backgroud;
+      }
+    }
+  }
+}

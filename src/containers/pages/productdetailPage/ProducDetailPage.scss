@@ -1,0 +1,44 @@
+$hover-color: rgb(215, 75, 51);
+$menu-backgroud: rgb(215, 75, 51);
+.productdetail-menu {
+  margin-bottom: 5px;
+  margin-top: 24px;
+  .nav {
+    .nav-item {
+      .nav-link {
+        padding: 0px;
+        color: gray;
+        &:hover {
+          color: $menu-backgroud;
+        }
+      }
+    }
+    .icon-link {
+      padding: 0 10px;
+    }
+    .active {
+      .nav-link {
+        color: $menu-backgroud !important;
+        font-weight: bold;
+      }
+    }
+  }
+  strong {
+    font-weight: bold;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .productdetail-menu {
+    margin-left: -4px;
+  }
+}
+@media (min-width: 480px) and (max-width: 767px) {
+  .productdetail-menu {
+    margin-left: -2px;
+  }
+}
+@media (min-width: 0px) and (max-width: 479px) {
+  .productdetail-menu {
+    margin-left: 0px;
+  }
+}

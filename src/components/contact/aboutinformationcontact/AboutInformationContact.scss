@@ -1,0 +1,95 @@
+$edge-boder: rgb(221, 221, 221);
+$link-color: black;
+$menu-backgroud: rgb(215, 75, 51);
+.contact-content {
+  .contact-title {
+    border-bottom: 1px solid #d74b33;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    .title {
+      line-height: 21px;
+      background: #d74b33 none repeat scroll 0 0;
+      color: #fff;
+      display: inline-block;
+      font-size: 17px;
+      padding: 7px 12px;
+      position: relative;
+      font-family: inherit;
+      margin: 0px;
+    }
+  }
+
+  .contact-info {
+    margin-top: 10px;
+    margin-left: 70px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    padding-left: 0;
+
+    .docs {
+      font-size: 14px;
+      margin-bottom: 10px;
+      line-height: 1em;
+      color: #333;
+      background-color: #fff;
+      .about-email {
+        color: red;
+      }
+    }
+
+    .name {
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      font-size: 14px;
+      text-align: center;
+      padding-left: 3px;
+      overflow: hidden;
+    }
+    .icon {
+      width: 16px;
+    }
+    .information-content {
+      margin: 10px;
+    }
+  }
+}
+@media (min-width: 992px) and (max-width: 1236px) {
+  .contact-content {
+    .contact-info {
+      margin-left: 100px;
+    }
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .contact-content {
+    .row {
+      display: block;
+    }
+
+    .contact-info {
+      margin-left: 0px;
+    }
+  }
+}
+@media (min-width: 480px) and (max-width: 767px) {
+  .contact-content {
+    .row {
+      display: block;
+    }
+
+    .contact-info {
+      margin-left: 0px;
+    }
+  }
+}
+@media (min-width: 0px) and (max-width: 479px) {
+  .contact-content {
+    .row {
+      display: block;
+    }
+
+    .contact-info {
+      margin-left: 0px;
+    }
+  }
+}

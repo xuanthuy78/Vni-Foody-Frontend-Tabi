@@ -1,0 +1,153 @@
+$backgroud: gray;
+.ant-modal {
+  .ant-modal-content {
+    border-radius: 15px 15px;
+    margin-top: -65px !important;
+  }
+  .ant-modal-header {
+    border-radius: 15px 15px;
+    .ant-modal-title {
+      margin: 0;
+      color: rgba(0, 0, 0, 0.85);
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 22px;
+      word-wrap: break-word;
+    }
+  }
+  .ant-modal-close {
+    margin-top: -10px;
+    color: rgba(0, 0, 0, 0.45);
+    font-weight: bold;
+    line-height: 1em;
+  }
+  .ant-modal-body {
+    .table {
+      th {
+        align-items: flex-start;
+        white-space: nowrap;
+      }
+      td {
+        white-space: nowrap;
+      }
+      .item-title {
+        .ng-binding {
+          color: #333334;
+          &:hover {
+            color: rgb(215, 75, 51);
+          }
+        }
+      }
+      .item-quantity {
+        .text {
+          border: 1px solid $backgroud;
+        }
+      }
+      .delete {
+        color: #333334;
+        &:hover {
+          color: rgb(215, 75, 51);
+        }
+      }
+    }
+    .modal-footer {
+      text-align: right;
+      .total-price-modal {
+        font-size: 14px;
+        margin-right: -40px;
+        color: #333334;
+      }
+    }
+    .continue {
+      color: #333334;
+      &:hover {
+        color: rgb(215, 75, 51);
+      }
+    }
+
+    .text-right {
+      text-align: right;
+
+      .btn-default {
+        background-color: #333334;
+        margin-right: -24px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 9px 15px;
+        margin-bottom: 0;
+        font-size: 12px;
+        text-transform: uppercase;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        margin-bottom: 15px;
+        color: #ffffff;
+        border-radius: 0;
+        border: none;
+        &:hover {
+          background-color: rgb(215, 75, 51);
+        }
+      }
+    }
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .ant-modal {
+    .ant-modal-content {
+      .ant-modal-body {
+        .table {
+          th {
+            font-size: 14px;
+            white-space: nowrap;
+          }
+          td {
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: 480px) and (max-width: 767px) {
+  .ant-modal {
+    .ant-modal-content {
+      .ant-modal-body {
+        .table {
+          th {
+            white-space: nowrap;
+          }
+          td {
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: 0px) and (max-width: 479px) {
+  .ant-modal {
+    width: 100% !important;
+    .ant-modal-content {
+      .ant-modal-header {
+        .ant-modal-title {
+          margin-left: -20px;
+        }
+      }
+      .ant-modal-close {
+        margin-top: -10px;
+        margin-right: -10px;
+      }
+      .ant-modal-body {
+        .table {
+          th {
+            white-space: nowrap;
+          }
+          td {
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+}
