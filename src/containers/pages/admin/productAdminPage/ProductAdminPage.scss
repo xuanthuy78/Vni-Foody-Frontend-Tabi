@@ -129,6 +129,12 @@ $backgroud-sidebar: rgb(242, 223, 220);
     }
   }
 }
+.ant-form {
+  .ant-form-item-required,
+  .ant-form-item {
+    font-weight: 500 !important;
+  }
+}
 @media (min-width: 0) and (max-width: 869px) {
   .main-detail {
     .table {

@@ -20,7 +20,6 @@ export class MasterLayoutAdmin extends Component {
     const childrenWithProps = React.Children.map(this.props.children, (child) =>
       React.cloneElement(child, {})
     )
-    console.log(this.state.showSidebar)
     return (
       <div className="admin-container">
         <HeaderAdmin showSidebar={this.handleShowSidebar} />

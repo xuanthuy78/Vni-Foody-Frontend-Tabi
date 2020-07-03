@@ -1,28 +1,71 @@
 import React, { Component } from 'react'
 import MasterLayoutAdmin from '../../../../components/admin/layout/masterLayoutAdmin/MasterLayoutAdmin'
-import { Form, Input, Button, Select, Upload } from 'antd'
+import { Form, Input, Button, Select, Upload, Cascader } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
+import CKEditor from 'ckeditor4-react'
 
 const { Option } = Select
+const onFinish = (values) => {
+  console.log('Success:', values)
+}
 
+const onFinishFailed = (errorInfo) => {
+  console.log('Failed:', errorInfo)
+}
+const normFile = (e) => {
+  console.log('Upload event:', e)
+
+  if (Array.isArray(e)) {
+    return e
+  }
+
+  return e && e.fileList
+}
+const options = [
+  {
+    value: 'zhejiang',
+    label: 'Zhejiang',
+    children: [
+      {
+        value: 'hangzhou',
+        label: 'Hangzhou',
+        children: [
+          {
+            value: 'xihu',
+            label: 'West Lake',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    value: 'jiangsu',
+    label: 'Jiangsu',
+    children: [
+      {
+        value: 'nanjing',
+        label: 'Nanjing',
+        children: [
+          {
+            value: 'zhonghuamen',
+            label: 'Zhong Hua Men',
+          },
+        ],
+      },
+    ],
+  },
+]
 export class ProductCreateEditAdminPage extends Component {
+  onChange = (value) => {
+    console.log(value)
+  }
+
+  onEditorChange = (evt) => {
+    // this.setState({
+    //   data: evt.editor.getData(),
+    // })
+  }
   render() {
-    const onFinish = (values) => {
-      console.log('Success:', values)
-    }
-
-    const onFinishFailed = (errorInfo) => {
-      console.log('Failed:', errorInfo)
-    }
-    const normFile = (e) => {
-      console.log('Upload event:', e)
-
-      if (Array.isArray(e)) {
-        return e
-      }
-
-      return e && e.fileList
-    }
     return (
       <MasterLayoutAdmin>
         <Form
@@ -32,7 +75,24 @@ export class ProductCreateEditAdminPage extends Component {
           onFinishFailed={onFinishFailed}
         >
           <Form.Item
-            label="Username"
+            label="Danh mục"
+            name="category"
+            hasFeedback
+            rules={[
+              {
+                required: true,
+                message: 'Please input your category!',
+              },
+            ]}
+          >
+            <Cascader
+              options={options}
+              onChange={this.onChange}
+              placeholder="Please select"
+            />
+          </Form.Item>
+          <Form.Item
+            label="Tên sản phẩm"
             name="username"
             rules={[
               {
@@ -44,8 +104,8 @@ export class ProductCreateEditAdminPage extends Component {
             <Input />
           </Form.Item>
           <Form.Item
-            label="Category"
-            name="category"
+            label="Thương hiệu"
+            name="brand"
             hasFeedback
             rules={[
               {
@@ -60,19 +120,7 @@ export class ProductCreateEditAdminPage extends Component {
             </Select>
           </Form.Item>
           <Form.Item
-            label="Number"
-            name="number"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your number!',
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Describe"
+            label="Mô tả sản phẩm"
             name="describe"
             rules={[
               {
@@ -84,7 +132,19 @@ export class ProductCreateEditAdminPage extends Component {
             <Input.TextArea />
           </Form.Item>
           <Form.Item
-            label="Upload"
+            label="Mã sản phẩm"
+            name="code"
+            rules={[
+              {
+                required: true,
+                message: 'Please input your describe!',
+              },
+            ]}
+          >
+            <Input.TextArea />
+          </Form.Item>
+          <Form.Item
+            label="Ảnh"
             name="upload"
             valuePropName="fileList"
             getValueFromEvent={normFile}
@@ -101,6 +161,25 @@ export class ProductCreateEditAdminPage extends Component {
               </Button>
             </Upload>
           </Form.Item>
+          <Form.Item
+            label="Giá sản phẩm"
+            name="price"
+            rules={[
+              {
+                required: true,
+                message: 'Please input your describe!',
+              },
+            ]}
+          >
+            <Input.TextArea />
+          </Form.Item>
+          <Form.Item label="Chi tiết sản phẩm" name="content">
+            <CKEditor
+              data="<p>Hello from CKEditor 4!</p>"
+              onChange={this.onEditorChange}
+            />
+          </Form.Item>
+
           <Form.Item>
             <Button onClick={this.props.handleCancel}>Cancel</Button>
             <Button type="primary" htmlType="submit" className="ml-3">
