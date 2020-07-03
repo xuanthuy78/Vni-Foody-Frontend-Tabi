@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import './ProductAdminPage.scss'
-import CreateEditProduct from '../../../../components/admin/productAdmin/CreateEditProduct'
-import ViewProduct from '../../../../components/admin/productAdmin/ViewProduct'
 import MasterLayoutAdmin from '../../../../components/admin/layout/masterLayoutAdmin/MasterLayoutAdmin'
 import { Table, Space, Modal } from 'antd'
 import { Link } from 'react-router-dom'
@@ -27,8 +25,6 @@ export class ProductAdminPage extends Component {
     this.state = {
       dataSource: null,
       columns: null,
-      visible: false,
-      viewVisible: false,
       title: null,
     }
   }
@@ -36,52 +32,6 @@ export class ProductAdminPage extends Component {
     setTimeout(() => {
       this.buildColumsFromDatasource(data)
     }, 1000)
-  }
-  // modal create, edit
-  showModalCreate = () => {
-    this.setState({
-      visible: true,
-      title: 'Create Product',
-    })
-  }
-
-  showModalEdit = () => {
-    this.setState({
-      visible: true,
-      title: 'Edit Product',
-    })
-  }
-
-  handleOk = (e) => {
-    this.setState({
-      visible: false,
-    })
-  }
-
-  handleCancel = (e) => {
-    this.setState({
-      visible: false,
-    })
-  }
-  // end modal
-  // view
-  showModalView = () => {
-    this.setState({
-      viewVisible: true,
-      title: 'View Product',
-    })
-  }
-
-  handleOkView = (e) => {
-    this.setState({
-      viewVisible: false,
-    })
-  }
-
-  handleCancelView = (e) => {
-    this.setState({
-      viewVisible: false,
-    })
   }
   // modal delete
   showConfirm = () => {
@@ -152,13 +102,9 @@ export class ProductAdminPage extends Component {
         key: 'action',
         render: (text, record) => (
           <Space size="middle" className="icon-btn">
-            <button
-              type="button"
-              className="btn btn-info"
-              onClick={this.showModalEdit}
-            >
+            <Link className="btn btn-info" to="/admin/product/1">
               <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
-            </button>
+            </Link>
             <button
               type="button"
               className="btn btn-danger"
@@ -213,32 +159,16 @@ export class ProductAdminPage extends Component {
                 </form>
               </div>
               <div className="nav-item add-master">
-                <button
-                  type="submit"
-                  className="btn btn-warm"
-                  onClick={this.showModalCreate}
-                >
+                <Link className="btn btn-warm" to="/admin/product/created">
                   <i className="fa fa-plus mr-2" aria-hidden="true"></i>
                   <span className="title-add">Add</span>
-                </button>
+                </Link>
               </div>
             </div>
           </div>
           <div className="table">
             <Table columns={columns} dataSource={dataSource} />
           </div>
-          <CreateEditProduct
-            visible={this.state.visible}
-            handleOk={this.handleOk}
-            handleCancel={this.handleCancel}
-            title={this.state.title}
-          />
-          <ViewProduct
-            visible={this.state.viewVisible}
-            handleOk={this.handleOkView}
-            handleCancel={this.handleCancelView}
-            title={this.state.title}
-          />
         </div>
       </MasterLayoutAdmin>
     )

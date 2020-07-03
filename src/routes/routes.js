@@ -13,6 +13,8 @@ import {
   FinishShoppingPage,
   ProductAdminPage,
   HomeAdminPage,
+  ProductCreateEditAdminPage,
+  NewsAdminPage,
 } from '../containers/pages'
 import ForgetPassWord from '../containers/pages/forgetPassWord/ForgetPassWord'
 import RegisterPage from '../containers/pages/registerPage/RegisterPage'
@@ -98,16 +100,6 @@ const routes = [
     main: () => <LoginPage />,
   },
   {
-    path: '/admin',
-    exact: true,
-    main: () => <HomeAdminPage />,
-  },
-  {
-    path: '/admin/product',
-    exact: true,
-    main: () => <ProductAdminPage />,
-  },
-  {
     path: '/contactPage',
     exact: true,
     main: () => <ContactPage />,
@@ -136,6 +128,31 @@ const routes = [
     path: '/changepassword',
     exact: true,
     main: () => <ChangePassWordPage />,
+  },
+  {
+    path: '/admin',
+    exact: true,
+    main: () => <HomeAdminPage />,
+  },
+  {
+    path: '/admin/product',
+    exact: true,
+    main: () => <ProductAdminPage />,
+  },
+  {
+    path: '/admin/product/created',
+    exact: true,
+    main: () => <ProductCreateEditAdminPage />,
+  },
+  {
+    path: '/admin/product/:id',
+    exact: true,
+    main: () => <ProductCreateEditAdminPage />,
+  },
+  {
+    path: '/admin/news',
+    exact: true,
+    main: () => <NewsAdminPage />,
   },
 ]
 

@@ -114,6 +114,10 @@ $backgroud-sidebar: rgb(242, 223, 220);
     background: $backgroud-sidebar;
     .navbar-nav {
       .nav-item {
+        .selected {
+          color: white;
+          background: $backgroud;
+        }
         .nav-link {
           color: black;
           &:hover {
@@ -123,19 +127,18 @@ $backgroud-sidebar: rgb(242, 223, 220);
         }
         .parent {
           display: flex;
-          justify-content: space-between;
+          justify-content: center;
           .icon,
           .arrive {
             text-align: center;
           }
           .icon {
-            width: 25%;
+            width: 30%;
+            text-align: end;
+            padding-right: 1em;
           }
           .title {
-            width: 50%;
-          }
-          .arrive {
-            width: 25%;
+            width: 70%;
           }
         }
       }
