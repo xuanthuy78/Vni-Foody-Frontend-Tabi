@@ -1,27 +1,23 @@
 import React, { Component } from 'react'
-import { Modal, Form, Button } from 'antd'
+import './ProductViewAdminPage.scss'
+import MasterLayoutAdmin from '../../../../components/admin/layout/masterLayoutAdmin/MasterLayoutAdmin'
+import { Form, Button } from 'antd'
 
-export class ViewProduct extends Component {
+export class ProductViewAdminPage extends Component {
   render() {
     return (
-      <div>
-        <Modal
-          title={this.props.title}
-          visible={this.props.visible}
-          onOk={this.props.handleOk}
-          onCancel={this.props.handleCancel}
-          footer={null}
-          width="80%"
-          className="product-view"
-        >
+      <MasterLayoutAdmin>
+        <div className="product-view">
+          <h2>View Product</h2>
           <Form layout="vertical">
-            <Form.Item label="Username">John Brown</Form.Item>
-            <Form.Item label="Category">Cơm</Form.Item>
-            <Form.Item label="Number">10</Form.Item>
-            <Form.Item label="Describe">
+            <Form.Item label="Danh Mục">Thực đơn chính/Gà/Gà rán</Form.Item>
+            <Form.Item label="Tên sản phẩm">Gà rán</Form.Item>
+            <Form.Item label="Thương hiệu">KFC</Form.Item>
+            <Form.Item label="Mô tả sản phẩm">
               Description Description Description DDescription Description
             </Form.Item>
-            <Form.Item label="Upload">
+            <Form.Item label="Mã sản phẩm">20201905V01</Form.Item>
+            <Form.Item label="Ảnh">
               <div className="block">
                 <div className="box">
                   <div className="item">
@@ -61,14 +57,16 @@ export class ViewProduct extends Component {
                 </div>
               </div>
             </Form.Item>
+            <Form.Item label="Giá sản phẩm">150.000đ</Form.Item>
+            <Form.Item label="Chi tiết sản phẩm">Content</Form.Item>
             <Form.Item>
               <Button onClick={this.props.handleCancel}>Cancel</Button>
             </Form.Item>
           </Form>
-        </Modal>
-      </div>
+        </div>
+      </MasterLayoutAdmin>
     )
   }
 }
 
-export default ViewProduct
+export default ProductViewAdminPage

@@ -68,6 +68,7 @@ export class ProductCreateEditAdminPage extends Component {
   render() {
     return (
       <MasterLayoutAdmin>
+        <h3>Product</h3>
         <Form
           layout="vertical"
           name="basic"
@@ -141,7 +142,7 @@ export class ProductCreateEditAdminPage extends Component {
               },
             ]}
           >
-            <Input.TextArea />
+            <Input />
           </Form.Item>
           <Form.Item
             label="Ảnh"
@@ -171,7 +172,7 @@ export class ProductCreateEditAdminPage extends Component {
               },
             ]}
           >
-            <Input.TextArea />
+            <Input />
           </Form.Item>
           <Form.Item label="Chi tiết sản phẩm" name="content">
             <CKEditor

@@ -12,6 +12,7 @@ import FinishShoppingPage from './finishShoppingPage/FinishShoppingPage'
 import HomeAdminPage from './admin/homeAdminPage/HomeAdminPage'
 import ProductAdminPage from './admin/productAdminPage/ProductAdminPage'
 import ProductCreateEditAdminPage from './admin/productCreateEditAdminPage/ProductCreateEditAdminPage'
+import ProductViewAdminPage from './admin/productViewAdminPage/ProductViewAdminPage'
 import NewsAdminPage from './admin/newsAdminPage/NewsAdminPage'
 export {
   HomePage,
@@ -28,5 +29,6 @@ export {
   HomeAdminPage,
   ProductAdminPage,
   ProductCreateEditAdminPage,
+  ProductViewAdminPage,
   NewsAdminPage,
 }

@@ -15,6 +15,7 @@ import {
   HomeAdminPage,
   ProductCreateEditAdminPage,
   NewsAdminPage,
+  ProductViewAdminPage,
 } from '../containers/pages'
 import ForgetPassWord from '../containers/pages/forgetPassWord/ForgetPassWord'
 import RegisterPage from '../containers/pages/registerPage/RegisterPage'
@@ -148,6 +149,11 @@ const routes = [
     path: '/admin/product/:id',
     exact: true,
     main: () => <ProductCreateEditAdminPage />,
+  },
+  {
+    path: '/admin/product/:id/view',
+    exact: true,
+    main: () => <ProductViewAdminPage />,
   },
   {
     path: '/admin/news',

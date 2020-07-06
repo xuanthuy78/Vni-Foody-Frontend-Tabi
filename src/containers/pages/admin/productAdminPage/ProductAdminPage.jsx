@@ -75,11 +75,7 @@ export class ProductAdminPage extends Component {
         dataIndex: 'name',
         key: 'name',
         width: 150,
-        render: (text) => (
-          <Link to="#" onClick={this.showModalView}>
-            {text}
-          </Link>
-        ),
+        render: (text) => <Link to="/admin/product/1/view">{text}</Link>,
       },
       {
         title: 'Type',

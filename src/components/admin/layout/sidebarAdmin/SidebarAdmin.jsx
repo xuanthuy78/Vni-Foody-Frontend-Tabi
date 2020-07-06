@@ -20,19 +20,19 @@ export class SidebarAdmin extends Component {
               <span className="icon">
                 <i className="fa fa-product-hunt fa-lg" aria-hidden="true"></i>
               </span>
-              <span className="title">Product</span>
+              <span className="title">Sản Phẩm</span>
             </NavLink>
           </li>
           <li className="nav-item">
             <NavLink
               className="nav-link parent"
               activeClassName="selected"
-              to="/admin/news"
+              to="/admin/category"
             >
               <span className="icon">
                 <i className="fa fa-newspaper-o" aria-hidden="true"></i>
               </span>
-              <span className="title">News</span>
+              <span className="title">Danh mục</span>
             </NavLink>
           </li>
         </ul>
