@@ -13,7 +13,9 @@ import HomeAdminPage from './admin/homeAdminPage/HomeAdminPage'
 import ProductAdminPage from './admin/productAdminPage/ProductAdminPage'
 import ProductCreateEditAdminPage from './admin/productCreateEditAdminPage/ProductCreateEditAdminPage'
 import ProductViewAdminPage from './admin/productViewAdminPage/ProductViewAdminPage'
+import CategoryAdminPage from './admin/categoryAdminPage/CategoryAdminPage'
 import NewsAdminPage from './admin/newsAdminPage/NewsAdminPage'
+import CategoryCreatedEditAdminPage from './admin/categoryCreatedEditAdminPage/CategoryCreatedEditAdminPage'
 export {
   HomePage,
   ProductPage,
@@ -30,5 +32,7 @@ export {
   ProductAdminPage,
   ProductCreateEditAdminPage,
   ProductViewAdminPage,
+  CategoryAdminPage,
+  CategoryCreatedEditAdminPage,
   NewsAdminPage,
 }

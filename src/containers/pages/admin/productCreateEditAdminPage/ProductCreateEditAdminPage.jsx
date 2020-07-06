@@ -56,7 +56,7 @@ const options = [
   },
 ]
 export class ProductCreateEditAdminPage extends Component {
-  onChange = (value) => {
+  handleCascader = (value) => {
     console.log(value)
   }
 
@@ -88,7 +88,7 @@ export class ProductCreateEditAdminPage extends Component {
           >
             <Cascader
               options={options}
-              onChange={this.onChange}
+              onChange={this.handleCascader}
               placeholder="Please select"
             />
           </Form.Item>
