@@ -23,6 +23,8 @@ import SlideAdminPage from './admin/slideAdminPage/SlideAdminPage'
 import SlideCreateEditAdminPage from './admin/slideCreateEditAdminPage/SlideCreateEditAdminPage'
 import BrandAdminPage from './admin/brandAdminPage/BrandAdminPage'
 import BrandCreateEditPage from './admin/brandCreateEditPage/BrandCreateEditPage'
+import UserAdminPage from './admin/userAdminPage/UserAdminPage'
+import UserCreateEditPage from './admin/userCreateEditPage/UserCreateEditPage'
 export {
   HomePage,
   ProductPage,
@@ -49,4 +51,6 @@ export {
   SlideCreateEditAdminPage,
   BrandAdminPage,
   BrandCreateEditPage,
+  UserAdminPage,
+  UserCreateEditPage,
 }

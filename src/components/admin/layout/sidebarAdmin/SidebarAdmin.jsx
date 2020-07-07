@@ -82,6 +82,18 @@ export class SidebarAdmin extends Component {
               <span className="title">Thương hiệu</span>
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink
+              activeClassName="selected"
+              className="nav-link parent"
+              to="/admin/user"
+            >
+              <span className="icon">
+                <i className="fa fa-user" aria-hidden="true"></i>
+              </span>
+              <span className="title">Người dùng</span>
+            </NavLink>
+          </li>
         </ul>
       </section>
     )

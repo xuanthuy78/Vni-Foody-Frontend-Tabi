@@ -25,6 +25,8 @@ import {
   SlideCreateEditAdminPage,
   BrandAdminPage,
   BrandCreateEditPage,
+  UserAdminPage,
+  UserCreateEditPage,
 } from '../containers/pages'
 import ForgetPassWord from '../containers/pages/forgetPassWord/ForgetPassWord'
 import RegisterPage from '../containers/pages/registerPage/RegisterPage'
@@ -233,6 +235,21 @@ const routes = [
     path: '/admin/brand/:id/edit',
     exact: true,
     main: () => <BrandCreateEditPage />,
+  },
+  {
+    path: '/admin/user',
+    exact: true,
+    main: () => <UserAdminPage />,
+  },
+  {
+    path: '/admin/user/created',
+    exact: true,
+    main: () => <UserCreateEditPage />,
+  },
+  {
+    path: '/admin/user/:id/edit',
+    exact: true,
+    main: () => <UserCreateEditPage />,
   },
 ]
 
