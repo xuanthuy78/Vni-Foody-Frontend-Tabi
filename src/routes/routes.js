@@ -13,6 +13,20 @@ import {
   FinishShoppingPage,
   ProductAdminPage,
   HomeAdminPage,
+  ProductCreateEditAdminPage,
+  NewsAdminPage,
+  ProductViewAdminPage,
+  CategoryAdminPage,
+  CategoryCreatedEditAdminPage,
+  OrderAdminPage,
+  OrderCreatedEditAdmin,
+  NewsCreateEditAdminPage,
+  SlideAdminPage,
+  SlideCreateEditAdminPage,
+  BrandAdminPage,
+  BrandCreateEditPage,
+  UserAdminPage,
+  UserCreateEditPage,
 } from '../containers/pages'
 import ForgetPassWord from '../containers/pages/forgetPassWord/ForgetPassWord'
 import RegisterPage from '../containers/pages/registerPage/RegisterPage'
@@ -98,16 +112,6 @@ const routes = [
     main: () => <LoginPage />,
   },
   {
-    path: '/admin',
-    exact: true,
-    main: () => <HomeAdminPage />,
-  },
-  {
-    path: '/admin/product',
-    exact: true,
-    main: () => <ProductAdminPage />,
-  },
-  {
     path: '/contactPage',
     exact: true,
     main: () => <ContactPage />,
@@ -136,6 +140,116 @@ const routes = [
     path: '/changepassword',
     exact: true,
     main: () => <ChangePassWordPage />,
+  },
+  {
+    path: '/admin',
+    exact: true,
+    main: () => <HomeAdminPage />,
+  },
+  {
+    path: '/admin/product',
+    exact: true,
+    main: () => <ProductAdminPage />,
+  },
+  {
+    path: '/admin/product/created',
+    exact: true,
+    main: () => <ProductCreateEditAdminPage />,
+  },
+  {
+    path: '/admin/product/:id',
+    exact: true,
+    main: () => <ProductCreateEditAdminPage />,
+  },
+  {
+    path: '/admin/product/:id/view',
+    exact: true,
+    main: () => <ProductViewAdminPage />,
+  },
+  {
+    path: '/admin/category',
+    exact: true,
+    main: () => <CategoryAdminPage />,
+  },
+  {
+    path: '/admin/category/created',
+    exact: true,
+    main: () => <CategoryCreatedEditAdminPage />,
+  },
+  {
+    path: '/admin/category/:id/edit',
+    exact: true,
+    main: () => <CategoryCreatedEditAdminPage />,
+  },
+  {
+    path: '/admin/order',
+    exact: true,
+    main: () => <OrderAdminPage />,
+  },
+  {
+    path: '/admin/order/:id/edit',
+    exact: true,
+    main: () => <OrderCreatedEditAdmin />,
+  },
+  {
+    path: '/admin/news',
+    exact: true,
+    main: () => <NewsAdminPage />,
+  },
+  {
+    path: '/admin/news/created',
+    exact: true,
+    main: () => <NewsCreateEditAdminPage />,
+  },
+  {
+    path: '/admin/news/:id/edit',
+    exact: true,
+    main: () => <NewsCreateEditAdminPage />,
+  },
+  {
+    path: '/admin/slide',
+    exact: true,
+    main: () => <SlideAdminPage />,
+  },
+  {
+    path: '/admin/slide/created',
+    exact: true,
+    main: () => <SlideCreateEditAdminPage />,
+  },
+  {
+    path: '/admin/slide/:id/edit',
+    exact: true,
+    main: () => <SlideCreateEditAdminPage />,
+  },
+  {
+    path: '/admin/brand',
+    exact: true,
+    main: () => <BrandAdminPage />,
+  },
+  {
+    path: '/admin/brand/created',
+    exact: true,
+    main: () => <BrandCreateEditPage />,
+  },
+  {
+    path: '/admin/brand/:id/edit',
+    exact: true,
+    main: () => <BrandCreateEditPage />,
+  },
+  {
+    path: '/admin/user',
+    exact: true,
+    main: () => <UserAdminPage />,
+  },
+  {
+    path: '/admin/user/created',
+    exact: true,
+    main: () => <UserCreateEditPage />,
+  },
+  {
+    path: '/admin/user/:id/edit',
+    exact: true,
+    main: () => <UserCreateEditPage />,
   },
 ]
 

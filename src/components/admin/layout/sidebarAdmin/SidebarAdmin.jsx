@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export class SidebarAdmin extends Component {
   render() {
@@ -9,62 +9,90 @@ export class SidebarAdmin extends Component {
           this.props.showSidebar ? 'sidebar-menu' : 'sidebar-menu-button'
         }
       >
-        <ul className="navbar-nav" id="accordion">
+        <ul className="navbar-nav">
           <li className="nav-item">
-            <Link className="nav-link parent" to="/admin/product">
+            <NavLink
+              className="nav-link parent"
+              activeClassName="selected"
+              to="/admin/category"
+            >
+              <span className="icon">
+                <i className="fa fa-list-alt" aria-hidden="true"></i>
+              </span>
+              <span className="title">Danh mục</span>
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              activeClassName="selected"
+              className="nav-link parent"
+              to="/admin/product"
+            >
               <span className="icon">
                 <i className="fa fa-product-hunt fa-lg" aria-hidden="true"></i>
               </span>
-              <span className="title">Product</span>
-              <span className="arrive">
-                <i className="fa fa-angle-right fa-lg" aria-hidden="true"></i>
-              </span>
-            </Link>
+              <span className="title">Sản Phẩm</span>
+            </NavLink>
           </li>
           <li className="nav-item">
-            <Link
+            <NavLink
+              activeClassName="selected"
               className="nav-link parent"
-              data-toggle="collapse"
-              to={{ pathname: '#product' }}
+              to="/admin/order"
+            >
+              <span className="icon">
+                <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+              </span>
+              <span className="title">Đơn Hàng</span>
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              activeClassName="selected"
+              className="nav-link parent"
+              to="/admin/news"
             >
               <span className="icon">
                 <i className="fa fa-newspaper-o" aria-hidden="true"></i>
               </span>
-              <span className="title">New</span>
-              <span className="arrive">
-                <i className="fa fa-angle-right fa-lg" aria-hidden="true"></i>
-              </span>
-            </Link>
-            <ul
-              id="product"
-              data-parent="#accordion"
-              className="navbar-nav collapse children"
+              <span className="title">Bài Viết</span>
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              activeClassName="selected"
+              className="nav-link parent"
+              to="/admin/slide"
             >
-              <li className="nav-item">
-                <Link className="nav-link" to="#">
-                  <i className="mr-3 fa fa-list-ul" aria-hidden="true"></i>
-                  <span className="item title">List</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="#">
-                  <i
-                    className="mr-3 item fa fa-plus-square-o"
-                    aria-hidden="true"
-                  ></i>
-                  <span className="title">Created</span>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="#">
-                  <i
-                    className="mr-3 item fa fa-pencil-square-o"
-                    aria-hidden="true"
-                  ></i>
-                  <span className="item title">Edit</span>
-                </Link>
-              </li>
-            </ul>
+              <span className="icon">
+                <i className="fa fa-slideshare" aria-hidden="true"></i>
+              </span>
+              <span className="title">Slider</span>
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              activeClassName="selected"
+              className="nav-link parent"
+              to="/admin/brand"
+            >
+              <span className="icon">
+                <i className="fa fa-meetup" aria-hidden="true"></i>
+              </span>
+              <span className="title">Thương hiệu</span>
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              activeClassName="selected"
+              className="nav-link parent"
+              to="/admin/user"
+            >
+              <span className="icon">
+                <i className="fa fa-user" aria-hidden="true"></i>
+              </span>
+              <span className="title">Người dùng</span>
+            </NavLink>
           </li>
         </ul>
       </section>

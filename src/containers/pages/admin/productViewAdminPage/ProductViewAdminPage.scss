@@ -1,0 +1,29 @@
+$backgroud-sidebar: rgb(242, 223, 220);
+.product-view {
+  .block {
+    display: block;
+    overflow: hidden;
+    .box {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      .item {
+        width: 150px;
+        height: 150px;
+        margin: 0 0.5em 0.5em 0;
+        border: 1px solid $backgroud-sidebar;
+        padding: 0.5em;
+        overflow: hidden;
+        img {
+          width: 100%;
+          height: 134px !important;
+          object-fit: cover;
+          transition: all 0.2s ease-out;
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
+      }
+    }
+  }
+}
