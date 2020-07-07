@@ -17,7 +17,7 @@ export class SidebarAdmin extends Component {
               to="/admin/category"
             >
               <span className="icon">
-                <i className="fa fa-newspaper-o" aria-hidden="true"></i>
+                <i className="fa fa-list-alt" aria-hidden="true"></i>
               </span>
               <span className="title">Danh mục</span>
             </NavLink>
@@ -44,6 +44,18 @@ export class SidebarAdmin extends Component {
                 <i className="fa fa-shopping-cart" aria-hidden="true"></i>
               </span>
               <span className="title">Đơn Hàng</span>
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              activeClassName="selected"
+              className="nav-link parent"
+              to="/admin/news"
+            >
+              <span className="icon">
+                <i className="fa fa-newspaper-o" aria-hidden="true"></i>
+              </span>
+              <span className="title">Bài Viết</span>
             </NavLink>
           </li>
         </ul>

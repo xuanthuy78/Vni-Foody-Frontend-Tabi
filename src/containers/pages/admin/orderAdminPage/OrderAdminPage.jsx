@@ -3,7 +3,11 @@ import MasterLayoutAdmin from '../../../../components/admin/layout/masterLayoutA
 import { Table, Space, Modal } from 'antd'
 import { Link } from 'react-router-dom'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
+import { DatePicker, Input, Select } from 'antd'
+import moment from 'moment'
 
+const { Option } = Select
+const dateFormat = 'YYYY/MM/DD'
 const data = [
   {
     key: '1',
@@ -121,15 +125,30 @@ export class OrderAdminPage extends Component {
                   </Link>
                 </div>
                 <form className="item form-inline">
-                  <label className="title" htmlFor="parts-type">
-                    Name:
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="name"
-                    placeholder="name"
+                  <Input
+                    placeholder="Tên người mua"
+                    style={{ width: '10em' }}
                   />
+                  <DatePicker
+                    placeholder="Ngày bắt đầu"
+                    defaultValue={moment('2015/01/01', dateFormat)}
+                    format={dateFormat}
+                  />
+                  <DatePicker
+                    placeholder="Ngày kết thúc"
+                    defaultValue={moment('2021/01/01', dateFormat)}
+                    format={dateFormat}
+                  />
+                  <Select
+                    defaultValue="Tất cả"
+                    style={{ width: 120 }}
+                    onChange={this.handleChange}
+                  >
+                    <Option value="0">Tất cả</Option>
+                    <Option value="1">Đang xử lý</Option>
+                    <Option value="2">Đã xử lý</Option>
+                    <Option value="3">Hủy</Option>
+                  </Select>
                   <button type="submit" className="btn btn-primary">
                     <i className="fa fa-search mr-2" aria-hidden="true"></i>
                     <span className="title-search">Search</span>

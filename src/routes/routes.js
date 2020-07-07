@@ -20,6 +20,7 @@ import {
   CategoryCreatedEditAdminPage,
   OrderAdminPage,
   OrderCreatedEditAdmin,
+  NewsCreateEditAdminPage,
 } from '../containers/pages'
 import ForgetPassWord from '../containers/pages/forgetPassWord/ForgetPassWord'
 import RegisterPage from '../containers/pages/registerPage/RegisterPage'
@@ -188,6 +189,16 @@ const routes = [
     path: '/admin/news',
     exact: true,
     main: () => <NewsAdminPage />,
+  },
+  {
+    path: '/admin/news/created',
+    exact: true,
+    main: () => <NewsCreateEditAdminPage />,
+  },
+  {
+    path: '/admin/news/:id/edit',
+    exact: true,
+    main: () => <NewsCreateEditAdminPage />,
   },
 ]
 
