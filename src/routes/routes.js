@@ -21,6 +21,8 @@ import {
   OrderAdminPage,
   OrderCreatedEditAdmin,
   NewsCreateEditAdminPage,
+  SlideAdminPage,
+  SlideCreateEditAdminPage,
 } from '../containers/pages'
 import ForgetPassWord from '../containers/pages/forgetPassWord/ForgetPassWord'
 import RegisterPage from '../containers/pages/registerPage/RegisterPage'
@@ -199,6 +201,21 @@ const routes = [
     path: '/admin/news/:id/edit',
     exact: true,
     main: () => <NewsCreateEditAdminPage />,
+  },
+  {
+    path: '/admin/slide',
+    exact: true,
+    main: () => <SlideAdminPage />,
+  },
+  {
+    path: '/admin/slide/created',
+    exact: true,
+    main: () => <SlideCreateEditAdminPage />,
+  },
+  {
+    path: '/admin/slide/:id/edit',
+    exact: true,
+    main: () => <SlideCreateEditAdminPage />,
   },
 ]
 

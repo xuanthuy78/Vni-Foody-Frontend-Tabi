@@ -58,6 +58,18 @@ export class SidebarAdmin extends Component {
               <span className="title">Bài Viết</span>
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink
+              activeClassName="selected"
+              className="nav-link parent"
+              to="/admin/slide"
+            >
+              <span className="icon">
+                <i className="fa fa-slideshare" aria-hidden="true"></i>
+              </span>
+              <span className="title">Slider</span>
+            </NavLink>
+          </li>
         </ul>
       </section>
     )

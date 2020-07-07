@@ -14,11 +14,13 @@ import ProductAdminPage from './admin/productAdminPage/ProductAdminPage'
 import ProductCreateEditAdminPage from './admin/productCreateEditAdminPage/ProductCreateEditAdminPage'
 import ProductViewAdminPage from './admin/productViewAdminPage/ProductViewAdminPage'
 import CategoryAdminPage from './admin/categoryAdminPage/CategoryAdminPage'
-import NewsAdminPage from './admin/newsAdminPage/NewsAdminPage'
 import CategoryCreatedEditAdminPage from './admin/categoryCreatedEditAdminPage/CategoryCreatedEditAdminPage'
 import OrderAdminPage from './admin/orderAdminPage/OrderAdminPage'
 import OrderCreatedEditAdmin from './admin/orderCreatedEditAdmin/OrderCreatedEditAdmin'
 import NewsCreateEditAdminPage from './admin/newsCreateEditAdminPage/NewsCreateEditAdminPage'
+import NewsAdminPage from './admin/newsAdminPage/NewsAdminPage'
+import SlideAdminPage from './admin/slideAdminPage/SlideAdminPage'
+import SlideCreateEditAdminPage from './admin/slideCreateEditAdminPage/SlideCreateEditAdminPage'
 export {
   HomePage,
   ProductPage,
@@ -41,4 +43,6 @@ export {
   OrderCreatedEditAdmin,
   NewsAdminPage,
   NewsCreateEditAdminPage,
+  SlideAdminPage,
+  SlideCreateEditAdminPage,
 }
