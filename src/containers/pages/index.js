@@ -21,6 +21,8 @@ import NewsCreateEditAdminPage from './admin/newsCreateEditAdminPage/NewsCreateE
 import NewsAdminPage from './admin/newsAdminPage/NewsAdminPage'
 import SlideAdminPage from './admin/slideAdminPage/SlideAdminPage'
 import SlideCreateEditAdminPage from './admin/slideCreateEditAdminPage/SlideCreateEditAdminPage'
+import BrandAdminPage from './admin/brandAdminPage/BrandAdminPage'
+import BrandCreateEditPage from './admin/brandCreateEditPage/BrandCreateEditPage'
 export {
   HomePage,
   ProductPage,
@@ -45,4 +47,6 @@ export {
   NewsCreateEditAdminPage,
   SlideAdminPage,
   SlideCreateEditAdminPage,
+  BrandAdminPage,
+  BrandCreateEditPage,
 }

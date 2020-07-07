@@ -8,14 +8,14 @@ const data = [
   {
     key: '1',
     id: '1323469',
-    title: 'Slide 1',
-    order: '1',
+    name: 'KFC',
     image: 'anh.jpg',
+    order: '1',
   },
 ]
 
 const { confirm } = Modal
-export class SlideAdminPage extends Component {
+export class BrandAdminPage extends Component {
   constructor() {
     super()
     this.state = {
@@ -52,9 +52,9 @@ export class SlideAdminPage extends Component {
         key: 'id',
       },
       {
-        title: 'Tiêu đề',
-        dataIndex: 'title',
-        key: 'title',
+        title: 'Tên thương hiệu',
+        dataIndex: 'name',
+        key: 'name',
       },
       {
         title: 'Hình ảnh',
@@ -80,7 +80,7 @@ export class SlideAdminPage extends Component {
         key: 'action',
         render: (text, record) => (
           <Space size="middle" className="icon-btn">
-            <Link className="btn btn-info" to="/admin/slide/1/edit">
+            <Link className="btn btn-info" to="/admin/brand/1/edit">
               <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
             </Link>
             <button
@@ -106,12 +106,12 @@ export class SlideAdminPage extends Component {
               <div className="nav-item search">
                 <div className="item result">
                   <Link to="#" className="navbar-brand">
-                    30 <span>Slider</span>
+                    30 <span>Thương hiệu</span>
                   </Link>
                 </div>
               </div>
               <div className="nav-item add-master">
-                <Link className="btn btn-warm" to="/admin/slide/created">
+                <Link className="btn btn-warm" to="/admin/brand/created">
                   <i className="fa fa-plus mr-2" aria-hidden="true"></i>
                   <span className="title-add">Add</span>
                 </Link>
@@ -127,4 +127,4 @@ export class SlideAdminPage extends Component {
   }
 }
 
-export default SlideAdminPage
+export default BrandAdminPage

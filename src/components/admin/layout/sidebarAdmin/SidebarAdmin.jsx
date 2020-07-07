@@ -70,6 +70,18 @@ export class SidebarAdmin extends Component {
               <span className="title">Slider</span>
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink
+              activeClassName="selected"
+              className="nav-link parent"
+              to="/admin/brand"
+            >
+              <span className="icon">
+                <i className="fa fa-meetup" aria-hidden="true"></i>
+              </span>
+              <span className="title">Thương hiệu</span>
+            </NavLink>
+          </li>
         </ul>
       </section>
     )
