@@ -18,6 +18,8 @@ import {
   ProductViewAdminPage,
   CategoryAdminPage,
   CategoryCreatedEditAdminPage,
+  OrderAdminPage,
+  OrderCreatedEditAdmin,
 } from '../containers/pages'
 import ForgetPassWord from '../containers/pages/forgetPassWord/ForgetPassWord'
 import RegisterPage from '../containers/pages/registerPage/RegisterPage'
@@ -171,6 +173,16 @@ const routes = [
     path: '/admin/category/:id/edit',
     exact: true,
     main: () => <CategoryCreatedEditAdminPage />,
+  },
+  {
+    path: '/admin/order',
+    exact: true,
+    main: () => <OrderAdminPage />,
+  },
+  {
+    path: '/admin/order/:id/edit',
+    exact: true,
+    main: () => <OrderCreatedEditAdmin />,
   },
   {
     path: '/admin/news',

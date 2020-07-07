@@ -16,6 +16,8 @@ import ProductViewAdminPage from './admin/productViewAdminPage/ProductViewAdminP
 import CategoryAdminPage from './admin/categoryAdminPage/CategoryAdminPage'
 import NewsAdminPage from './admin/newsAdminPage/NewsAdminPage'
 import CategoryCreatedEditAdminPage from './admin/categoryCreatedEditAdminPage/CategoryCreatedEditAdminPage'
+import OrderAdminPage from './admin/orderAdminPage/OrderAdminPage'
+import OrderCreatedEditAdmin from './admin/orderCreatedEditAdmin/OrderCreatedEditAdmin'
 export {
   HomePage,
   ProductPage,
@@ -34,5 +36,7 @@ export {
   ProductViewAdminPage,
   CategoryAdminPage,
   CategoryCreatedEditAdminPage,
+  OrderAdminPage,
+  OrderCreatedEditAdmin,
   NewsAdminPage,
 }

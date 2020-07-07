@@ -25,7 +25,6 @@ export class SidebarAdmin extends Component {
           <li className="nav-item">
             <NavLink
               activeClassName="selected"
-              exact
               className="nav-link parent"
               to="/admin/product"
             >
@@ -33,6 +32,18 @@ export class SidebarAdmin extends Component {
                 <i className="fa fa-product-hunt fa-lg" aria-hidden="true"></i>
               </span>
               <span className="title">Sản Phẩm</span>
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              activeClassName="selected"
+              className="nav-link parent"
+              to="/admin/order"
+            >
+              <span className="icon">
+                <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+              </span>
+              <span className="title">Đơn Hàng</span>
             </NavLink>
           </li>
         </ul>

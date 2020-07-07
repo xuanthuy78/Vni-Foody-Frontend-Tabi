@@ -6,63 +6,17 @@ import { ExclamationCircleOutlined } from '@ant-design/icons'
 
 const data = [
   {
-    key: 1,
-    id: 1,
-    name: 'Thực đơn chính',
-    children: [
-      {
-        key: 11,
-        id: 2,
-        name: 'John Brown',
-      },
-      {
-        key: 12,
-        id: 3,
-        name: 'John Brown jr.',
-        children: [
-          {
-            key: 121,
-            id: 4,
-            name: 'Jimmy Brown',
-          },
-        ],
-      },
-      {
-        key: 13,
-        id: 6,
-        name: 'Jim Green sr.',
-        children: [
-          {
-            key: 131,
-            id: 7,
-            name: 'Jim Green',
-            children: [
-              {
-                key: 1311,
-                id: 8,
-                name: 'Jim Green jr.',
-              },
-              {
-                key: 1312,
-                id: 9,
-                name: 'Jimmy Green sr.',
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    key: 2,
-    name: 'Joe Black',
-    id: 10,
+    key: '1',
+    id: '1323469',
+    name: 'John Brown',
+    phone: '0774453346',
+    address: 'Trưng nữ vương',
+    dateOrder: '06/07/2020',
+    status: '1',
   },
 ]
-
 const { confirm } = Modal
-
-export class CategoryAdminPage extends Component {
+export class OrderAdminPage extends Component {
   constructor() {
     super()
     this.state = {
@@ -76,6 +30,7 @@ export class CategoryAdminPage extends Component {
       this.buildColumsFromDatasource(data)
     }, 1000)
   }
+  // modal delete
   showConfirm = () => {
     confirm({
       title: 'Do you want to delete these items?',
@@ -94,40 +49,64 @@ export class CategoryAdminPage extends Component {
   buildColumsFromDatasource(dataSource) {
     const columns = [
       {
-        title: 'ID',
+        title: 'Mã đơn hàng',
         dataIndex: 'id',
         key: 'id',
       },
       {
-        title: 'Name',
+        title: 'Tên người mua',
         dataIndex: 'name',
         key: 'name',
+      },
+      {
+        title: 'Điện thoại',
+        dataIndex: 'phone',
+        key: 'phone',
+      },
+      {
+        title: 'Địa chỉ',
+        dataIndex: 'address',
+        key: 'address',
+      },
+      {
+        title: 'Ngày đặt hàng',
+        dataIndex: 'dateOrder',
+        key: 'dateOrder',
+      },
+      {
+        title: 'Trạng thái',
+        dataIndex: 'status',
+        key: 'status',
+        render: (status) => {
+          return status === '1' ? (
+            <button type="button" className="btn btn-light">
+              Đang xử lý
+            </button>
+          ) : status === '2' ? (
+            <button type="button" className="btn btn-success">
+              Đã xử lý
+            </button>
+          ) : (
+            <button type="button" className="btn btn-danger">
+              Hủy
+            </button>
+          )
+        },
       },
       {
         title: 'Action',
         key: 'action',
         render: (text, record) => (
           <Space size="middle" className="icon-btn">
-            <Link className="btn btn-success" to="/admin/category/created">
-              <i className="fa fa-plus" aria-hidden="true"></i>
+            <Link className="" to="/admin/order/1/edit">
+              Xem chi tiết
             </Link>
-            <Link className="btn btn-info" to="/admin/category/1/edit">
-              <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
-            </Link>
-            <button
-              type="button"
-              className="btn btn-danger"
-              onClick={this.showConfirm}
-            >
-              <i className="fa fa-trash-o" aria-hidden="true"></i>
-            </button>
           </Space>
         ),
       },
     ]
     this.setState({ dataSource, columns })
   }
-
   render() {
     const { dataSource, columns } = this.state
     return (
@@ -138,7 +117,7 @@ export class CategoryAdminPage extends Component {
               <div className="nav-item search">
                 <div className="item result">
                   <Link to="#" className="navbar-brand">
-                    30 <span>Danh mục</span>
+                    30 <span>Đơn hàng</span>
                   </Link>
                 </div>
                 <form className="item form-inline">
@@ -158,7 +137,7 @@ export class CategoryAdminPage extends Component {
                 </form>
               </div>
               <div className="nav-item add-master">
-                <Link className="btn btn-warm" to="/admin/category/created">
+                <Link className="btn btn-warm" to="/admin/product/created">
                   <i className="fa fa-plus mr-2" aria-hidden="true"></i>
                   <span className="title-add">Add</span>
                 </Link>
@@ -174,4 +153,4 @@ export class CategoryAdminPage extends Component {
   }
 }
 
-export default CategoryAdminPage
+export default OrderAdminPage

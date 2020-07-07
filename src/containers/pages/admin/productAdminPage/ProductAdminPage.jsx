@@ -126,7 +126,7 @@ export class ProductAdminPage extends Component {
               <div className="nav-item search">
                 <div className="item result">
                   <Link to="#" className="navbar-brand">
-                    30 <span>Danh mục</span>
+                    30 <span>Sản phẩm</span>
                   </Link>
                 </div>
                 <form className="item form-inline">
@@ -137,6 +137,15 @@ export class ProductAdminPage extends Component {
                     type="text"
                     className="form-control"
                     name="name"
+                    placeholder="name"
+                  />
+                  <label className="title" htmlFor="parts-type">
+                    Caterogy:
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="caterogy"
                     placeholder="name"
                   />
                   <button type="submit" className="btn btn-primary">
