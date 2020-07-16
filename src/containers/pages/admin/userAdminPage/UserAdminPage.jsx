@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import './ProductAdminPage.scss'
 import MasterLayoutAdmin from '../../../../components/admin/layout/masterLayoutAdmin/MasterLayoutAdmin'
-import { Table, Space, Modal } from 'antd'
+import { Table, Modal, Space } from 'antd'
 import { Link } from 'react-router-dom'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 
@@ -9,23 +8,22 @@ const data = [
   {
     key: '1',
     id: '1323469',
-    image: 'ảnh',
-    name: 'John Brown',
-    type: 'Cơm',
-    number: '10',
-    describe:
-      'Description Description Description DDescription Description DescriptDescription Description DescriptDescription Description DescriptDescription Description Descriptescription Description Description Description Description Description Description Description DescriptionDescription',
+    name: 'Admin',
+    email: 'admin@gmail.com',
+    gender: '1',
+    address: 'Trưng Nữ Vương',
+    phone: '077.445.4336',
+    role: '0',
   },
 ]
 
 const { confirm } = Modal
-export class ProductAdminPage extends Component {
+export class UserAdminPage extends Component {
   constructor() {
     super()
     this.state = {
       dataSource: null,
       columns: null,
-      title: null,
     }
   }
   componentDidMount() {
@@ -57,48 +55,41 @@ export class ProductAdminPage extends Component {
         key: 'id',
       },
       {
-        title: 'Image',
-        dataIndex: 'image',
-        key: 'image',
-        render: (text) => (
-          <div className="item">
-            <img
-              className=""
-              src={'http://localhost:3000/assets/images/left_1.png'}
-              alt=""
-            />
-          </div>
-        ),
-      },
-      {
-        title: 'Name',
+        title: 'Tên',
         dataIndex: 'name',
         key: 'name',
-        width: 150,
-        render: (text) => <Link to="/admin/product/1/view">{text}</Link>,
       },
       {
-        title: 'Type',
-        dataIndex: 'type',
-        key: 'type',
+        title: 'Email',
+        dataIndex: 'email',
+        key: 'email',
       },
       {
-        title: 'Number',
-        dataIndex: 'number',
-        key: 'number',
+        title: 'Giới tính',
+        dataIndex: 'gender',
+        key: 'gender',
       },
       {
-        title: 'Describe',
-        dataIndex: 'describe',
-        key: 'describe',
-        render: (text) => <div className="describe">{text}</div>,
+        title: 'Địa chỉ',
+        dataIndex: 'address',
+        key: 'address',
+      },
+      {
+        title: 'Số điện thoại',
+        dataIndex: 'phone',
+        key: 'phone',
+      },
+      {
+        title: 'Role',
+        dataIndex: 'role',
+        key: 'role',
       },
       {
         title: 'Action',
         key: 'action',
         render: (text, record) => (
           <Space size="middle" className="icon-btn">
-            <Link className="btn btn-info" to="/admin/product/1">
+            <Link className="btn btn-info" to="/admin/user/1/edit">
               <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
             </Link>
             <button
@@ -114,10 +105,8 @@ export class ProductAdminPage extends Component {
     ]
     this.setState({ dataSource, columns })
   }
-
   render() {
     const { dataSource, columns } = this.state
-
     return (
       <MasterLayoutAdmin>
         <div className="main-detail">
@@ -126,36 +115,12 @@ export class ProductAdminPage extends Component {
               <div className="nav-item search">
                 <div className="item result">
                   <Link to="#" className="navbar-brand">
-                    30 <span>Sản phẩm</span>
+                    30 <span>Slider</span>
                   </Link>
                 </div>
-                <form className="item form-inline">
-                  <label className="title" htmlFor="parts-type">
-                    Name:
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="name"
-                    placeholder="name"
-                  />
-                  <label className="title" htmlFor="parts-type">
-                    Caterogy:
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="caterogy"
-                    placeholder="name"
-                  />
-                  <button type="submit" className="btn btn-primary">
-                    <i className="fa fa-search mr-2" aria-hidden="true"></i>
-                    <span className="title-search">Search</span>
-                  </button>
-                </form>
               </div>
               <div className="nav-item add-master">
-                <Link className="btn btn-warm" to="/admin/product/created">
+                <Link className="btn btn-warm" to="/admin/user/created">
                   <i className="fa fa-plus mr-2" aria-hidden="true"></i>
                   <span className="title-add">Add</span>
                 </Link>
@@ -171,4 +136,4 @@ export class ProductAdminPage extends Component {
   }
 }
 
-export default ProductAdminPage
+export default UserAdminPage

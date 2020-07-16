@@ -1,11 +1,6 @@
 $backgroud: gray;
 .ant-modal {
-  .ant-modal-content {
-    border-radius: 15px 15px;
-    margin-top: -65px !important;
-  }
   .ant-modal-header {
-    border-radius: 15px 15px;
     .ant-modal-title {
       margin: 0;
       color: rgba(0, 0, 0, 0.85);
@@ -16,7 +11,6 @@ $backgroud: gray;
     }
   }
   .ant-modal-close {
-    margin-top: -10px;
     color: rgba(0, 0, 0, 0.45);
     font-weight: bold;
     line-height: 1em;

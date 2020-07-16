@@ -1,35 +1,40 @@
 import React, { Component } from 'react'
-import { Modal, Form, Input, Button, Select, Upload } from 'antd'
+import MasterLayoutAdmin from '../../../../components/admin/layout/masterLayoutAdmin/MasterLayoutAdmin'
+import { Form, Input, Button, Select, Upload } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
+import CKEditor from 'ckeditor4-react'
 
 const { Option } = Select
-export class CreateEditProduct extends Component {
+const onFinish = (values) => {
+  console.log('Success:', values)
+}
+
+const onFinishFailed = (errorInfo) => {
+  console.log('Failed:', errorInfo)
+}
+const normFile = (e) => {
+  console.log('Upload event:', e)
+
+  if (Array.isArray(e)) {
+    return e
+  }
+
+  return e && e.fileList
+}
+export class NewsCreateEditAdminPage extends Component {
+  handleCascader = (value) => {
+    console.log(value)
+  }
+
+  onEditorChange = (evt) => {
+    // this.setState({
+    //   data: evt.editor.getData(),
+    // })
+  }
   render() {
-    const onFinish = (values) => {
-      console.log('Success:', values)
-    }
-
-    const onFinishFailed = (errorInfo) => {
-      console.log('Failed:', errorInfo)
-    }
-    const normFile = (e) => {
-      console.log('Upload event:', e)
-
-      if (Array.isArray(e)) {
-        return e
-      }
-
-      return e && e.fileList
-    }
     return (
-      <Modal
-        title={this.props.title}
-        visible={this.props.visible}
-        onOk={this.props.handleOk}
-        onCancel={this.props.handleCancel}
-        footer={null}
-        width="80%"
-      >
+      <MasterLayoutAdmin>
+        <h3>Bài Viết</h3>
         <Form
           layout="vertical"
           name="basic"
@@ -37,19 +42,20 @@ export class CreateEditProduct extends Component {
           onFinishFailed={onFinishFailed}
         >
           <Form.Item
-            label="Username"
-            name="username"
+            label="Tiêu đề"
+            name="category"
+            hasFeedback
             rules={[
               {
                 required: true,
-                message: 'Please input your username!',
+                message: 'Please input your title!',
               },
             ]}
           >
             <Input />
           </Form.Item>
           <Form.Item
-            label="Category"
+            label="Danh mục"
             name="category"
             hasFeedback
             rules={[
@@ -65,19 +71,7 @@ export class CreateEditProduct extends Component {
             </Select>
           </Form.Item>
           <Form.Item
-            label="Number"
-            name="number"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your number!',
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            label="Describe"
+            label="Mô tả sản phẩm"
             name="describe"
             rules={[
               {
@@ -89,7 +83,7 @@ export class CreateEditProduct extends Component {
             <Input.TextArea />
           </Form.Item>
           <Form.Item
-            label="Upload"
+            label="Ảnh"
             name="upload"
             valuePropName="fileList"
             getValueFromEvent={normFile}
@@ -106,6 +100,13 @@ export class CreateEditProduct extends Component {
               </Button>
             </Upload>
           </Form.Item>
+          <Form.Item label="Nội dung" name="content">
+            <CKEditor
+              data="<p>Hello from CKEditor 4!</p>"
+              onChange={this.onEditorChange}
+            />
+          </Form.Item>
+
           <Form.Item>
             <Button onClick={this.props.handleCancel}>Cancel</Button>
             <Button type="primary" htmlType="submit" className="ml-3">
@@ -113,9 +114,9 @@ export class CreateEditProduct extends Component {
             </Button>
           </Form.Item>
         </Form>
-      </Modal>
+      </MasterLayoutAdmin>
     )
   }
 }
 
-export default CreateEditProduct
+export default NewsCreateEditAdminPage

@@ -1,25 +1,26 @@
 import React, { Component } from 'react'
-import './ProductAdminPage.scss'
 import MasterLayoutAdmin from '../../../../components/admin/layout/masterLayoutAdmin/MasterLayoutAdmin'
 import { Table, Space, Modal } from 'antd'
 import { Link } from 'react-router-dom'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
+import { DatePicker, Input, Select } from 'antd'
+import moment from 'moment'
 
+const { Option } = Select
+const dateFormat = 'YYYY/MM/DD'
 const data = [
   {
     key: '1',
     id: '1323469',
-    image: 'ảnh',
     name: 'John Brown',
-    type: 'Cơm',
-    number: '10',
-    describe:
-      'Description Description Description DDescription Description DescriptDescription Description DescriptDescription Description DescriptDescription Description Descriptescription Description Description Description Description Description Description Description DescriptionDescription',
+    phone: '0774453346',
+    address: 'Trưng nữ vương',
+    dateOrder: '06/07/2020',
+    status: '1',
   },
 ]
-
 const { confirm } = Modal
-export class ProductAdminPage extends Component {
+export class OrderAdminPage extends Component {
   constructor() {
     super()
     this.state = {
@@ -52,72 +53,66 @@ export class ProductAdminPage extends Component {
   buildColumsFromDatasource(dataSource) {
     const columns = [
       {
-        title: 'ID',
+        title: 'Mã đơn hàng',
         dataIndex: 'id',
         key: 'id',
       },
       {
-        title: 'Image',
-        dataIndex: 'image',
-        key: 'image',
-        render: (text) => (
-          <div className="item">
-            <img
-              className=""
-              src={'http://localhost:3000/assets/images/left_1.png'}
-              alt=""
-            />
-          </div>
-        ),
-      },
-      {
-        title: 'Name',
+        title: 'Tên người mua',
         dataIndex: 'name',
         key: 'name',
-        width: 150,
-        render: (text) => <Link to="/admin/product/1/view">{text}</Link>,
       },
       {
-        title: 'Type',
-        dataIndex: 'type',
-        key: 'type',
+        title: 'Điện thoại',
+        dataIndex: 'phone',
+        key: 'phone',
       },
       {
-        title: 'Number',
-        dataIndex: 'number',
-        key: 'number',
+        title: 'Địa chỉ',
+        dataIndex: 'address',
+        key: 'address',
       },
       {
-        title: 'Describe',
-        dataIndex: 'describe',
-        key: 'describe',
-        render: (text) => <div className="describe">{text}</div>,
+        title: 'Ngày đặt hàng',
+        dataIndex: 'dateOrder',
+        key: 'dateOrder',
+      },
+      {
+        title: 'Trạng thái',
+        dataIndex: 'status',
+        key: 'status',
+        render: (status) => {
+          return status === '1' ? (
+            <button type="button" className="btn btn-light">
+              Đang xử lý
+            </button>
+          ) : status === '2' ? (
+            <button type="button" className="btn btn-success">
+              Đã xử lý
+            </button>
+          ) : (
+            <button type="button" className="btn btn-danger">
+              Hủy
+            </button>
+          )
+        },
       },
       {
         title: 'Action',
         key: 'action',
         render: (text, record) => (
           <Space size="middle" className="icon-btn">
-            <Link className="btn btn-info" to="/admin/product/1">
-              <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <Link className="" to="/admin/order/1/edit">
+              Xem chi tiết
             </Link>
-            <button
-              type="button"
-              className="btn btn-danger"
-              onClick={this.showConfirm}
-            >
-              <i className="fa fa-trash-o" aria-hidden="true"></i>
-            </button>
           </Space>
         ),
       },
     ]
     this.setState({ dataSource, columns })
   }
-
   render() {
     const { dataSource, columns } = this.state
-
     return (
       <MasterLayoutAdmin>
         <div className="main-detail">
@@ -126,28 +121,34 @@ export class ProductAdminPage extends Component {
               <div className="nav-item search">
                 <div className="item result">
                   <Link to="#" className="navbar-brand">
-                    30 <span>Sản phẩm</span>
+                    30 <span>Đơn hàng</span>
                   </Link>
                 </div>
                 <form className="item form-inline">
-                  <label className="title" htmlFor="parts-type">
-                    Name:
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="name"
-                    placeholder="name"
+                  <Input
+                    placeholder="Tên người mua"
+                    style={{ width: '10em' }}
                   />
-                  <label className="title" htmlFor="parts-type">
-                    Caterogy:
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="caterogy"
-                    placeholder="name"
+                  <DatePicker
+                    placeholder="Ngày bắt đầu"
+                    defaultValue={moment('2015/01/01', dateFormat)}
+                    format={dateFormat}
                   />
+                  <DatePicker
+                    placeholder="Ngày kết thúc"
+                    defaultValue={moment('2021/01/01', dateFormat)}
+                    format={dateFormat}
+                  />
+                  <Select
+                    defaultValue="Tất cả"
+                    style={{ width: 120 }}
+                    onChange={this.handleChange}
+                  >
+                    <Option value="0">Tất cả</Option>
+                    <Option value="1">Đang xử lý</Option>
+                    <Option value="2">Đã xử lý</Option>
+                    <Option value="3">Hủy</Option>
+                  </Select>
                   <button type="submit" className="btn btn-primary">
                     <i className="fa fa-search mr-2" aria-hidden="true"></i>
                     <span className="title-search">Search</span>
@@ -171,4 +172,4 @@ export class ProductAdminPage extends Component {
   }
 }
 
-export default ProductAdminPage
+export default OrderAdminPage

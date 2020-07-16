@@ -1,0 +1,42 @@
+.order-detail {
+  label {
+    font-weight: 500;
+    color: black;
+  }
+  .infor {
+    span {
+      font-weight: 400;
+      padding-left: 0.5em;
+    }
+  }
+  .product {
+    .product-detail {
+      thead {
+        th {
+          white-space: nowrap;
+        }
+      }
+      tbody {
+        td {
+          white-space: nowrap;
+          vertical-align: middle;
+          font-size: 15px;
+        }
+        .item {
+          width: 50px;
+          height: 50px;
+          overflow: hidden;
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  .status {
+    text-align: end;
+    .ant-select {
+      text-align: left !important;
+    }
+  }
+}
