@@ -21,6 +21,12 @@ export class Header extends Component {
                   <div className="collapse navbar-collapse justify-content-end">
                     <ul className="navbar-nav">
                       <li className="nav-item">
+                        <Link className="nav-link" to="/admin">
+                          <i className="fa fa-lock" aria-hidden="true"></i>
+                          Admin
+                        </Link>
+                      </li>
+                      <li className="nav-item">
                         <Link className="nav-link" to="/checkorder">
                           <i className="fa fa-pencil-square-o" />
                           Kiểm tra đơn hàng
@@ -108,6 +114,12 @@ export class Header extends Component {
                       </div>
                       <div className="user-content">
                         <ul className="navbar-nav">
+                          <li className="nav-item">
+                            <Link className="nav-link" to="/admin">
+                              <i className="fa fa-lock" aria-hidden="true"></i>
+                              Admin
+                            </Link>
+                          </li>
                           <li className="nav-item">
                             <Link className="nav-link" to="#">
                               <i className="fa fa-pencil-square-o" />
