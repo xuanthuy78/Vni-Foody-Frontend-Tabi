@@ -8,6 +8,9 @@ import 'owl.carousel/dist/assets/owl.carousel.css'
 import 'owl.carousel/dist/assets/owl.theme.default.css'
 import 'font-awesome/css/font-awesome.min.css'
 import 'antd/dist/antd.css'
+import { Provider } from 'react-redux'
+import store from './store/configureStore'
+
 export class App extends Component {
   showRouters = (routes) => {
     var result = null
@@ -26,7 +29,11 @@ export class App extends Component {
     return <Switch>{result}</Switch>
   }
   render() {
-    return <Router>{this.showRouters(routes)}</Router>
+    return (
+      <Provider store={store}>
+        <Router>{this.showRouters(routes)}</Router>
+      </Provider>
+    )
   }
 }
 
