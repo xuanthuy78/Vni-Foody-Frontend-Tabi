@@ -378,6 +378,13 @@ $backgroud-sidebar: rgb(242, 223, 220);
   .table {
     .ant-table-wrapper {
       .ant-table {
+        .ant-table-thead {
+          tr {
+            th {
+              white-space: nowrap !important;
+            }
+          }
+        }
         .ant-table-tbody {
           td {
             vertical-align: sub;
