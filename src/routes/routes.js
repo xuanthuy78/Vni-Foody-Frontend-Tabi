@@ -194,7 +194,9 @@ const routes = [
   {
     path: '/admin/news',
     exact: true,
-    main: () => <NewsAdminPage />,
+    main: ({ history, location }) => (
+      <NewsAdminPage history={history} location={location} />
+    ),
   },
   {
     path: '/admin/news/created',
