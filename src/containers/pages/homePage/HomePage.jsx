@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import MasterLayout from '../../../components/layout/masterLayout/MasterLayout'
 import './HomePage.scss'
 import {
   Banner,
@@ -11,7 +10,7 @@ import {
 export class HomePage extends Component {
   render() {
     return (
-      <MasterLayout>
+      <div>
         <Banner></Banner>
         <TopSelling></TopSelling>
         <section className="main-content">
@@ -26,7 +25,7 @@ export class HomePage extends Component {
             </div>
           </div>
         </section>
-      </MasterLayout>
+      </div>
     )
   }
 }
