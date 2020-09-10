@@ -16,8 +16,6 @@ export class NewsAdminPage extends Component {
     super()
     this.state = {
       dataSource: null,
-      columns: null,
-      title: null,
       pagination: {
         current: 1,
         total: null,
@@ -27,11 +25,13 @@ export class NewsAdminPage extends Component {
   }
 
   componentDidMount() {
+    //nhận được dự liệu và gọi api
     const search = qs.parse(this.props.location.search.substr(1))
-    this.callApiNews(search.page)
+    this.callApiNews(search.page || 1, search.limit || 10)
   }
 
   componentDidUpdate(prevProps, prevState) {
+    //check trường hợp phân trang thay đổi thì gọi api
     const oldSearch = prevProps.location && qs.parse(prevProps.location.search.substr(1))
     const newSearch = this.props.location && qs.parse(this.props.location.search.substr(1))
     if (oldSearch.page !== newSearch.page || oldSearch.limit !== newSearch.limit) {
@@ -51,6 +51,7 @@ export class NewsAdminPage extends Component {
       loading: false,
       pagination: {
         total: this.props.news.meta.pagination.total,
+        pageSize: limit,
       },
     })
     window.scrollTo(0, 0)
@@ -71,6 +72,7 @@ export class NewsAdminPage extends Component {
   }
 
   handleNews = (pagination) => {
+    //truyền thông tin cần thiết gửi lên location
     const location = {
       pathname: '/admin/news',
       search: `page=${pagination.current}&limit=${pagination.pageSize}`,
