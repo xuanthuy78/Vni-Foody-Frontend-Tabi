@@ -27,6 +27,7 @@ import {
   BrandCreateEditPage,
   UserAdminPage,
   UserCreateEditPage,
+  NewsViewPage,
 } from '../containers/pages'
 import ForgetPassWord from '../containers/pages/forgetPassWord/ForgetPassWord'
 import RegisterPage from '../containers/pages/registerPage/RegisterPage'
@@ -77,9 +78,7 @@ const routes = [
   {
     path: '/introduce-detail/:title',
     exact: true,
-    main: ({ match, history }) => (
-      <IntroduceDetailPage match={match} history={history} />
-    ),
+    main: ({ match, history }) => <IntroduceDetailPage match={match} history={history} />,
   },
   {
     path: '/shopping-cart',
@@ -194,9 +193,12 @@ const routes = [
   {
     path: '/admin/news',
     exact: true,
-    main: ({ history, location }) => (
-      <NewsAdminPage history={history} location={location} />
-    ),
+    main: ({ history, location }) => <NewsAdminPage history={history} location={location} />,
+  },
+  {
+    path: '/admin/news/:id',
+    exact: true,
+    main: () => <NewsViewPage />,
   },
   {
     path: '/admin/news/created',

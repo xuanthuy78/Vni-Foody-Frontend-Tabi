@@ -19,6 +19,7 @@ import OrderAdminPage from './admin/orderAdminPage/OrderAdminPage'
 import OrderCreatedEditAdmin from './admin/orderCreatedEditAdmin/OrderCreatedEditAdmin'
 import NewsCreateEditAdminPage from './admin/newsCreateEditAdminPage/NewsCreateEditAdminPage'
 import NewsAdminPage from './admin/newsAdminPage/NewsAdminPage'
+import NewsViewPage from './admin/newsViewPage/NewsViewPage'
 import SlideAdminPage from './admin/slideAdminPage/SlideAdminPage'
 import SlideCreateEditAdminPage from './admin/slideCreateEditAdminPage/SlideCreateEditAdminPage'
 import BrandAdminPage from './admin/brandAdminPage/BrandAdminPage'
@@ -46,6 +47,7 @@ export {
   OrderAdminPage,
   OrderCreatedEditAdmin,
   NewsAdminPage,
+  NewsViewPage,
   NewsCreateEditAdminPage,
   SlideAdminPage,
   SlideCreateEditAdminPage,

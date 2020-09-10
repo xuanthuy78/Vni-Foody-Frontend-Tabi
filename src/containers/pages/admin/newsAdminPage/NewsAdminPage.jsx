@@ -99,7 +99,11 @@ export class NewsAdminPage extends Component {
         title: 'Tiêu đề',
         dataIndex: 'title',
         key: 'title',
-        render: (text) => <div className="describe">{text}</div>,
+        render: (text) => (
+          <div className="describe">
+            <Link to="/admin/news/1">{text}</Link>
+          </div>
+        ),
       },
       {
         title: 'Danh mục',
