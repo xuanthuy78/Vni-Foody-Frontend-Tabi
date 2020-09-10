@@ -39,7 +39,7 @@ import MyCartPage from '../containers/pages/myCartPage/MyCartPage'
 import MyCartDetailPage from '../containers/pages/myCartDetailPage/MyCartDetailPage'
 import ChangePassWordPage from '../containers/pages/changePassWordPage/ChangePassWordPage'
 
-const routes = [
+export const routes_not_auth = [
   {
     path: '/',
     exact: true,
@@ -78,7 +78,9 @@ const routes = [
   {
     path: '/introduce-detail/:title',
     exact: true,
-    main: ({ match, history }) => <IntroduceDetailPage match={match} history={history} />,
+    main: ({ match, history }) => (
+      <IntroduceDetailPage match={match} history={history} />
+    ),
   },
   {
     path: '/shopping-cart',
@@ -140,6 +142,9 @@ const routes = [
     exact: true,
     main: () => <ChangePassWordPage />,
   },
+]
+
+export const routes_auth = [
   {
     path: '/admin',
     exact: true,
@@ -193,7 +198,9 @@ const routes = [
   {
     path: '/admin/news',
     exact: true,
-    main: ({ history, location }) => <NewsAdminPage history={history} location={location} />,
+    main: ({ history, location }) => (
+      <NewsAdminPage history={history} location={location} />
+    ),
   },
   {
     path: '/admin/news/:id',
@@ -256,5 +263,3 @@ const routes = [
     main: () => <UserCreateEditPage />,
   },
 ]
-
-export default routes

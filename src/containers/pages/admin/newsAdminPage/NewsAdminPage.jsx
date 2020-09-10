@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import MasterLayoutAdmin from '../../../../components/admin/layout/masterLayoutAdmin/MasterLayoutAdmin'
 import { Table, Modal, Space } from 'antd'
 import { Link } from 'react-router-dom'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
@@ -32,9 +31,14 @@ export class NewsAdminPage extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     //check trường hợp phân trang thay đổi thì gọi api
-    const oldSearch = prevProps.location && qs.parse(prevProps.location.search.substr(1))
-    const newSearch = this.props.location && qs.parse(this.props.location.search.substr(1))
-    if (oldSearch.page !== newSearch.page || oldSearch.limit !== newSearch.limit) {
+    const oldSearch =
+      prevProps.location && qs.parse(prevProps.location.search.substr(1))
+    const newSearch =
+      this.props.location && qs.parse(this.props.location.search.substr(1))
+    if (
+      oldSearch.page !== newSearch.page ||
+      oldSearch.limit !== newSearch.limit
+    ) {
       this.setState({
         loading: true,
       })
@@ -50,8 +54,9 @@ export class NewsAdminPage extends Component {
       dataSource: data,
       loading: false,
       pagination: {
+        current: parseInt(page),
         total: this.props.news.meta.pagination.total,
-        pageSize: limit,
+        pageSize: parseInt(limit),
       },
     })
     window.scrollTo(0, 0)
@@ -61,7 +66,8 @@ export class NewsAdminPage extends Component {
     confirm({
       title: 'Do you want to delete these items?',
       icon: <ExclamationCircleOutlined />,
-      content: 'When clicked the OK button, this dialog will be closed after 1 second',
+      content:
+        'When clicked the OK button, this dialog will be closed after 1 second',
       onOk() {
         return new Promise((resolve, reject) => {
           setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
@@ -73,6 +79,7 @@ export class NewsAdminPage extends Component {
 
   handleNews = (pagination) => {
     //truyền thông tin cần thiết gửi lên location
+    console.log(pagination)
     const location = {
       pathname: '/admin/news',
       search: `page=${pagination.current}&limit=${pagination.pageSize}`,
@@ -81,6 +88,7 @@ export class NewsAdminPage extends Component {
   }
 
   render() {
+    console.log(this.state.pagination)
     const { dataSource } = this.state
     //Colums là tiêu đề render một lần thôi
     const columns = [
@@ -123,7 +131,11 @@ export class NewsAdminPage extends Component {
         key: 'image',
         render: (text) => (
           <div className="item">
-            <img className="" src={'http://localhost:3000/assets/images/left_1.png'} alt="" />
+            <img
+              className=""
+              src={'http://localhost:3000/assets/images/left_1.png'}
+              alt=""
+            />
           </div>
         ),
       },
@@ -132,7 +144,9 @@ export class NewsAdminPage extends Component {
         dataIndex: 'created_at',
         key: 'created_at',
         width: 150,
-        render: (text) => <div className="">{Moment(text).format('DD/MM/YYYY')}</div>,
+        render: (text) => (
+          <div className="">{Moment(text).format('DD/MM/YYYY')}</div>
+        ),
       },
       {
         title: 'Action',
@@ -142,7 +156,11 @@ export class NewsAdminPage extends Component {
             <Link className="btn btn-info" to="/admin/news/1/edit">
               <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
             </Link>
-            <button type="button" className="btn btn-danger" onClick={this.showConfirm}>
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={this.showConfirm}
+            >
               <i className="fa fa-trash-o" aria-hidden="true"></i>
             </button>
           </Space>
@@ -150,46 +168,49 @@ export class NewsAdminPage extends Component {
       },
     ]
     return (
-      <MasterLayoutAdmin>
-        <div className="main-detail">
-          <div className="filter mb-3">
-            <div className="nav-filter">
-              <div className="nav-item search">
-                <div className="item result">
-                  <Link to="#" className="navbar-brand">
-                    30 <span>Bài viết</span>
-                  </Link>
-                </div>
-                <form className="item form-inline">
-                  <label className="title" htmlFor="parts-type">
-                    Tiêu đề:
-                  </label>
-                  <input type="text" className="form-control" name="name" placeholder="Tìm theo tiêu đề..." />
-                  <button type="submit" className="btn btn-primary">
-                    <i className="fa fa-search mr-2" aria-hidden="true"></i>
-                    <span className="title-search">Search</span>
-                  </button>
-                </form>
-              </div>
-              <div className="nav-item add-master">
-                <Link className="btn btn-warm" to="/admin/news/created">
-                  <i className="fa fa-plus mr-2" aria-hidden="true"></i>
-                  <span className="title-add">Add</span>
+      <div className="main-detail">
+        <div className="filter mb-3">
+          <div className="nav-filter">
+            <div className="nav-item search">
+              <div className="item result">
+                <Link to="#" className="navbar-brand">
+                  30 <span>Bài viết</span>
                 </Link>
               </div>
+              <form className="item form-inline">
+                <label className="title" htmlFor="parts-type">
+                  Tiêu đề:
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="name"
+                  placeholder="Tìm theo tiêu đề..."
+                />
+                <button type="submit" className="btn btn-primary">
+                  <i className="fa fa-search mr-2" aria-hidden="true"></i>
+                  <span className="title-search">Search</span>
+                </button>
+              </form>
+            </div>
+            <div className="nav-item add-master">
+              <Link className="btn btn-warm" to="/admin/news/created">
+                <i className="fa fa-plus mr-2" aria-hidden="true"></i>
+                <span className="title-add">Add</span>
+              </Link>
             </div>
           </div>
-          <div className="table">
-            <Table
-              columns={columns}
-              dataSource={dataSource}
-              pagination={this.state.pagination}
-              loading={this.state.loading}
-              onChange={this.handleNews}
-            />
-          </div>
         </div>
-      </MasterLayoutAdmin>
+        <div className="table">
+          <Table
+            columns={columns}
+            dataSource={dataSource}
+            pagination={this.state.pagination}
+            loading={this.state.loading}
+            onChange={this.handleNews}
+          />
+        </div>
+      </div>
     )
   }
 }

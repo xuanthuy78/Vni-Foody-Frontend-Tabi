@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import MasterLayoutAdmin from '../../../../components/admin/layout/masterLayoutAdmin/MasterLayoutAdmin'
 import { Form, Input, Button, Upload } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 
@@ -22,7 +21,7 @@ const normFile = (e) => {
 export class SlideCreateEditAdminPage extends Component {
   render() {
     return (
-      <MasterLayoutAdmin>
+      <div>
         <h3>Slide</h3>
         <Form
           layout="vertical"
@@ -81,7 +80,7 @@ export class SlideCreateEditAdminPage extends Component {
             </Button>
           </Form.Item>
         </Form>
-      </MasterLayoutAdmin>
+      </div>
     )
   }
 }

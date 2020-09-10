@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import MasterLayoutAdmin from '../../../../components/admin/layout/masterLayoutAdmin/MasterLayoutAdmin'
 import { Form, Input, Button } from 'antd'
 
 export class CategoryCreatedEditAdminPage extends Component {
@@ -12,7 +11,7 @@ export class CategoryCreatedEditAdminPage extends Component {
       console.log('Failed:', errorInfo)
     }
     return (
-      <MasterLayoutAdmin>
+      <div>
         <h3>Category</h3>
         <Form
           layout="vertical"
@@ -42,7 +41,7 @@ export class CategoryCreatedEditAdminPage extends Component {
             </Button>
           </Form.Item>
         </Form>
-      </MasterLayoutAdmin>
+      </div>
     )
   }
 }

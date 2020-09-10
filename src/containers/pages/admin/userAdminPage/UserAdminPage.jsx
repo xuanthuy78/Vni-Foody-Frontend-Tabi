@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import MasterLayoutAdmin from '../../../../components/admin/layout/masterLayoutAdmin/MasterLayoutAdmin'
 import { Table, Modal, Space } from 'antd'
 import { Link } from 'react-router-dom'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
@@ -108,30 +107,28 @@ export class UserAdminPage extends Component {
   render() {
     const { dataSource, columns } = this.state
     return (
-      <MasterLayoutAdmin>
-        <div className="main-detail">
-          <div className="filter mb-3">
-            <div className="nav-filter">
-              <div className="nav-item search">
-                <div className="item result">
-                  <Link to="#" className="navbar-brand">
-                    30 <span>Slider</span>
-                  </Link>
-                </div>
-              </div>
-              <div className="nav-item add-master">
-                <Link className="btn btn-warm" to="/admin/user/created">
-                  <i className="fa fa-plus mr-2" aria-hidden="true"></i>
-                  <span className="title-add">Add</span>
+      <div className="main-detail">
+        <div className="filter mb-3">
+          <div className="nav-filter">
+            <div className="nav-item search">
+              <div className="item result">
+                <Link to="#" className="navbar-brand">
+                  30 <span>Slider</span>
                 </Link>
               </div>
             </div>
-          </div>
-          <div className="table">
-            <Table columns={columns} dataSource={dataSource} />
+            <div className="nav-item add-master">
+              <Link className="btn btn-warm" to="/admin/user/created">
+                <i className="fa fa-plus mr-2" aria-hidden="true"></i>
+                <span className="title-add">Add</span>
+              </Link>
+            </div>
           </div>
         </div>
-      </MasterLayoutAdmin>
+        <div className="table">
+          <Table columns={columns} dataSource={dataSource} />
+        </div>
+      </div>
     )
   }
 }
