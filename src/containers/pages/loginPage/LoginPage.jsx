@@ -23,10 +23,7 @@ export class LoginPage extends Component {
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link icon-link" to="#">
-                      <i
-                        className="fa fa-angle-double-right "
-                        aria-hidden="true"
-                      ></i>
+                      <i className="fa fa-angle-double-right " aria-hidden="true"></i>
                     </Link>
                   </li>
                   <li className="nav-item active">

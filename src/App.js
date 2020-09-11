@@ -19,39 +19,26 @@ export class App extends Component {
       <Provider store={store}>
         <Router>
           <Switch>
-            <MasterLayout>
-              <Route path={routes_not_auth.map((item) => item.path)}>
+            <Route path={routes_auth.map((item) => item.path)}>
+              <MasterLayoutAdmin>
+                <Switch>
+                  {routes_auth.map((route, index) => {
+                    return <Route key={`auth-${index}`} path={route.path} exact={route.exact} component={route.main} />
+                  })}
+                </Switch>
+              </MasterLayoutAdmin>
+            </Route>
+            <Route path={routes_not_auth.map((item) => item.path)}>
+              <MasterLayout>
                 <Switch>
                   {routes_not_auth.map((route, index) => {
                     return (
-                      <Route
-                        key={`not-auth-${index}`}
-                        exact={route.exact}
-                        path={route.path}
-                        component={route.main}
-                      />
+                      <Route key={`not-auth-${index}`} exact={route.exact} path={route.path} component={route.main} />
                     )
                   })}
                 </Switch>
-              </Route>
-            </MasterLayout>
-            <MasterLayoutAdmin>
-              <Route path={routes_auth.map((item) => item.path)}>
-                <div style={{ zIndex: 9999 }}> ADMIN PAGE</div>
-                <Switch>
-                  {routes_auth.map((route, index) => {
-                    return (
-                      <Route
-                        key={`auth-${index}`}
-                        path={route.path}
-                        exact={route.exact}
-                        component={route.main}
-                      />
-                    )
-                  })}
-                </Switch>
-              </Route>
-            </MasterLayoutAdmin>
+              </MasterLayout>
+            </Route>
           </Switch>
         </Router>
       </Provider>
