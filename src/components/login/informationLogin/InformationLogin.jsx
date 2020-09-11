@@ -60,8 +60,12 @@ export class InformationLogin extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  token: state.auth.token,
+})
+
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(Actions, dispatch),
 })
 
-export default connect(null, mapDispatchToProps)(InformationLogin)
+export default connect(mapStateToProps, mapDispatchToProps)(InformationLogin)

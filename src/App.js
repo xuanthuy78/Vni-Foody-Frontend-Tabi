@@ -12,6 +12,7 @@ import { Provider } from 'react-redux'
 import store from './store/configureStore'
 import MasterLayoutAdmin from './components/admin/layout/masterLayoutAdmin/MasterLayoutAdmin'
 import { MasterLayout } from './components/layout'
+import NotFoundPage from './containers/pages/notFoundPage/NotFoundPage'
 
 export class App extends Component {
   render() {
@@ -39,6 +40,7 @@ export class App extends Component {
                 </Switch>
               </MasterLayout>
             </Route>
+            <Route exact path="" component={<NotFoundPage />} />
           </Switch>
         </Router>
       </Provider>
