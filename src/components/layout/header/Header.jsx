@@ -2,9 +2,12 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './Header.scss'
 import HeaderMenu from '../headerMenu/HeaderMenu'
+import { connect } from 'react-redux'
+import { AUTH_LOGOUT } from '../../../constants/ActionTypes'
 
 export class Header extends Component {
   render() {
+    const { auth, logout } = this.props
     return (
       <header className="header-container">
         <div className="container">
@@ -38,11 +41,19 @@ export class Header extends Component {
                           Giỏ hàng
                         </Link>
                       </li>
+
                       <li className="nav-item">
-                        <Link className="nav-link" to="/loginPage">
-                          <i className="fa fa-sign-in" />
-                          Đăng nhập
-                        </Link>
+                        {!auth ? (
+                          <Link className="nav-link" to="/loginPage">
+                            <i className="fa fa-sign-in" />
+                            Đăng nhập
+                          </Link>
+                        ) : (
+                          <span className="nav-link" onClick={logout}>
+                            <i className="fa fa-sign-out" />
+                            Đăng xuất
+                          </span>
+                        )}
                       </li>
                       <li className="nav-item">
                         <Link className="nav-link" to="/registerPage">
@@ -183,4 +194,12 @@ export class Header extends Component {
   }
 }
 
-export default Header
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  logout: () => dispatch({ type: AUTH_LOGOUT }),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

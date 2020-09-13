@@ -24,23 +24,38 @@ export class App extends Component {
               <MasterLayoutAdmin>
                 <Switch>
                   {routes_auth.map((route, index) => {
-                    return <Route key={`auth-${index}`} path={route.path} exact={route.exact} component={route.main} />
+                    return (
+                      <Route
+                        key={`auth-${index}`}
+                        path={route.path}
+                        exact={route.exact}
+                        component={route.main}
+                      />
+                    )
                   })}
                 </Switch>
               </MasterLayoutAdmin>
             </Route>
+
             <Route path={routes_not_auth.map((item) => item.path)}>
               <MasterLayout>
                 <Switch>
                   {routes_not_auth.map((route, index) => {
                     return (
-                      <Route key={`not-auth-${index}`} exact={route.exact} path={route.path} component={route.main} />
+                      <Route
+                        key={`not-auth-${index}`}
+                        exact={route.exact}
+                        path={route.path}
+                        component={route.main}
+                      />
                     )
                   })}
                 </Switch>
               </MasterLayout>
             </Route>
-            <Route exact path="" component={<NotFoundPage />} />
+            <MasterLayout>
+              <Route path="*" component={NotFoundPage} />
+            </MasterLayout>
           </Switch>
         </Router>
       </Provider>

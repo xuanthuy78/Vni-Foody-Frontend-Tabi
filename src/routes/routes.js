@@ -110,7 +110,7 @@ export const routes_not_auth = [
   {
     path: '/loginPage',
     exact: true,
-    main: () => <LoginPage />,
+    main: (history) => <LoginPage history={history} />,
   },
   {
     path: '/contactPage',
@@ -213,7 +213,7 @@ export const routes_auth = [
     main: () => <NewsCreateEditAdminPage />,
   },
   {
-    path: '/admin/news/:id/edit',
+    path: '/admin/news/edit/:id',
     exact: true,
     main: () => <NewsCreateEditAdminPage />,
   },
@@ -228,7 +228,7 @@ export const routes_auth = [
     main: () => <SlideCreateEditAdminPage />,
   },
   {
-    path: '/admin/slide/:id/edit',
+    path: '/admin/slide/edit/:id',
     exact: true,
     main: () => <SlideCreateEditAdminPage />,
   },
@@ -243,7 +243,7 @@ export const routes_auth = [
     main: () => <BrandCreateEditPage />,
   },
   {
-    path: '/admin/brand/:id/edit',
+    path: '/admin/brand/edit/:id',
     exact: true,
     main: () => <BrandCreateEditPage />,
   },
@@ -258,7 +258,7 @@ export const routes_auth = [
     main: () => <UserCreateEditPage />,
   },
   {
-    path: '/admin/user/:id/edit',
+    path: '/admin/user/edit/:id',
     exact: true,
     main: () => <UserCreateEditPage />,
   },
