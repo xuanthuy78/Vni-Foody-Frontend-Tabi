@@ -22,3 +22,19 @@ export const authLogin = (login) => (dispatch) =>
       },
     },
   })
+
+export const checkLogin = () => (dispatch) => {
+  const token = localStorage.getItem('token')
+  return dispatch({
+    types: [types.API_REQUEST_SEND, types.CHECK_LOGIN, types.API_REQUEST_ERROR],
+    payload: {
+      request: {
+        url: `api/user`,
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      },
+    },
+  })
+}
