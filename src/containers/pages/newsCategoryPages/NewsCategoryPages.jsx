@@ -19,15 +19,12 @@ export class NewsCategoryPages extends Component {
                 <div className="menu-title">
                   <ul className="nav">
                     <li className="nav-item">
-                      <Link className="nav-link" to="/">
+                      <Link className="nav-link" to="/home">
                         Trang chủ
                       </Link>
                     </li>
                     <li className="nav-item icon-link">
-                      <i
-                        className="fa fa-angle-double-right"
-                        aria-hidden="true"
-                      ></i>
+                      <i className="fa fa-angle-double-right" aria-hidden="true"></i>
                     </li>
                     <li className="nav-item">
                       <Link className="nav-link" to="/news">
@@ -35,10 +32,7 @@ export class NewsCategoryPages extends Component {
                       </Link>
                     </li>
                     <li className="nav-item icon-link">
-                      <i
-                        className="fa fa-angle-double-right"
-                        aria-hidden="true"
-                      ></i>
+                      <i className="fa fa-angle-double-right" aria-hidden="true"></i>
                     </li>
                     <li className="nav-item active">
                       <Link className="nav-link" to="#">

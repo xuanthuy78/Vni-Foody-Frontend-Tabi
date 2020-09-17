@@ -3,10 +3,7 @@ import './ContactPage.scss'
 import { Link } from 'react-router-dom'
 import { Partner } from '../../../components/product/partner/Partner'
 
-import {
-  SendInformationContact,
-  AboutIformationContact,
-} from '../../../components/contact/index'
+import { SendInformationContact, AboutIformationContact } from '../../../components/contact/index'
 
 export class ContactPage extends Component {
   render() {
@@ -16,7 +13,7 @@ export class ContactPage extends Component {
           <div className="contact-menu menu-title">
             <ul className="nav">
               <li className="nav-item">
-                <Link className="nav-link" to="/">
+                <Link className="nav-link" to="/home">
                   Trang chủ
                 </Link>
               </li>
@@ -49,10 +46,7 @@ export class ContactPage extends Component {
                     <br />
                     <b className="ng-binding">0908770095</b>
                   </div>
-                  <div
-                    className="support-item ng-scope"
-                    ng-repeat="item in SupportOnlines"
-                  >
+                  <div className="support-item ng-scope" ng-repeat="item in SupportOnlines">
                     <div className="name">
                       Mr.Trường <b className="ng-binding">0908770095</b>
                     </div>

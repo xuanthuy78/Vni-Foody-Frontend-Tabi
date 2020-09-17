@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 import * as Actions from '../../../actions/index'
 import { Spin } from 'antd'
 
-let unmount = false
+// let unmount = false
 export class InformationLogin extends Component {
   constructor(props) {
     super(props)
@@ -19,9 +19,9 @@ export class InformationLogin extends Component {
     }
   }
 
-  componentWillUnmount() {
-    unmount = true
-  }
+  // componentWillUnmount() {
+  //   unmount = true
+  // }
 
   handleInputLogin = (e) => {
     this.setState({
@@ -34,15 +34,25 @@ export class InformationLogin extends Component {
   onLogin = async (e) => {
     e.preventDefault()
     this.setState({ loading: true })
-    await this.props.actions.authLogin(this.state.login)
-    !unmount && this.setState({ loading: false })
+    await this.props.actions.authLogin(this.state.login).then(this.handleAuth)
+    // !unmount && this.setState({ loading: false })
+  }
+
+  handleAuth = async (res) => {
+    if (res.error) {
+      let msg = 'Đăng nhập không thành công, vui lòng thử lại'
+      if (res.error.response.status === 500) {
+        msg = 'Mất kết nối internet, vui lòng thử lại'
+      }
+      return this.setState({ error: msg, loading: false })
+    }
   }
 
   render() {
     const { auth } = this.props
     return (
       <Fragment>
-        {auth && <Redirect to="/" />}
+        {auth && <Redirect to="/home" />}
         <div className="login-content">
           <h1 className="title">
             <span>ĐĂNG NHẬP HỆ THỐNG</span>
@@ -74,11 +84,11 @@ export class InformationLogin extends Component {
                     />
                   </div>
                 </div>
-                {/* {this.props.error && (
+                {this.state.error && (
                   <div className="alert alert-danger" role="alert">
-                    Tài khoản không đúng
+                    {this.state.error}
                   </div>
-                )} */}
+                )}
                 <div className="form-group button-login">
                   <div className="offset-md-4 col-md-12 col-sm-12 col-12">
                     <button type="submit" className="btn btn-primary">

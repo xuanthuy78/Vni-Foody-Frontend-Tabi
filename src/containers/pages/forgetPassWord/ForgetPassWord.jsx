@@ -18,15 +18,12 @@ export class ForgetPassWord extends Component {
               <div className="forgetpassword-menu menu-title">
                 <ul className="nav">
                   <li className="nav-item">
-                    <Link className="nav-link" to="/">
+                    <Link className="nav-link" to="/home">
                       Trang chủ
                     </Link>
                   </li>
                   <li className="nav-item icon-link">
-                    <i
-                      className="fa fa-angle-double-right"
-                      aria-hidden="true"
-                    />
+                    <i className="fa fa-angle-double-right" aria-hidden="true" />
                   </li>
                   <li className="nav-item active">
                     <Link className="nav-link" to="#">

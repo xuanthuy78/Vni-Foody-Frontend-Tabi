@@ -10,7 +10,7 @@ export class NotFoundPage extends Component {
         title="404"
         subTitle="Sorry, the page you visited does not exist."
         extra={
-          <Link to="/" type="primary">
+          <Link to="/home" type="primary">
             Back Home
           </Link>
         }

@@ -55,7 +55,7 @@ export class ShoppingCartPage extends Component {
               <span className="price">59,000đ</span>
             </div>
             <div className="total-pay button-same">
-              <Link to="/" className="btn btn-dark mr-2 continue">
+              <Link to="/home" className="btn btn-dark mr-2 continue">
                 TIẾP TỤC MUA HÀNG
               </Link>
               <Link to="/pay-shopping" className="btn btn-danger pay">

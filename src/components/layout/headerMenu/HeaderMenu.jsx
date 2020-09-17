@@ -7,23 +7,14 @@ export class HeaderMenu extends Component {
       <section className="header-menu">
         <ul className="nav">
           <li className="nav-item">
-            <NavLink
-              className="nav-link"
-              exact
-              activeClassName="selected"
-              to="/"
-            >
+            <NavLink className="nav-link" exact activeClassName="selected" to="/home">
               Trang Chủ
               <div className="menu-caret" />
             </NavLink>
           </li>
           <li className="menu-icon">/</li>
           <li className="nav-item">
-            <NavLink
-              className="nav-link"
-              activeClassName="selected"
-              to="/product"
-            >
+            <NavLink className="nav-link" activeClassName="selected" to="/product">
               Sản Phẩm
               <div className="menu-caret" />
             </NavLink>
@@ -37,22 +28,14 @@ export class HeaderMenu extends Component {
           </li>
           <li className="menu-icon">/</li>
           <li className="nav-item">
-            <NavLink
-              className="nav-link"
-              activeClassName="selected"
-              to="/introduce"
-            >
+            <NavLink className="nav-link" activeClassName="selected" to="/introduce">
               Giới thiệu
               <div className="menu-caret" />
             </NavLink>
           </li>
           <li className="menu-icon">/</li>
           <li className="nav-item">
-            <NavLink
-              className="nav-link"
-              activeClassName="selected"
-              to="/contactPage"
-            >
+            <NavLink className="nav-link" activeClassName="selected" to="/contactPage">
               Liên hệ
               <div className="menu-caret" />
             </NavLink>

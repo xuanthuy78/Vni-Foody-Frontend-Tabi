@@ -17,18 +17,12 @@ export class MasterLayoutAdmin extends Component {
     localStorage.setItem('show', showSidebar)
   }
   render() {
-    const childrenWithProps = React.Children.map(this.props.children, (child) =>
-      React.cloneElement(child, {})
-    )
+    const childrenWithProps = React.Children.map(this.props.children, (child) => React.cloneElement(child, {}))
     return (
       <div className="admin-container">
         <HeaderAdmin showSidebar={this.handleShowSidebar} />
         <SidebarAdmin showSidebar={this.state.showSidebar} />
-        <main
-          className={this.state.showSidebar ? 'left-content' : 'main-content'}
-        >
-          {childrenWithProps}
-        </main>
+        <main className={this.state.showSidebar ? 'left-content' : 'main-content'}>{childrenWithProps}</main>
       </div>
     )
   }

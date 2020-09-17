@@ -13,7 +13,6 @@ export class Header extends Component {
   }
   render() {
     const { auth, logout, user } = this.props
-    console.log(user)
     return (
       <header className="header-container">
         <div className="container">
@@ -59,17 +58,19 @@ export class Header extends Component {
                         </Fragment>
                       ) : (
                         <Fragment>
+                          {user && user.is_admin === 1 && (
+                            <li className="nav-item">
+                              <Link className="nav-link" to="/admin">
+                                <i className="fa fa-lock" aria-hidden="true"></i>
+                                Admin
+                              </Link>
+                            </li>
+                          )}
                           <li className="nav-item">
-                            <Link className="nav-link" to="/admin">
-                              <i className="fa fa-lock" aria-hidden="true"></i>
-                              Admin
-                            </Link>
-                          </li>
-                          <li className="nav-item">
-                            <span className="nav-link" onClick={logout}>
+                            <Link className="nav-link" to="/mycart">
                               <i className="fa fa-user" />
                               {user.name}
-                            </span>
+                            </Link>
                           </li>
                           <li className="nav-item">
                             <span className="nav-link" onClick={logout}>

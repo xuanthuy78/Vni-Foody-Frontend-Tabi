@@ -13,22 +13,18 @@ export class HeaderAdmin extends Component {
         <nav className="navbar navbar-expand navbar-light fixed-top">
           <div className="border-logo">
             <div className="screen-668">
-              <Link to="/">
+              <Link to="/home">
                 <img src={Logo} alt="Logo" />
               </Link>
             </div>
             <div className="screen-mobi">
-              <Link to="/">
+              <Link to="/home">
                 <img className="images-logo" src={LogoMobi} alt="Logo" />
               </Link>
             </div>
           </div>
           <div className="btn-toggler ml-5">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={this.handleShowSideBar}
-            >
+            <button type="button" className="btn btn-secondary" onClick={this.handleShowSideBar}>
               <i className="fa fa-bars" aria-hidden="true"></i>
             </button>
           </div>
@@ -44,10 +40,7 @@ export class HeaderAdmin extends Component {
               <li className="nav-item active">
                 <Link className="nav-link" to="#">
                   <span className="badge badge-danger">8</span>
-                  <i
-                    className="fa fa-commenting-o fa-lg"
-                    aria-hidden="true"
-                  ></i>
+                  <i className="fa fa-commenting-o fa-lg" aria-hidden="true"></i>
                 </Link>
               </li>
               <li className="nav-item clock">

@@ -12,29 +12,20 @@ export class ProductPage extends Component {
       <div className="product-page">
         <div className="container">
           <div className="row product-top">
-            <div
-              id="first"
-              className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12"
-            >
+            <div id="first" className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
               <Sidebar></Sidebar>
             </div>
-            <div
-              id="second"
-              className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12"
-            >
+            <div id="second" className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
               <div className="main-product">
                 <div className="menu-title">
                   <ul className="nav">
                     <li className="nav-item">
-                      <Link className="nav-link" to="/">
+                      <Link className="nav-link" to="/home">
                         Trang chủ
                       </Link>
                     </li>
                     <li className="nav-item icon-link">
-                      <i
-                        className="fa fa-angle-double-right"
-                        aria-hidden="true"
-                      ></i>
+                      <i className="fa fa-angle-double-right" aria-hidden="true"></i>
                     </li>
                     <li className="nav-item active">
                       <Link className="nav-link" to="#">

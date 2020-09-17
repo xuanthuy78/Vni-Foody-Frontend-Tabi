@@ -10,7 +10,7 @@ export class CheckOrderPage extends Component {
         <div className="checkorder-menu menu-title">
           <ul className="nav">
             <li className="nav-item">
-              <Link className="nav-link" to="/">
+              <Link className="nav-link" to="/home">
                 Trang chủ
               </Link>
             </li>
@@ -34,11 +34,7 @@ export class CheckOrderPage extends Component {
             <form className="form-inline ">
               <div className="form-group">
                 <label>Nhập mã đơn hàng</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Mã số đơn hàng (VD:123456789)"
-                />
+                <input type="text" className="form-control" placeholder="Mã số đơn hàng (VD:123456789)" />
                 <button className="btn btn-primary">Xem ngay</button>
               </div>
             </form>
@@ -69,18 +65,11 @@ export class CheckOrderPage extends Component {
                     <td className="ng-binding">1</td>
                     <td className="image">
                       <Link to="/productdetail">
-                        <img
-                          src={'assets/images/sup_cua_large.jpg'}
-                          alt=""
-                          className="img-responsive"
-                        />
+                        <img src={'assets/images/sup_cua_large.jpg'} alt="" className="img-responsive" />
                       </Link>
                     </td>
                     <td>
-                      <Link
-                        to="/productdetail"
-                        className="ng-binding nameproduct"
-                      >
+                      <Link to="/productdetail" className="ng-binding nameproduct">
                         Xà lách trộn kiểu Nga
                       </Link>
                     </td>
@@ -92,18 +81,11 @@ export class CheckOrderPage extends Component {
                     <td className="ng-binding">2</td>
                     <td className="image">
                       <Link to="/productdetail">
-                        <img
-                          src={'assets/images/supreme_pizza_large.jpg'}
-                          alt=""
-                          className="img-responsive"
-                        />
+                        <img src={'assets/images/supreme_pizza_large.jpg'} alt="" className="img-responsive" />
                       </Link>
                     </td>
                     <td>
-                      <Link
-                        to="/productdetail"
-                        className="ng-binding nameproduct"
-                      >
+                      <Link to="/productdetail" className="ng-binding nameproduct">
                         Supreme
                       </Link>
                     </td>
@@ -120,9 +102,7 @@ export class CheckOrderPage extends Component {
                         <div>
                           [Anh/Chị]<b className="ng-binding"> Hồ Thị Vừa</b>
                         </div>
-                        <div className="ng-binding">
-                          ngocduyen@gmail.com | 65 Trần Cao vân | 0162964783
-                        </div>
+                        <div className="ng-binding">ngocduyen@gmail.com | 65 Trần Cao vân | 0162964783</div>
                       </div>
                       <div className="box-customer-content">
                         <div className="title">
@@ -131,9 +111,7 @@ export class CheckOrderPage extends Component {
                         <div>
                           [Anh/Chị]<b className="ng-binding">Hồ Thị Vừa</b>
                         </div>
-                        <div className="ng-binding">
-                          ngocduyen@gmail.com | 65 Trần Cao vân | 0162964783
-                        </div>
+                        <div className="ng-binding">ngocduyen@gmail.com | 65 Trần Cao vân | 0162964783</div>
                       </div>
                     </td>
                     <td colSpan={4} className="left-border">
@@ -144,9 +122,7 @@ export class CheckOrderPage extends Component {
                               <b>Tổng tiền thanh toán</b>
                             </td>
                             <td className="text-right ">
-                              <b className="total-payment ng-binding">
-                                589,000
-                              </b>
+                              <b className="total-payment ng-binding">589,000</b>
                               <p className="note" />
                             </td>
                           </tr>

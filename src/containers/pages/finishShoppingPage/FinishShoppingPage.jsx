@@ -12,15 +12,12 @@ export class FinishShoppingPage extends Component {
             <div className="menu-title mb-3">
               <ul className="nav">
                 <li className="nav-item">
-                  <Link className="nav-link" to="/">
+                  <Link className="nav-link" to="/home">
                     Trang chủ
                   </Link>
                 </li>
                 <li className="nav-item icon-link">
-                  <i
-                    className="fa fa-angle-double-right"
-                    aria-hidden="true"
-                  ></i>
+                  <i className="fa fa-angle-double-right" aria-hidden="true"></i>
                 </li>
                 <li className="nav-item active">
                   <Link className="nav-link" to="#">
@@ -77,8 +74,7 @@ export class FinishShoppingPage extends Component {
             </div>
             <div className="scan button-same">
               <button type="button" className="btn btn-danger pay">
-                <i className="fa fa-print mr-1" aria-hidden="true"></i>In đơn
-                hàng
+                <i className="fa fa-print mr-1" aria-hidden="true"></i>In đơn hàng
               </button>
             </div>
           </div>
