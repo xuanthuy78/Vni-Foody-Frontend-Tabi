@@ -14,14 +14,12 @@ import NotFoundPage from './containers/pages/notFoundPage/NotFoundPage'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as Actions from './actions'
-import { Redirect } from 'react-router-dom'
 
 export class App extends Component {
   render() {
     return (
       <Fragment>
         <Router>
-          {this.props.auth && this.props.user.is_admin === 0 && <Redirect to="/home" />}
           <Switch>
             {this.props.auth && this.props.user && this.props.user.is_admin === 1 && (
               <Route path={routes_auth.map((item) => item.path)}>

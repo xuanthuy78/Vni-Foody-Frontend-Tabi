@@ -2,6 +2,34 @@ import React, { Component } from 'react'
 import './InformationAccount.scss'
 
 export class InformationAccount extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      user: {
+        name: '',
+        email: '',
+        password: '',
+        cpassword: '',
+        fullname: '',
+        gender: '',
+        birthday: '',
+        phone: '',
+        address: '',
+      },
+    }
+  }
+  handleInput = (e) => {
+    console.log(e.target.value)
+    this.setState({
+      user: {
+        ...this.state.user,
+        [e.target.name]: e.target.value,
+      },
+    })
+  }
+  onRegisterUser = (e) => {
+    e.preventDefault()
+  }
   render() {
     return (
       <div className="register-bottom">
@@ -16,7 +44,7 @@ export class InformationAccount extends Component {
           <div className="col-xl-8 col-lg-8  col-md-12 col-sm-12 col-12 offset-xl-2 offset-lg-2 offset-md-0 col-sm-offset-0 col-offset-0">
             <form
               className="form-horizontal ng-pristine ng-invalid ng-invalid-required ng-valid-email"
-              ng-submit="register()"
+              onSubmit={this.onRegisterUser}
             >
               <h2 className="title-account">
                 <span>Thông tin tài khoản</span>
@@ -28,6 +56,8 @@ export class InformationAccount extends Component {
                 <div className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
                   <input
                     type="text"
+                    name="name"
+                    onChange={this.handleInput}
                     className="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"
                   />
                 </div>
@@ -39,6 +69,8 @@ export class InformationAccount extends Component {
                 <div className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
                   <input
                     type="email"
+                    name="email"
+                    onChange={this.handleInput}
                     className="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required"
                   />
                 </div>
@@ -50,6 +82,8 @@ export class InformationAccount extends Component {
                 <div className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
                   <input
                     type="password"
+                    name="password"
+                    onChange={this.handleInput}
                     className="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"
                   />
                 </div>
@@ -61,6 +95,8 @@ export class InformationAccount extends Component {
                 <div className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12 input-pasword">
                   <input
                     type="password"
+                    name="cpassword"
+                    onChange={this.handleInput}
                     className="form-control ng-pristine ng-untouched ng-valid enter-password"
                   />
                 </div>
@@ -75,97 +111,63 @@ export class InformationAccount extends Component {
                 <div className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
                   <input
                     type="text"
+                    name="fullname"
+                    onChange={this.handleInput}
                     className="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"
                   />
                 </div>
               </div>
               <div className="form-group">
-                <label className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 control-label">
-                  Giới tính
-                </label>
+                <label className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 control-label">Giới tính</label>
                 <div className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
-                  <select className="form-control ng-pristine ng-untouched ng-valid">
-                    <option value="number:0" label="Nữ">
+                  <select
+                    className="form-control ng-pristine ng-untouched ng-valid"
+                    name="gender"
+                    onChange={this.handleInput}
+                  >
+                    <option>Chọn giới tính</option>
+                    <option value="0" label="Nữ">
                       Nữ
                     </option>
-                    <option value="number:1" label="Nam">
+                    <option value="1" label="Nam">
                       Nam
                     </option>
                   </select>
                 </div>
               </div>
               <div className="form-group ">
-                <label className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 control-label ">
-                  Ngày sinh
-                </label>
+                <label className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 control-label ">Ngày sinh</label>
                 <div className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
                   <input
                     type="date"
+                    name="birthday"
+                    onChange={this.handleInput}
                     className="form-control ng-pristine ng-untouched ng-valid"
                   />
                 </div>
               </div>
               <div className="form-group">
-                <label className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 control-label">
-                  Điện thoại
-                </label>
+                <label className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 control-label">Điện thoại</label>
                 <div className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
                   <input
                     type="text"
+                    name="phone"
+                    onChange={this.handleInput}
                     className="form-control ng-pristine ng-untouched ng-valid"
                     ng-model="Phone"
                   />
                 </div>
               </div>
               <div className="form-group">
-                <label className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 control-label">
-                  Địa chỉ
-                </label>
+                <label className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 control-label">Địa chỉ</label>
                 <div className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
                   <input
                     type="text"
+                    name="address"
+                    onChange={this.handleInput}
                     className="form-control ng-pristine ng-untouched ng-valid"
                     ng-model="Address"
                   />
-                </div>
-              </div>
-              <div className="form-group">
-                <label className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 control-label">
-                  Tỉnh/TP
-                </label>
-                <div className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
-                  <select
-                    className="form-control ng-pristine ng-untouched ng-valid"
-                    ng-change="getDistricts(ProvinceId)"
-                  >
-                    <option value="number:62" label="Tuyên Quang">
-                      Tuyên Quang
-                    </option>
-                    <option value="number:63" label="Vĩnh Long">
-                      Vĩnh Long
-                    </option>
-                    <option value="number:64" label="Vĩnh Phúc">
-                      Vĩnh Phúc
-                    </option>
-                    <option value="number:65" label="Yên Bái">
-                      Yên Bái
-                    </option>
-                  </select>
-                </div>
-              </div>
-              <div className="form-group">
-                <label className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 control-label">
-                  Quận/Huyện
-                </label>
-                <div className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
-                  <select className="form-control ng-pristine ng-untouched ng-valid">
-                    <option value="number:54" label="Huyện Nhà Bè">
-                      Huyện Nhà Bè
-                    </option>
-                    <option value="number:55" label="Huyện Cần Giờ">
-                      Huyện Cần Giờ
-                    </option>
-                  </select>
                 </div>
               </div>
               <div className="form-group last-form">
