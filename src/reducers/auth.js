@@ -1,7 +1,8 @@
-import { AUTH_LOGIN, AUTH_LOGOUT, CHECK_LOGIN } from '../constants/ActionTypes'
+import { AUTH_LOGIN, AUTH_LOGOUT, CHECK_LOGIN, REGISTER } from '../constants/ActionTypes'
 const initialState = {
   token: localStorage.getItem('token') ? localStorage.getItem('token') : '',
   user: [],
+  status: '',
 }
 
 export default function auth(state = initialState, action) {
@@ -25,7 +26,11 @@ export default function auth(state = initialState, action) {
         token: null,
         user: null,
       }
-
+    case REGISTER:
+      return {
+        ...state,
+        status: action.payload.data.status,
+      }
     default:
       return state
   }
