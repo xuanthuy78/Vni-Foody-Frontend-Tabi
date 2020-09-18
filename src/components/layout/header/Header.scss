@@ -19,6 +19,7 @@ $hover-color: white;
         .navbar-nav {
           .nav-link {
             color: $hover-color;
+            cursor: pointer;
             &:hover {
               background: #eee;
               color: red;
@@ -84,6 +85,7 @@ $hover-color: white;
         position: relative;
         .nav-link {
           color: black;
+          cursor: pointer;
           &:hover {
             color: $hover-color !important;
           }

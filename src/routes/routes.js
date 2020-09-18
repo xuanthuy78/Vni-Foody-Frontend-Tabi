@@ -39,9 +39,9 @@ import MyCartPage from '../containers/pages/myCartPage/MyCartPage'
 import MyCartDetailPage from '../containers/pages/myCartDetailPage/MyCartDetailPage'
 import ChangePassWordPage from '../containers/pages/changePassWordPage/ChangePassWordPage'
 
-const routes = [
+export const routes_not_auth = [
   {
-    path: '/',
+    path: '/home',
     exact: true,
     main: () => <HomePage />,
   },
@@ -108,7 +108,7 @@ const routes = [
   {
     path: '/loginPage',
     exact: true,
-    main: () => <LoginPage />,
+    main: (history) => <LoginPage history={history} />,
   },
   {
     path: '/contactPage',
@@ -140,6 +140,9 @@ const routes = [
     exact: true,
     main: () => <ChangePassWordPage />,
   },
+]
+
+export const routes_auth = [
   {
     path: '/admin',
     exact: true,
@@ -206,7 +209,7 @@ const routes = [
     main: () => <NewsCreateEditAdminPage />,
   },
   {
-    path: '/admin/news/:id/edit',
+    path: '/admin/news/edit/:id',
     exact: true,
     main: () => <NewsCreateEditAdminPage />,
   },
@@ -221,7 +224,7 @@ const routes = [
     main: () => <SlideCreateEditAdminPage />,
   },
   {
-    path: '/admin/slide/:id/edit',
+    path: '/admin/slide/edit/:id',
     exact: true,
     main: () => <SlideCreateEditAdminPage />,
   },
@@ -236,7 +239,7 @@ const routes = [
     main: () => <BrandCreateEditPage />,
   },
   {
-    path: '/admin/brand/:id/edit',
+    path: '/admin/brand/edit/:id',
     exact: true,
     main: () => <BrandCreateEditPage />,
   },
@@ -251,10 +254,8 @@ const routes = [
     main: () => <UserCreateEditPage />,
   },
   {
-    path: '/admin/user/:id/edit',
+    path: '/admin/user/edit/:id',
     exact: true,
     main: () => <UserCreateEditPage />,
   },
 ]
-
-export default routes

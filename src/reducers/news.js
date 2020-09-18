@@ -4,7 +4,7 @@ const initialState = {
   items: [],
 }
 
-export default function contact(state = initialState, action) {
+export default function news(state = initialState, action) {
   switch (action.type) {
     case NEWS_LIST:
       return {

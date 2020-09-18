@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import MasterLayoutAdmin from '../../../../components/admin/layout/masterLayoutAdmin/MasterLayoutAdmin'
 import { Form, Input, Button, Select, Upload, Cascader } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 import CKEditor from 'ckeditor4-react'
@@ -67,7 +66,7 @@ export class ProductCreateEditAdminPage extends Component {
   }
   render() {
     return (
-      <MasterLayoutAdmin>
+      <div>
         <h3>Product</h3>
         <Form
           layout="vertical"
@@ -188,7 +187,7 @@ export class ProductCreateEditAdminPage extends Component {
             </Button>
           </Form.Item>
         </Form>
-      </MasterLayoutAdmin>
+      </div>
     )
   }
 }

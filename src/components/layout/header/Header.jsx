@@ -1,10 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import './Header.scss'
 import HeaderMenu from '../headerMenu/HeaderMenu'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as Actions from '../../../actions'
+import { AUTH_LOGOUT } from '../../../constants/ActionTypes'
 
 export class Header extends Component {
+  componentDidMount() {
+    this.props.actions.checkLogin()
+  }
   render() {
+    const { auth, logout, user } = this.props
     return (
       <header className="header-container">
         <div className="container">
@@ -21,12 +29,6 @@ export class Header extends Component {
                   <div className="collapse navbar-collapse justify-content-end">
                     <ul className="navbar-nav">
                       <li className="nav-item">
-                        <Link className="nav-link" to="/admin">
-                          <i className="fa fa-lock" aria-hidden="true"></i>
-                          Admin
-                        </Link>
-                      </li>
-                      <li className="nav-item">
                         <Link className="nav-link" to="/checkorder">
                           <i className="fa fa-pencil-square-o" />
                           Kiểm tra đơn hàng
@@ -38,18 +40,46 @@ export class Header extends Component {
                           Giỏ hàng
                         </Link>
                       </li>
-                      <li className="nav-item">
-                        <Link className="nav-link" to="/loginPage">
-                          <i className="fa fa-sign-in" />
-                          Đăng nhập
-                        </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link className="nav-link" to="/registerPage">
-                          <i className="fa fa-key" />
-                          Đăng ký
-                        </Link>
-                      </li>
+
+                      {!auth ? (
+                        <Fragment>
+                          <li className="nav-item">
+                            <Link className="nav-link" to="/loginPage">
+                              <i className="fa fa-sign-in" />
+                              Đăng nhập
+                            </Link>
+                          </li>
+                          <li className="nav-item">
+                            <Link className="nav-link" to="/registerPage">
+                              <i className="fa fa-key" />
+                              Đăng ký
+                            </Link>
+                          </li>
+                        </Fragment>
+                      ) : (
+                        <Fragment>
+                          {user && user.is_admin === 1 && (
+                            <li className="nav-item">
+                              <Link className="nav-link" to="/admin">
+                                <i className="fa fa-lock" aria-hidden="true"></i>
+                                Admin
+                              </Link>
+                            </li>
+                          )}
+                          <li className="nav-item">
+                            <Link className="nav-link" to="/mycart">
+                              <i className="fa fa-user" />
+                              {user.name}
+                            </Link>
+                          </li>
+                          <li className="nav-item">
+                            <span className="nav-link" onClick={logout}>
+                              <i className="fa fa-sign-out" />
+                              Đăng xuất
+                            </span>
+                          </li>
+                        </Fragment>
+                      )}
                     </ul>
                   </div>
                 </nav>
@@ -68,10 +98,7 @@ export class Header extends Component {
                           <i className="fa fa-bars" aria-hidden="true"></i>
                         </button>
                         {/* Navbar links */}
-                        <div
-                          className="collapse navbar-collapse justify-content-end"
-                          id="collapsibleNavbar"
-                        >
+                        <div className="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
                           <ul className="navbar-nav">
                             <li className="nav-item">
                               <Link className="nav-link" to="#">
@@ -159,13 +186,7 @@ export class Header extends Component {
               </Link>
               <form className="form-inline">
                 <div className="input-group">
-                  <input
-                    type="text"
-                    name="search"
-                    id="txtsearch"
-                    className="form-control"
-                    placeholder="Tìm kiếm..."
-                  />
+                  <input type="text" name="search" id="txtsearch" className="form-control" placeholder="Tìm kiếm..." />
                   <div className="input-group-append">
                     <button className="btn btn-dark" type="submit">
                       <i className="fa fa-search" />
@@ -175,6 +196,7 @@ export class Header extends Component {
               </form>
             </nav>
           </section>
+
           {/*Header-Menu*/}
           <HeaderMenu />
         </div>
@@ -183,4 +205,14 @@ export class Header extends Component {
   }
 }
 
-export default Header
+const mapStateToProps = (state) => ({
+  auth: state.auth.token,
+  user: state.auth.user,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  logout: () => dispatch({ type: AUTH_LOGOUT }),
+  actions: bindActionCreators(Actions, dispatch),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

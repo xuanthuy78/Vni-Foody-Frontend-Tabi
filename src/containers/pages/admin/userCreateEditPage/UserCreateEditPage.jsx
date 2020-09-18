@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import MasterLayoutAdmin from '../../../../components/admin/layout/masterLayoutAdmin/MasterLayoutAdmin'
 import { Form, Input, Button, Select } from 'antd'
 
 const { Option } = Select
@@ -13,7 +12,7 @@ const onFinishFailed = (errorInfo) => {
 export class UserCreateEditPage extends Component {
   render() {
     return (
-      <MasterLayoutAdmin>
+      <div>
         <h3>User</h3>
         <Form
           layout="vertical"
@@ -125,7 +124,7 @@ export class UserCreateEditPage extends Component {
             </Button>
           </Form.Item>
         </Form>
-      </MasterLayoutAdmin>
+      </div>
     )
   }
 }

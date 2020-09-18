@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import MasterLayoutAdmin from '../../../../components/admin/layout/masterLayoutAdmin/MasterLayoutAdmin'
 import { Table, Modal, Space } from 'antd'
 import { Link } from 'react-router-dom'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
@@ -46,12 +45,14 @@ export class NewsAdminPage extends Component {
     await this.props.actions.newsList(page, limit)
     const data = [...this.props.news.data]
     data.map((item, index) => (item.key = index))
+    //page đang là string
     this.setState({
       dataSource: data,
       loading: false,
       pagination: {
+        current: parseInt(page),
         total: this.props.news.meta.pagination.total,
-        pageSize: limit,
+        pageSize: parseInt(limit),
       },
     })
     window.scrollTo(0, 0)
@@ -73,6 +74,7 @@ export class NewsAdminPage extends Component {
 
   handleNews = (pagination) => {
     //truyền thông tin cần thiết gửi lên location
+    console.log(pagination)
     const location = {
       pathname: '/admin/news',
       search: `page=${pagination.current}&limit=${pagination.pageSize}`,
@@ -150,46 +152,44 @@ export class NewsAdminPage extends Component {
       },
     ]
     return (
-      <MasterLayoutAdmin>
-        <div className="main-detail">
-          <div className="filter mb-3">
-            <div className="nav-filter">
-              <div className="nav-item search">
-                <div className="item result">
-                  <Link to="#" className="navbar-brand">
-                    30 <span>Bài viết</span>
-                  </Link>
-                </div>
-                <form className="item form-inline">
-                  <label className="title" htmlFor="parts-type">
-                    Tiêu đề:
-                  </label>
-                  <input type="text" className="form-control" name="name" placeholder="Tìm theo tiêu đề..." />
-                  <button type="submit" className="btn btn-primary">
-                    <i className="fa fa-search mr-2" aria-hidden="true"></i>
-                    <span className="title-search">Search</span>
-                  </button>
-                </form>
-              </div>
-              <div className="nav-item add-master">
-                <Link className="btn btn-warm" to="/admin/news/created">
-                  <i className="fa fa-plus mr-2" aria-hidden="true"></i>
-                  <span className="title-add">Add</span>
+      <div className="main-detail">
+        <div className="filter mb-3">
+          <div className="nav-filter">
+            <div className="nav-item search">
+              <div className="item result">
+                <Link to="#" className="navbar-brand">
+                  30 <span>Bài viết</span>
                 </Link>
               </div>
+              <form className="item form-inline">
+                <label className="title" htmlFor="parts-type">
+                  Tiêu đề:
+                </label>
+                <input type="text" className="form-control" name="name" placeholder="Tìm theo tiêu đề..." />
+                <button type="submit" className="btn btn-primary">
+                  <i className="fa fa-search mr-2" aria-hidden="true"></i>
+                  <span className="title-search">Search</span>
+                </button>
+              </form>
+            </div>
+            <div className="nav-item add-master">
+              <Link className="btn btn-warm" to="/admin/news/created">
+                <i className="fa fa-plus mr-2" aria-hidden="true"></i>
+                <span className="title-add">Add</span>
+              </Link>
             </div>
           </div>
-          <div className="table">
-            <Table
-              columns={columns}
-              dataSource={dataSource}
-              pagination={this.state.pagination}
-              loading={this.state.loading}
-              onChange={this.handleNews}
-            />
-          </div>
         </div>
-      </MasterLayoutAdmin>
+        <div className="table">
+          <Table
+            columns={columns}
+            dataSource={dataSource}
+            pagination={this.state.pagination}
+            loading={this.state.loading}
+            onChange={this.handleNews}
+          />
+        </div>
+      </div>
     )
   }
 }
