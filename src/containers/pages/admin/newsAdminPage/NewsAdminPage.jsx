@@ -74,7 +74,6 @@ export class NewsAdminPage extends Component {
 
   handleNews = (pagination) => {
     //truyền thông tin cần thiết gửi lên location
-    console.log(pagination)
     const location = {
       pathname: '/admin/news',
       search: `page=${pagination.current}&limit=${pagination.pageSize}`,

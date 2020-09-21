@@ -61,14 +61,14 @@ export class Header extends Component {
                           {user && user.is_admin === 1 && (
                             <li className="nav-item">
                               <Link className="nav-link" to="/admin">
-                                <i className="fa fa-lock" aria-hidden="true"></i>
+                                <i className="fa fa-cogs" aria-hidden="true"></i>
                                 Admin
                               </Link>
                             </li>
                           )}
                           <li className="nav-item">
                             <Link className="nav-link" to="/mycart">
-                              <i className="fa fa-user" />
+                              <i className="fa fa-user" aria-hidden="true"></i>
                               {user.name}
                             </Link>
                           </li>
@@ -101,30 +101,57 @@ export class Header extends Component {
                         <div className="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
                           <ul className="navbar-nav">
                             <li className="nav-item">
-                              <Link className="nav-link" to="#">
-                                Trang Chủ
+                              <Link className="nav-link" to="/checkorder">
+                                <i className="fa fa-pencil-square-o" />
+                                Kiểm tra đơn hàng
                               </Link>
                             </li>
                             <li className="nav-item">
-                              <Link className="nav-link" to="#">
-                                Sản Phẩm
+                              <Link className="nav-link" to="/shopping-cart">
+                                <i className="fa fa-shopping-cart" />
+                                Giỏ hàng
                               </Link>
                             </li>
-                            <li className="nav-item">
-                              <Link className="nav-link" to="#">
-                                Tin Tức
-                              </Link>
-                            </li>
-                            <li className="nav-item">
-                              <Link className="nav-link" to="#">
-                                Giới thiệu
-                              </Link>
-                            </li>
-                            <li className="nav-item">
-                              <Link className="nav-link" to="#">
-                                Liên hệ
-                              </Link>
-                            </li>
+
+                            {!auth ? (
+                              <Fragment>
+                                <li className="nav-item">
+                                  <Link className="nav-link" to="/loginPage">
+                                    <i className="fa fa-sign-in" />
+                                    Đăng nhập
+                                  </Link>
+                                </li>
+                                <li className="nav-item">
+                                  <Link className="nav-link" to="/registerPage">
+                                    <i className="fa fa-key" />
+                                    Đăng ký
+                                  </Link>
+                                </li>
+                              </Fragment>
+                            ) : (
+                              <Fragment>
+                                {user && user.is_admin === 1 && (
+                                  <li className="nav-item">
+                                    <Link className="nav-link" to="/admin">
+                                      <i className="fa fa-cogs" aria-hidden="true"></i>
+                                      Admin
+                                    </Link>
+                                  </li>
+                                )}
+                                <li className="nav-item">
+                                  <Link className="nav-link" to="/mycart">
+                                    <i className="fa fa-user" aria-hidden="true"></i>
+                                    {user.name}
+                                  </Link>
+                                </li>
+                                <li className="nav-item">
+                                  <span className="nav-link" onClick={logout}>
+                                    <i className="fa fa-sign-out" />
+                                    Đăng xuất
+                                  </span>
+                                </li>
+                              </Fragment>
+                            )}
                           </ul>
                         </div>
                       </nav>
@@ -142,35 +169,57 @@ export class Header extends Component {
                       <div className="user-content">
                         <ul className="navbar-nav">
                           <li className="nav-item">
-                            <Link className="nav-link" to="/admin">
-                              <i className="fa fa-lock" aria-hidden="true"></i>
-                              Admin
-                            </Link>
-                          </li>
-                          <li className="nav-item">
-                            <Link className="nav-link" to="#">
+                            <Link className="nav-link" to="/checkorder">
                               <i className="fa fa-pencil-square-o" />
                               Kiểm tra đơn hàng
                             </Link>
                           </li>
                           <li className="nav-item">
-                            <Link className="nav-link" to="#">
+                            <Link className="nav-link" to="/shopping-cart">
                               <i className="fa fa-shopping-cart" />
                               Giỏ hàng
                             </Link>
                           </li>
-                          <li className="nav-item">
-                            <Link className="nav-link" to="#">
-                              <i className="fa fa-sign-in" />
-                              Đăng nhập
-                            </Link>
-                          </li>
-                          <li className="nav-item">
-                            <Link className="nav-link" to="#">
-                              <i className="fa fa-key" />
-                              Đăng ký
-                            </Link>
-                          </li>
+
+                          {!auth ? (
+                            <Fragment>
+                              <li className="nav-item">
+                                <Link className="nav-link" to="/loginPage">
+                                  <i className="fa fa-sign-in" />
+                                  Đăng nhập
+                                </Link>
+                              </li>
+                              <li className="nav-item">
+                                <Link className="nav-link" to="/registerPage">
+                                  <i className="fa fa-key" />
+                                  Đăng ký
+                                </Link>
+                              </li>
+                            </Fragment>
+                          ) : (
+                            <Fragment>
+                              {user && user.is_admin === 1 && (
+                                <li className="nav-item">
+                                  <Link className="nav-link" to="/admin">
+                                    <i className="fa fa-cogs" aria-hidden="true"></i>
+                                    Admin
+                                  </Link>
+                                </li>
+                              )}
+                              <li className="nav-item">
+                                <Link className="nav-link" to="/mycart">
+                                  <i className="fa fa-user" aria-hidden="true"></i>
+                                  {user.name}
+                                </Link>
+                              </li>
+                              <li className="nav-item">
+                                <span className="nav-link" onClick={logout}>
+                                  <i className="fa fa-sign-out" />
+                                  Đăng xuất
+                                </span>
+                              </li>
+                            </Fragment>
+                          )}
                         </ul>
                       </div>
                     </div>

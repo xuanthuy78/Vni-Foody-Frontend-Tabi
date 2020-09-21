@@ -38,3 +38,15 @@ export const checkLogin = () => (dispatch) => {
     },
   })
 }
+
+export const register = (user) => (dispatch) =>
+  dispatch({
+    types: [types.API_REQUEST_SEND, types.REGISTER, types.API_REQUEST_ERROR],
+    payload: {
+      request: {
+        url: `api/signup`,
+        method: 'POST',
+        data: user,
+      },
+    },
+  })
