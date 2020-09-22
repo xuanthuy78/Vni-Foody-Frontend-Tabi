@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import { Form, Input, Button, Select, Upload } from 'antd'
+import { Form, Input, Button, Select, Upload, Spin } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 import CKEditor from 'ckeditor4-react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as Actions from '../../../../actions/index'
 
 const { Option } = Select
 const onFinish = (values) => {
@@ -21,6 +24,17 @@ const normFile = (e) => {
   return e && e.fileList
 }
 export class NewsCreateEditAdminPage extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      loading: true,
+    }
+  }
+
+  componentDidMount() {
+    this.props.actions.newsCategoryList()
+    this.setState({ loading: false })
+  }
   handleCascader = (value) => {
     console.log(value)
   }
@@ -31,18 +45,17 @@ export class NewsCreateEditAdminPage extends Component {
     // })
   }
   render() {
+    const { news_categories } = this.props
+    const { loading } = this.state
+    console.log(loading)
     return (
       <div>
         <h3>Bài Viết</h3>
-        <Form
-          layout="vertical"
-          name="basic"
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-        >
+        <Spin spinning={loading}></Spin>
+        <Form layout="vertical" name="basic" onFinish={onFinish} onFinishFailed={onFinishFailed}>
           <Form.Item
             label="Tiêu đề"
-            name="category"
+            name="title"
             hasFeedback
             rules={[
               {
@@ -55,27 +68,32 @@ export class NewsCreateEditAdminPage extends Component {
           </Form.Item>
           <Form.Item
             label="Danh mục"
-            name="category"
+            name="article_category_id"
             hasFeedback
             rules={[
               {
                 required: true,
-                message: 'Please input your category!',
+                message: 'Please input your category for news!',
               },
             ]}
           >
-            <Select placeholder="Please select a category">
-              <Option value="china">China</Option>
-              <Option value="usa">U.S.A</Option>
+            <Select placeholder="Please input your category for news!">
+              {news_categories.map((item, index) => {
+                return (
+                  <Option key={index} value={item.id}>
+                    {item.name}
+                  </Option>
+                )
+              })}
             </Select>
           </Form.Item>
           <Form.Item
             label="Mô tả sản phẩm"
-            name="describe"
+            name="description"
             rules={[
               {
                 required: true,
-                message: 'Please input your describe!',
+                message: 'Please input your description!',
               },
             ]}
           >
@@ -83,7 +101,7 @@ export class NewsCreateEditAdminPage extends Component {
           </Form.Item>
           <Form.Item
             label="Ảnh"
-            name="upload"
+            name="image"
             valuePropName="fileList"
             getValueFromEvent={normFile}
             rules={[
@@ -100,12 +118,8 @@ export class NewsCreateEditAdminPage extends Component {
             </Upload>
           </Form.Item>
           <Form.Item label="Nội dung" name="content">
-            <CKEditor
-              data="<p>Hello from CKEditor 4!</p>"
-              onChange={this.onEditorChange}
-            />
+            <CKEditor data="<p>Hello from CKEditor 4!</p>" onChange={this.onEditorChange} />
           </Form.Item>
-
           <Form.Item>
             <Button onClick={this.props.handleCancel}>Cancel</Button>
             <Button type="primary" htmlType="submit" className="ml-3">
@@ -117,5 +131,11 @@ export class NewsCreateEditAdminPage extends Component {
     )
   }
 }
+const mapStateToProps = (state) => ({
+  news_categories: state.news.news_categories,
+})
 
-export default NewsCreateEditAdminPage
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(Actions, dispatch),
+})
+export default connect(mapStateToProps, mapDispatchToProps)(NewsCreateEditAdminPage)

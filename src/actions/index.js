@@ -50,3 +50,14 @@ export const register = (user) => (dispatch) =>
       },
     },
   })
+
+export const newsCategoryList = () => (dispatch) =>
+  dispatch({
+    types: [types.API_REQUEST_SEND, types.NEWS_CATEGORY_LIST, types.API_REQUEST_ERROR],
+    payload: {
+      request: {
+        url: `api/articles/categories`,
+        method: 'GET',
+      },
+    },
+  })

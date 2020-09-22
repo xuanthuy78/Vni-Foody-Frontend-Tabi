@@ -140,7 +140,7 @@ export class NewsAdminPage extends Component {
         key: 'action',
         render: (text, record) => (
           <Space size="middle" className="icon-btn">
-            <Link className="btn btn-info" to="/admin/news/1/edit">
+            <Link className="btn btn-info" to={`/admin/news/edit/${text.id}`}>
               <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
             </Link>
             <button type="button" className="btn btn-danger" onClick={this.showConfirm}>

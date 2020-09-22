@@ -6,10 +6,15 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as Actions from '../../../actions'
 import { AUTH_LOGOUT } from '../../../constants/ActionTypes'
+import { message } from 'antd'
 
 export class Header extends Component {
   componentDidMount() {
     this.props.actions.checkLogin()
+  }
+  onLogout = async () => {
+    await this.props.logout()
+    message.success('Đăng xuất thành công')
   }
   render() {
     const { auth, logout, user } = this.props
@@ -73,7 +78,7 @@ export class Header extends Component {
                             </Link>
                           </li>
                           <li className="nav-item">
-                            <span className="nav-link" onClick={logout}>
+                            <span className="nav-link" onClick={this.onLogout}>
                               <i className="fa fa-sign-out" />
                               Đăng xuất
                             </span>

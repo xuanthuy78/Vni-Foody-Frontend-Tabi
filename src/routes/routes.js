@@ -199,11 +199,6 @@ export const routes_auth = [
     main: ({ history, location }) => <NewsAdminPage history={history} location={location} />,
   },
   {
-    path: '/admin/news/:id',
-    exact: true,
-    main: () => <NewsViewPage />,
-  },
-  {
     path: '/admin/news/created',
     exact: true,
     main: () => <NewsCreateEditAdminPage />,
@@ -212,6 +207,11 @@ export const routes_auth = [
     path: '/admin/news/edit/:id',
     exact: true,
     main: () => <NewsCreateEditAdminPage />,
+  },
+  {
+    path: '/admin/news/:id',
+    exact: true,
+    main: () => <NewsViewPage />,
   },
   {
     path: '/admin/slide',

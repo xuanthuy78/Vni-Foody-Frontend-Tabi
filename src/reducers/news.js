@@ -1,7 +1,8 @@
-import { NEWS_LIST } from '../constants/ActionTypes'
+import { NEWS_LIST, NEWS_CATEGORY_LIST } from '../constants/ActionTypes'
 
 const initialState = {
   items: [],
+  news_categories: [],
 }
 
 export default function news(state = initialState, action) {
@@ -10,6 +11,11 @@ export default function news(state = initialState, action) {
       return {
         ...state,
         items: action.payload.data.data,
+      }
+    case NEWS_CATEGORY_LIST:
+      return {
+        ...state,
+        news_categories: action.payload.data.data,
       }
     default:
       return state
