@@ -7,9 +7,6 @@ import { bindActionCreators } from 'redux'
 import * as Actions from '../../../../actions/index'
 
 const { Option } = Select
-const onFinish = (values) => {
-  console.log('Success:', values)
-}
 
 const onFinishFailed = (errorInfo) => {
   console.log('Failed:', errorInfo)
@@ -28,6 +25,13 @@ export class NewsCreateEditAdminPage extends Component {
     super(props)
     this.state = {
       loading: true,
+      fileList: [],
+      news: {
+        title: 'name',
+        article_category_id: '2',
+        description: 'name',
+        content: '<p>Hello from CKEditor 4!</p>',
+      },
     }
   }
 
@@ -35,6 +39,29 @@ export class NewsCreateEditAdminPage extends Component {
     this.props.actions.newsCategoryList()
     this.setState({ loading: false })
   }
+
+  getBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => resolve(reader.result)
+      reader.onerror = (error) => reject(error)
+    })
+  }
+
+  onFinish = async (values) => {
+    const originFileObj = values.image[0].originFileObj
+    const imageUrl = await this.getBase64(originFileObj)
+    const news = {
+      title: values.title,
+      article_category_id: values.article_category_id,
+      description: values.description,
+      image: imageUrl,
+      content: values.content.editor.getData(),
+    }
+    this.props.actions.newsCreate(news)
+  }
+
   handleCascader = (value) => {
     console.log(value)
   }
@@ -46,13 +73,39 @@ export class NewsCreateEditAdminPage extends Component {
   }
   render() {
     const { news_categories } = this.props
-    const { loading } = this.state
-    console.log(loading)
+    const { loading, fileList } = this.state
+    const props = {
+      onRemove: (file) => {
+        console.log(file)
+        this.setState((state) => {
+          const index = state.fileList.indexOf(file)
+          const newFileList = state.fileList.slice()
+          newFileList.splice(index, 1)
+          return {
+            fileList: newFileList,
+          }
+        })
+      },
+      beforeUpload: (file) => {
+        this.setState((state) => ({
+          fileList: [...state.fileList, file],
+        }))
+        return false
+      },
+      fileList,
+    }
+
     return (
       <div>
         <h3>Bài Viết</h3>
         <Spin spinning={loading}></Spin>
-        <Form layout="vertical" name="basic" onFinish={onFinish} onFinishFailed={onFinishFailed}>
+        <Form
+          layout="vertical"
+          name="basic"
+          initialValues={this.state.news}
+          onFinish={this.onFinish}
+          onFinishFailed={onFinishFailed}
+        >
           <Form.Item
             label="Tiêu đề"
             name="title"
@@ -111,14 +164,16 @@ export class NewsCreateEditAdminPage extends Component {
               },
             ]}
           >
-            <Upload name="logo" action="/upload.do" listType="picture">
-              <Button>
-                <UploadOutlined /> Click to upload
-              </Button>
+            <Upload listType="picture" {...props}>
+              {fileList.length >= 1 ? null : (
+                <Button>
+                  <UploadOutlined /> Click to upload
+                </Button>
+              )}
             </Upload>
           </Form.Item>
           <Form.Item label="Nội dung" name="content">
-            <CKEditor data="<p>Hello from CKEditor 4!</p>" onChange={this.onEditorChange} />
+            <CKEditor data={this.state.news.content} onChange={this.onEditorChange} />
           </Form.Item>
           <Form.Item>
             <Button onClick={this.props.handleCancel}>Cancel</Button>

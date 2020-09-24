@@ -10,6 +10,17 @@ export const newsList = (page, limit) => (dispatch) =>
       },
     },
   })
+export const newsCreate = (data) => (dispatch) =>
+  dispatch({
+    types: [types.API_REQUEST_SEND, types.NEWS_CREATE, types.API_REQUEST_ERROR],
+    payload: {
+      request: {
+        url: `api/articles`,
+        method: 'POST',
+        data,
+      },
+    },
+  })
 
 export const authLogin = (login) => (dispatch) =>
   dispatch({
