@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Modal, Space } from 'antd'
+import { Table, Modal, Space, Spin } from 'antd'
 import { Link } from 'react-router-dom'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'
@@ -151,44 +151,45 @@ export class NewsAdminPage extends Component {
       },
     ]
     return (
-      <div className="main-detail">
-        <div className="filter mb-3">
-          <div className="nav-filter">
-            <div className="nav-item search">
-              <div className="item result">
-                <Link to="#" className="navbar-brand">
-                  30 <span>Bài viết</span>
+      <Spin spinning={this.state.loading}>
+        <div className="main-detail">
+          <div className="filter mb-3">
+            <div className="nav-filter">
+              <div className="nav-item search">
+                <div className="item result">
+                  <Link to="#" className="navbar-brand">
+                    30 <span>Bài viết</span>
+                  </Link>
+                </div>
+                <form className="item form-inline">
+                  <label className="title" htmlFor="parts-type">
+                    Tiêu đề:
+                  </label>
+                  <input type="text" className="form-control" name="name" placeholder="Tìm theo tiêu đề..." />
+                  <button type="submit" className="btn btn-primary">
+                    <i className="fa fa-search mr-2" aria-hidden="true"></i>
+                    <span className="title-search">Search</span>
+                  </button>
+                </form>
+              </div>
+              <div className="nav-item add-master">
+                <Link className="btn btn-warm" to="/admin/news/created">
+                  <i className="fa fa-plus mr-2" aria-hidden="true"></i>
+                  <span className="title-add">Add</span>
                 </Link>
               </div>
-              <form className="item form-inline">
-                <label className="title" htmlFor="parts-type">
-                  Tiêu đề:
-                </label>
-                <input type="text" className="form-control" name="name" placeholder="Tìm theo tiêu đề..." />
-                <button type="submit" className="btn btn-primary">
-                  <i className="fa fa-search mr-2" aria-hidden="true"></i>
-                  <span className="title-search">Search</span>
-                </button>
-              </form>
-            </div>
-            <div className="nav-item add-master">
-              <Link className="btn btn-warm" to="/admin/news/created">
-                <i className="fa fa-plus mr-2" aria-hidden="true"></i>
-                <span className="title-add">Add</span>
-              </Link>
             </div>
           </div>
+          <div className="table">
+            <Table
+              columns={columns}
+              dataSource={dataSource}
+              pagination={this.state.pagination}
+              onChange={this.handleNews}
+            />
+          </div>
         </div>
-        <div className="table">
-          <Table
-            columns={columns}
-            dataSource={dataSource}
-            pagination={this.state.pagination}
-            loading={this.state.loading}
-            onChange={this.handleNews}
-          />
-        </div>
-      </div>
+      </Spin>
     )
   }
 }

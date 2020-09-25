@@ -57,9 +57,14 @@ export class NewsCreateEditAdminPage extends Component {
       article_category_id: values.article_category_id,
       description: values.description,
       image: imageUrl,
-      content: values.content.editor.getData(),
+      content: values.content.editor ? values.content.editor.getData() : values.content,
     }
-    this.props.actions.newsCreate(news)
+    await this.props.actions.newsCreate(news).then((response) => {
+      this.goBack()
+    })
+  }
+  goBack = () => {
+    this.props.history.go(-1)
   }
 
   handleCascader = (value) => {
@@ -72,6 +77,7 @@ export class NewsCreateEditAdminPage extends Component {
     // })
   }
   render() {
+    console.log(this.props.history)
     const { news_categories } = this.props
     const { loading, fileList } = this.state
     const props = {
