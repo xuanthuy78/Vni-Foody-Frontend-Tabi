@@ -14,18 +14,24 @@ import NotFoundPage from './containers/pages/notFoundPage/NotFoundPage'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as Actions from './actions'
-import { Redirect } from 'react-router-dom'
 import { Spin } from 'antd'
+import { AUTH_LOGOUT } from './constants/ActionTypes'
 export class App extends Component {
   state = {
-    loaded: false,
+    loaded: true,
   }
   componentDidMount() {
     this.checkLogin()
   }
   checkLogin = async () => {
-    await this.props.actions.checkLogin()
-    this.setState({ loaded: true })
+    await this.props.actions.checkLogin().then((res) => {
+      this.setState({
+        loaded: false,
+      })
+      if (res.error) {
+        this.props.logout()
+      }
+    })
   }
   render() {
     return (
@@ -37,7 +43,6 @@ export class App extends Component {
                 <Route path={routes_auth.map((item) => item.path)}>
                   <MasterLayoutAdmin>
                     <Switch>
-                      {!this.props.user && <Redirect to="/home"></Redirect>}
                       {routes_auth.map((route, index) => {
                         return (
                           <Route key={`auth-${index}`} path={route.path} exact={route.exact} component={route.main} />
@@ -79,6 +84,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  logout: () => dispatch({ type: AUTH_LOGOUT }),
   actions: bindActionCreators(Actions, dispatch),
 })
 

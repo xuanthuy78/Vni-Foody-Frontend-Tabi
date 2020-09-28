@@ -27,10 +27,10 @@ export class NewsCreateEditAdminPage extends Component {
       loading: true,
       fileList: [],
       news: {
-        title: 'name',
-        article_category_id: '2',
-        description: 'name',
-        content: '<p>Hello from CKEditor 4!</p>',
+        title: '',
+        article_category_id: '',
+        description: '',
+        content: '',
       },
     }
   }
@@ -77,7 +77,6 @@ export class NewsCreateEditAdminPage extends Component {
     // })
   }
   render() {
-    console.log(this.props.history)
     const { news_categories } = this.props
     const { loading, fileList } = this.state
     const props = {

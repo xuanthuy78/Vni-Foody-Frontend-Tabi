@@ -1,11 +1,11 @@
 import * as types from '../constants/ActionTypes'
 
-export const newsList = (page, limit) => (dispatch) =>
+export const newsList = (page, limit, title = '', category = '') => (dispatch) =>
   dispatch({
     types: [types.API_REQUEST_SEND, types.NEWS_LIST, types.API_REQUEST_ERROR],
     payload: {
       request: {
-        url: `api/articles?page=${page}&limit=${limit}`,
+        url: `api/articles?page=${page}&limit=${limit}&keyword=${title}&category=${category}`,
         method: 'GET',
       },
     },
