@@ -1,27 +1,5 @@
 import * as types from '../constants/ActionTypes'
 
-export const newsList = (page, limit, title = '', category = '') => (dispatch) =>
-  dispatch({
-    types: [types.API_REQUEST_SEND, types.NEWS_LIST, types.API_REQUEST_ERROR],
-    payload: {
-      request: {
-        url: `api/articles?page=${page}&limit=${limit}&keyword=${title}&category=${category}`,
-        method: 'GET',
-      },
-    },
-  })
-export const newsCreate = (data) => (dispatch) =>
-  dispatch({
-    types: [types.API_REQUEST_SEND, types.NEWS_CREATE, types.API_REQUEST_ERROR],
-    payload: {
-      request: {
-        url: `api/articles`,
-        method: 'POST',
-        data,
-      },
-    },
-  })
-
 export const authLogin = (login) => (dispatch) =>
   dispatch({
     types: [types.API_REQUEST_SEND, types.AUTH_LOGIN, types.API_REQUEST_ERROR],
@@ -62,12 +40,52 @@ export const register = (user) => (dispatch) =>
     },
   })
 
+export const newsList = (page, limit, title = '', category = '') => (
+  dispatch
+) =>
+  dispatch({
+    types: [types.API_REQUEST_SEND, types.NEWS_LIST, types.API_REQUEST_ERROR],
+    payload: {
+      request: {
+        url: `api/articles?page=${page}&limit=${limit}&keyword=${title}&category=${category}`,
+        method: 'GET',
+      },
+    },
+  })
+
 export const newsCategoryList = () => (dispatch) =>
   dispatch({
-    types: [types.API_REQUEST_SEND, types.NEWS_CATEGORY_LIST, types.API_REQUEST_ERROR],
+    types: [
+      types.API_REQUEST_SEND,
+      types.NEWS_CATEGORY_LIST,
+      types.API_REQUEST_ERROR,
+    ],
     payload: {
       request: {
         url: `api/articles/categories`,
+        method: 'GET',
+      },
+    },
+  })
+
+export const newsEdit = (id, data) => (dispatch) =>
+  dispatch({
+    types: [types.API_REQUEST_SEND, types.NEWS_EDIT, types.API_REQUEST_ERROR],
+    payload: {
+      request: {
+        url: `api/articles/${id}`,
+        method: 'PUT',
+        data,
+      },
+    },
+  })
+
+export const newsView = (id) => (dispatch) =>
+  dispatch({
+    types: [types.API_REQUEST_SEND, types.NEWS_VIEW, types.API_REQUEST_ERROR],
+    payload: {
+      request: {
+        url: `api/articles/${id}`,
         method: 'GET',
       },
     },

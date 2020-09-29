@@ -78,7 +78,9 @@ export const routes_not_auth = [
   {
     path: '/introduce-detail/:title',
     exact: true,
-    main: ({ match, history }) => <IntroduceDetailPage match={match} history={history} />,
+    main: ({ match, history }) => (
+      <IntroduceDetailPage match={match} history={history} />
+    ),
   },
   {
     path: '/shopping-cart',
@@ -196,17 +198,23 @@ export const routes_auth = [
   {
     path: '/admin/news',
     exact: true,
-    main: ({ history, location, match }) => <NewsAdminPage history={history} location={location} match={match} />,
+    main: ({ history, location, match }) => (
+      <NewsAdminPage history={history} location={location} match={match} />
+    ),
   },
   {
     path: '/admin/news/created',
     exact: true,
-    main: ({ history, match }) => <NewsCreateEditAdminPage history={history} match={match} />,
+    main: ({ history, match }) => (
+      <NewsCreateEditAdminPage history={history} match={match} />
+    ),
   },
   {
     path: '/admin/news/edit/:id',
     exact: true,
-    main: () => <NewsCreateEditAdminPage />,
+    main: ({ history, match }) => (
+      <NewsCreateEditAdminPage history={history} match={match} />
+    ),
   },
   {
     path: '/admin/news/:id',
