@@ -19,7 +19,6 @@ export default function news(state = initialState, action) {
         news_categories: action.payload.data.data,
       }
     case NEWS_VIEW:
-      console.log(action)
       return {
         ...state,
         item: action.payload.data.data.data,
