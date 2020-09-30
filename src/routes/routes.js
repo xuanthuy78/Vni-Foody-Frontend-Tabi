@@ -206,7 +206,7 @@ export const routes_auth = [
   {
     path: '/admin/news/edit/:id',
     exact: true,
-    main: () => <NewsCreateEditAdminPage />,
+    main: ({ history, match }) => <NewsCreateEditAdminPage history={history} match={match} />,
   },
   {
     path: '/admin/news/:id',
