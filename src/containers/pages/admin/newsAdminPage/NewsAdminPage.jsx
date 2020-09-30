@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Modal, Space, Spin } from 'antd'
+import { Table, Modal, Space, Spin, message } from 'antd'
 import { Link } from 'react-router-dom'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'
@@ -66,20 +66,29 @@ export class NewsAdminPage extends Component {
     window.scrollTo(0, 0)
   }
   // modal delete
-  showConfirm = () => {
+  showConfirm = (id) => {
     confirm({
-      title: 'Do you want to delete these items?',
+      title: 'Bạn có muốn xóa bản tin này',
       icon: <ExclamationCircleOutlined />,
-      content: 'When clicked the OK button, this dialog will be closed after 1 second',
-      onOk() {
-        return new Promise((resolve, reject) => {
-          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
-        }).catch(() => console.log('Oops errors!'))
+      content: '',
+      onOk: () => {
+        this.props.actions.newsDelete(id).then((res) => {
+          if (res.payload.data.status === 'success') {
+            this.setState({ loading: true })
+            const search = qs.parse(this.props.location.search.substr(1))
+            this.callApiNews(search.page || 1, search.limit || 10).then((res) => {
+              this.setState({ loading: false })
+              message.success('Xóa tin tức thành công')
+            })
+          }
+        })
       },
       onCancel() {},
     })
   }
-
+  delete = (id) => {
+    this.props.actions.newsDelete(id)
+  }
   handleNews = (pagination) => {
     //truyền thông tin cần thiết gửi lên location
     const { title, category } = this.state
@@ -130,9 +139,9 @@ export class NewsAdminPage extends Component {
         title: 'Tiêu đề',
         dataIndex: 'title',
         key: 'title',
-        render: (text) => (
+        render: (text, record) => (
           <div className="describe">
-            <Link to="/admin/news/1">{text}</Link>
+            <Link to={`/admin/news/${record.id}`}>{text}</Link>
           </div>
         ),
       },
@@ -170,10 +179,10 @@ export class NewsAdminPage extends Component {
         key: 'action',
         render: (text, record) => (
           <Space size="middle" className="icon-btn">
-            <Link className="btn btn-info" to={`/admin/news/edit/${text.id}`}>
+            <Link className="btn btn-info" to={`/admin/news/edit/${record.id}`}>
               <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
             </Link>
-            <button type="button" className="btn btn-danger" onClick={this.showConfirm}>
+            <button type="button" className="btn btn-danger" onClick={() => this.showConfirm(record.id)}>
               <i className="fa fa-trash-o" aria-hidden="true"></i>
             </button>
           </Space>

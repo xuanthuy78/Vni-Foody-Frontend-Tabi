@@ -211,7 +211,7 @@ export const routes_auth = [
   {
     path: '/admin/news/:id',
     exact: true,
-    main: () => <NewsViewPage />,
+    main: ({ history, match }) => <NewsViewPage history={history} match={match} />,
   },
   {
     path: '/admin/slide',

@@ -72,7 +72,6 @@ export class NewsCreateEditAdminPage extends Component {
   }
 
   onFinish = async (values) => {
-    console.log(values)
     const imageValue = this.state.news.image[0]
     const imageUrl = await this.getBase64(imageValue)
     const news = {
@@ -96,6 +95,10 @@ export class NewsCreateEditAdminPage extends Component {
     }
   }
 
+  handleCancel = () => {
+    this.goBack()
+  }
+
   goBack = () => {
     this.props.history.go(-1)
   }
@@ -116,8 +119,8 @@ export class NewsCreateEditAdminPage extends Component {
           const newFileList = state.news.image.slice()
           newFileList.splice(index, 1)
           return {
-            ...state,
             news: {
+              ...state.news,
               image: newFileList,
             },
           }
@@ -126,16 +129,16 @@ export class NewsCreateEditAdminPage extends Component {
 
       beforeUpload: (file) => {
         this.setState((state) => ({
-          ...state,
           news: {
+            ...state.news,
             image: [...state.fileList, file],
           },
         }))
         return false
       },
-      fileList: image,
+      fileList: [...image],
     }
-    console.log(news.image)
+    console.log(image)
     return (
       <Spin spinning={loading}>
         <h3>Bài Viết</h3>
@@ -226,7 +229,7 @@ export class NewsCreateEditAdminPage extends Component {
             <CKEditor data={news.content} onChange={this.onEditorChange} />
           </Form.Item>
           <Form.Item>
-            <Button onClick={this.props.handleCancel}>Cancel</Button>
+            <Button onClick={this.handleCancel}>Cancel</Button>
             <Button type="primary" htmlType="submit" className="ml-3">
               Submit
             </Button>

@@ -53,6 +53,16 @@ export const newsEdit = (id, params) => (dispatch) =>
       },
     },
   })
+export const newsDelete = (id) => (dispatch) =>
+  dispatch({
+    types: [types.API_REQUEST_SEND, types.NEWS_DELETE, types.API_REQUEST_ERROR],
+    payload: {
+      request: {
+        url: `api/articles/${id}`,
+        method: 'DELETE',
+      },
+    },
+  })
 
 export const authLogin = (login) => (dispatch) =>
   dispatch({
