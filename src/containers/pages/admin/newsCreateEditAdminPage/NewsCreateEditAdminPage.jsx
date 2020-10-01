@@ -8,18 +8,6 @@ import * as Actions from '../../../../actions/index'
 
 const { Option } = Select
 
-const onFinishFailed = (errorInfo) => {
-  console.log('Failed:', errorInfo)
-}
-const normFile = (e) => {
-  console.log('Upload event:', e)
-
-  if (Array.isArray(e)) {
-    return e
-  }
-
-  return e && e.fileList
-}
 export class NewsCreateEditAdminPage extends Component {
   constructor(props) {
     super(props)
@@ -64,10 +52,14 @@ export class NewsCreateEditAdminPage extends Component {
 
   getBase64 = (file) => {
     return new Promise((resolve, reject) => {
-      const reader = new FileReader()
-      reader.readAsDataURL(file)
-      reader.onload = () => resolve(reader.result)
-      reader.onerror = (error) => reject(error)
+      if (file.url) {
+        resolve(file.url)
+      } else {
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = () => resolve(reader.result)
+        reader.onerror = (error) => reject(error)
+      }
     })
   }
 
@@ -103,11 +95,6 @@ export class NewsCreateEditAdminPage extends Component {
     this.props.history.go(-1)
   }
 
-  onEditorChange = (evt) => {
-    // this.setState({
-    //   data: evt.editor.getData(),
-    // })
-  }
   render() {
     const { news_categories } = this.props
     const { loading, news } = this.state
@@ -138,18 +125,10 @@ export class NewsCreateEditAdminPage extends Component {
       },
       fileList: [...image],
     }
-    console.log(image)
     return (
       <Spin spinning={loading}>
         <h3>Bài Viết</h3>
-        <Form
-          layout="vertical"
-          name="basic"
-          key={news.id || '-1'}
-          initialValues={news}
-          onFinish={this.onFinish}
-          onFinishFailed={onFinishFailed}
-        >
+        <Form layout="vertical" name="basic" key={news.id || '-1'} initialValues={news} onFinish={this.onFinish}>
           <Form.Item
             label="Tiêu đề"
             name="title"
@@ -200,7 +179,6 @@ export class NewsCreateEditAdminPage extends Component {
             label="Ảnh"
             name="image"
             valuePropName="image"
-            getValueFromEvent={normFile}
             rules={[
               {
                 required: true,
@@ -208,7 +186,7 @@ export class NewsCreateEditAdminPage extends Component {
               },
             ]}
           >
-            <Upload listType="picture" {...props}>
+            <Upload {...props}>
               {image.length >= 1 ? null : (
                 <Button>
                   <UploadOutlined /> Click to upload
@@ -239,6 +217,7 @@ export class NewsCreateEditAdminPage extends Component {
     )
   }
 }
+
 const mapStateToProps = (state) => ({
   news_categories: state.news.news_categories,
   item: state.news.item,
