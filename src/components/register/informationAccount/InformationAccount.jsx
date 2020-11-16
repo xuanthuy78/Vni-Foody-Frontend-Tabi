@@ -84,7 +84,13 @@ export class InformationAccount extends Component {
                       Mật khẩu<span className="warning">(*)</span>
                     </label>
                     <div className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
-                      <input type="password" name="password" onChange={this.handleInput} className="form-control" />
+                      <input
+                        type="password"
+                        name="password"
+                        onChange={this.handleInput}
+                        className="form-control"
+                        autoComplete="new-password"
+                      />
                       {message && message.password && <div className="show_error">{message.password.join()}</div>}
                     </div>
                   </div>

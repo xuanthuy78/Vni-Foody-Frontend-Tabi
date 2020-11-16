@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Logo from '../../../../logo.png'
 import LogoMobi from '../../../../logo-mobi.png'
+import { connect } from 'react-redux'
 
 export class HeaderAdmin extends Component {
   handleShowSideBar = () => {
     this.props.showSidebar()
   }
   render() {
+    const { user } = this.props
     return (
       <header className="header">
         <nav className="navbar navbar-expand navbar-light fixed-top">
@@ -45,7 +47,7 @@ export class HeaderAdmin extends Component {
               </li>
               <li className="nav-item clock">
                 <Link className="nav-link name" to="#">
-                  <span className="fullname mr-2">Valerie Luna</span>
+                  <span className="fullname mr-2">{user.name}</span>
                   <i className="fa fa-user-circle fa-lg" aria-hidden="true"></i>
                 </Link>
               </li>
@@ -82,4 +84,7 @@ export class HeaderAdmin extends Component {
   }
 }
 
-export default HeaderAdmin
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+})
+export default connect(mapStateToProps)(HeaderAdmin)

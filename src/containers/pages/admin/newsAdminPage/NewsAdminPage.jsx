@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Modal, Space } from 'antd'
+import { Table, Modal, Space, Spin, message } from 'antd'
 import { Link } from 'react-router-dom'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'
@@ -14,12 +14,15 @@ export class NewsAdminPage extends Component {
   constructor() {
     super()
     this.state = {
-      dataSource: null,
+      dataSource: [],
       pagination: {
         current: 1,
         total: null,
+        pageSize: null,
       },
       loading: true,
+      title: '',
+      category: '',
     }
   }
 
@@ -33,21 +36,26 @@ export class NewsAdminPage extends Component {
     //check trường hợp phân trang thay đổi thì gọi api
     const oldSearch = prevProps.location && qs.parse(prevProps.location.search.substr(1))
     const newSearch = this.props.location && qs.parse(this.props.location.search.substr(1))
-    if (oldSearch.page !== newSearch.page || oldSearch.limit !== newSearch.limit) {
+    if (
+      oldSearch.page !== newSearch.page ||
+      oldSearch.limit !== newSearch.limit ||
+      oldSearch.keyword !== newSearch.keyword ||
+      oldSearch.category !== newSearch.category
+    ) {
       this.setState({
         loading: true,
       })
-      this.callApiNews(newSearch.page || 1, newSearch.limit || 10)
+      this.callApiNews(newSearch.page || 1, newSearch.limit || 10, newSearch.keyword, newSearch.category)
     }
   }
 
-  async callApiNews(page, limit) {
-    await this.props.actions.newsList(page, limit)
+  callApiNews = async (page, limit, title, category) => {
+    await this.props.actions.newsList(page, limit, title, category)
     const data = [...this.props.news.data]
     data.map((item, index) => (item.key = index))
     //page đang là string
     this.setState({
-      dataSource: data,
+      dataSource: data ? data : [],
       loading: false,
       pagination: {
         current: parseInt(page),
@@ -58,31 +66,62 @@ export class NewsAdminPage extends Component {
     window.scrollTo(0, 0)
   }
   // modal delete
-  showConfirm = () => {
+  showConfirm = (id) => {
     confirm({
-      title: 'Do you want to delete these items?',
+      title: 'Bạn có muốn xóa bản tin này',
       icon: <ExclamationCircleOutlined />,
-      content: 'When clicked the OK button, this dialog will be closed after 1 second',
-      onOk() {
-        return new Promise((resolve, reject) => {
-          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
-        }).catch(() => console.log('Oops errors!'))
+      content: '',
+      onOk: () => {
+        this.props.actions.newsDelete(id).then((res) => {
+          if (res.payload.data.status === 'success') {
+            this.setState({ loading: true })
+            const search = qs.parse(this.props.location.search.substr(1))
+            this.callApiNews(search.page || 1, search.limit || 10).then((res) => {
+              this.setState({ loading: false })
+              message.success('Xóa tin tức thành công')
+            })
+          }
+        })
       },
       onCancel() {},
     })
   }
-
+  delete = (id) => {
+    this.props.actions.newsDelete(id)
+  }
   handleNews = (pagination) => {
     //truyền thông tin cần thiết gửi lên location
+    const { title, category } = this.state
     const location = {
       pathname: '/admin/news',
-      search: `page=${pagination.current}&limit=${pagination.pageSize}`,
+      search: `page=${pagination.current}&limit=${pagination.pageSize}&keyword=${title}&category=${category}`,
     }
     this.props.history.push(location)
   }
 
+  handleInputSearch = (e) => {
+    this.setState({
+      ...this.state,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  onSearch = (e) => {
+    e.preventDefault()
+    this.setState({
+      loading: true,
+    })
+    const pagination = {
+      current: 1,
+      pageSize: 10,
+    }
+    const { title, category } = this.state
+    this.callApiNews(pagination.current, pagination.pageSize, title, category)
+    this.handleNews(pagination)
+  }
+
   render() {
-    const { dataSource } = this.state
+    const { dataSource, loading, pagination } = this.state
     //Colums là tiêu đề render một lần thôi
     const columns = [
       {
@@ -100,9 +139,9 @@ export class NewsAdminPage extends Component {
         title: 'Tiêu đề',
         dataIndex: 'title',
         key: 'title',
-        render: (text) => (
+        render: (text, record) => (
           <div className="describe">
-            <Link to="/admin/news/1">{text}</Link>
+            <Link to={`/admin/news/${record.id}`}>{text}</Link>
           </div>
         ),
       },
@@ -124,7 +163,7 @@ export class NewsAdminPage extends Component {
         key: 'image',
         render: (text) => (
           <div className="item">
-            <img className="" src={'http://localhost:3000/assets/images/left_1.png'} alt="" />
+            <img className="" src={text} alt="" />
           </div>
         ),
       },
@@ -140,10 +179,10 @@ export class NewsAdminPage extends Component {
         key: 'action',
         render: (text, record) => (
           <Space size="middle" className="icon-btn">
-            <Link className="btn btn-info" to="/admin/news/1/edit">
+            <Link className="btn btn-info" to={`/admin/news/edit/${record.id}`}>
               <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
             </Link>
-            <button type="button" className="btn btn-danger" onClick={this.showConfirm}>
+            <button type="button" className="btn btn-danger" onClick={() => this.showConfirm(record.id)}>
               <i className="fa fa-trash-o" aria-hidden="true"></i>
             </button>
           </Space>
@@ -151,44 +190,61 @@ export class NewsAdminPage extends Component {
       },
     ]
     return (
-      <div className="main-detail">
-        <div className="filter mb-3">
-          <div className="nav-filter">
-            <div className="nav-item search">
-              <div className="item result">
-                <Link to="#" className="navbar-brand">
-                  30 <span>Bài viết</span>
+      <Spin spinning={loading}>
+        <div className="main-detail">
+          <div className="filter mb-3">
+            <div className="nav-filter">
+              <div className="nav-item search">
+                <div className="item result">
+                  <Link to="#" className="navbar-brand">
+                    {pagination.total} <span>Bài viết</span>
+                  </Link>
+                </div>
+                <form className="item form-inline" onSubmit={this.onSearch}>
+                  <label className="title" htmlFor="parts-type">
+                    Tiêu đề:
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="title"
+                    placeholder="Tìm theo tiêu đề..."
+                    onChange={this.handleInputSearch}
+                  />
+                  <label className="title" htmlFor="parts-type">
+                    Danh mục
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="category"
+                    placeholder="Tìm theo danh mục..."
+                    onChange={this.handleInputSearch}
+                  />
+                  <button type="submit" className="btn btn-primary">
+                    <i className="fa fa-search mr-2" aria-hidden="true"></i>
+                    <span className="title-search">Search</span>
+                  </button>
+                </form>
+              </div>
+              <div className="nav-item add-master">
+                <Link className="btn btn-warm" to="/admin/news/created">
+                  <i className="fa fa-plus mr-2" aria-hidden="true"></i>
+                  <span className="title-add">Add</span>
                 </Link>
               </div>
-              <form className="item form-inline">
-                <label className="title" htmlFor="parts-type">
-                  Tiêu đề:
-                </label>
-                <input type="text" className="form-control" name="name" placeholder="Tìm theo tiêu đề..." />
-                <button type="submit" className="btn btn-primary">
-                  <i className="fa fa-search mr-2" aria-hidden="true"></i>
-                  <span className="title-search">Search</span>
-                </button>
-              </form>
-            </div>
-            <div className="nav-item add-master">
-              <Link className="btn btn-warm" to="/admin/news/created">
-                <i className="fa fa-plus mr-2" aria-hidden="true"></i>
-                <span className="title-add">Add</span>
-              </Link>
             </div>
           </div>
+          <div className="table">
+            <Table
+              columns={columns}
+              dataSource={dataSource}
+              pagination={this.state.pagination}
+              onChange={this.handleNews}
+            />
+          </div>
         </div>
-        <div className="table">
-          <Table
-            columns={columns}
-            dataSource={dataSource}
-            pagination={this.state.pagination}
-            loading={this.state.loading}
-            onChange={this.handleNews}
-          />
-        </div>
-      </div>
+      </Spin>
     )
   }
 }

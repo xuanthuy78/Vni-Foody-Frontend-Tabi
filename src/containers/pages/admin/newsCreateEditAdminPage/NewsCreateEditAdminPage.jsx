@@ -1,57 +1,146 @@
 import React, { Component } from 'react'
-import { Form, Input, Button, Select, Upload } from 'antd'
+import { Form, Input, Button, Select, Upload, Spin, message } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 import CKEditor from 'ckeditor4-react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as Actions from '../../../../actions/index'
 
 const { Option } = Select
-const onFinish = (values) => {
-  console.log('Success:', values)
-}
 
-const onFinishFailed = (errorInfo) => {
-  console.log('Failed:', errorInfo)
-}
-const normFile = (e) => {
-  console.log('Upload event:', e)
-
-  if (Array.isArray(e)) {
-    return e
-  }
-
-  return e && e.fileList
-}
 export class NewsCreateEditAdminPage extends Component {
-  handleCascader = (value) => {
-    console.log(value)
+  constructor(props) {
+    super(props)
+    this.state = {
+      fileList: [],
+      news: {
+        title: '',
+        category: '',
+        description: '',
+        content: '',
+        image: '',
+      },
+    }
   }
 
-  onEditorChange = (evt) => {
-    // this.setState({
-    //   data: evt.editor.getData(),
-    // })
+  async componentDidMount() {
+    this.props.actions.newsCategoryList().then((res) => this.setState({ loading: false }))
+    if (this.props.match && this.props.match.params && this.props.match.params.id) {
+      await this.props.actions.newsView(this.props.match.params.id)
+      const { item } = this.props
+      this.setState({
+        ...this.state,
+        news: {
+          id: item.id,
+          title: item.title,
+          category: item.article_category_id,
+          description: item.description,
+          content: item.content,
+          image: [
+            {
+              uid: item.id,
+              name: item.title,
+              status: 'done',
+              url: item.image,
+            },
+          ],
+        },
+        loading: false,
+      })
+    }
   }
+
+  getBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      if (file.url) {
+        resolve(file.url)
+      } else {
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = () => resolve(reader.result)
+        reader.onerror = (error) => reject(error)
+      }
+    })
+  }
+
+  onFinish = async (values) => {
+    const imageValue = this.state.news.image[0]
+    const imageUrl = await this.getBase64(imageValue)
+    const news = {
+      title: values.title,
+      article_category_id: values.category,
+      description: values.description,
+      image: imageUrl,
+      content: values.content.editor ? values.content.editor.getData().trim() : values.content,
+    }
+    if (this.props.match && this.props.match.params && this.props.match.params.id) {
+      let id = this.props.match.params.id
+      await this.props.actions.newsEdit(id, news).then((response) => {
+        message.success('Sửa sản phẩm thành công')
+        this.goBack()
+      })
+    } else {
+      await this.props.actions.newsCreate(news).then((response) => {
+        message.success('Thêm sản phẩm thành công')
+        this.goBack()
+      })
+    }
+  }
+
+  handleCancel = () => {
+    this.goBack()
+  }
+
+  goBack = () => {
+    this.props.history.go(-1)
+  }
+
   render() {
+    const { news_categories } = this.props
+    const { loading, news } = this.state
+    const { image } = this.state.news
+    const props = {
+      onRemove: (file) => {
+        this.setState((state) => {
+          const index = state.news.image.indexOf(file)
+          const newFileList = state.news.image.slice()
+          newFileList.splice(index, 1)
+          return {
+            news: {
+              ...state.news,
+              image: newFileList,
+            },
+          }
+        })
+      },
+
+      beforeUpload: (file) => {
+        this.setState((state) => ({
+          news: {
+            ...state.news,
+            image: [...state.fileList, file],
+          },
+        }))
+        return false
+      },
+      fileList: [...image],
+    }
     return (
-      <div>
+      <Spin spinning={loading}>
         <h3>Bài Viết</h3>
-        <Form
-          layout="vertical"
-          name="basic"
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-        >
+        <Form layout="vertical" name="basic" key={news.id || '-1'} initialValues={news} onFinish={this.onFinish}>
           <Form.Item
             label="Tiêu đề"
-            name="category"
+            name="title"
             hasFeedback
             rules={[
               {
                 required: true,
-                message: 'Please input your title!',
+                message: 'Vui lòng nhập tiêu đề',
               },
             ]}
           >
-            <Input />
+            <Input placeholder="Nhập tiêu đề" />
           </Form.Item>
           <Form.Item
             label="Danh mục"
@@ -60,62 +149,81 @@ export class NewsCreateEditAdminPage extends Component {
             rules={[
               {
                 required: true,
-                message: 'Please input your category!',
+                message: 'Vui lòng chọn danh mục cho tin tức',
               },
             ]}
           >
-            <Select placeholder="Please select a category">
-              <Option value="china">China</Option>
-              <Option value="usa">U.S.A</Option>
+            <Select placeholder="Nhập danh mục cho tin tức">
+              {news_categories.map((item, index) => {
+                return (
+                  <Option key={index} value={item.id}>
+                    {item.name}
+                  </Option>
+                )
+              })}
             </Select>
           </Form.Item>
           <Form.Item
-            label="Mô tả sản phẩm"
-            name="describe"
+            label="Mô tả tin tức"
+            name="description"
             rules={[
               {
                 required: true,
-                message: 'Please input your describe!',
+                message: 'Vui lòng nhập mô tả tin tức!',
               },
             ]}
           >
-            <Input.TextArea />
+            <Input.TextArea placeholder="Nhập mô tả tin tức" />
           </Form.Item>
           <Form.Item
             label="Ảnh"
-            name="upload"
-            valuePropName="fileList"
-            getValueFromEvent={normFile}
+            name="image"
+            valuePropName="image"
             rules={[
               {
                 required: true,
-                message: 'Please input your upload!',
+                message: 'Vui lòng chọn ảnh',
               },
             ]}
           >
-            <Upload name="logo" action="/upload.do" listType="picture">
-              <Button>
-                <UploadOutlined /> Click to upload
-              </Button>
+            <Upload {...props}>
+              {image.length >= 1 ? null : (
+                <Button>
+                  <UploadOutlined /> Click to upload
+                </Button>
+              )}
             </Upload>
           </Form.Item>
-          <Form.Item label="Nội dung" name="content">
-            <CKEditor
-              data="<p>Hello from CKEditor 4!</p>"
-              onChange={this.onEditorChange}
-            />
+          <Form.Item
+            label="Nội dung"
+            name="content"
+            rules={[
+              {
+                required: true,
+                message: 'Please input your content!',
+              },
+            ]}
+          >
+            <CKEditor data={news.content} onChange={this.onEditorChange} />
           </Form.Item>
-
           <Form.Item>
-            <Button onClick={this.props.handleCancel}>Cancel</Button>
+            <Button onClick={this.handleCancel}>Cancel</Button>
             <Button type="primary" htmlType="submit" className="ml-3">
               Submit
             </Button>
           </Form.Item>
         </Form>
-      </div>
+      </Spin>
     )
   }
 }
 
-export default NewsCreateEditAdminPage
+const mapStateToProps = (state) => ({
+  news_categories: state.news.news_categories,
+  item: state.news.item,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(Actions, dispatch),
+})
+export default connect(mapStateToProps, mapDispatchToProps)(NewsCreateEditAdminPage)

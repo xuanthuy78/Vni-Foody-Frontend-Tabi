@@ -14,43 +14,65 @@ import NotFoundPage from './containers/pages/notFoundPage/NotFoundPage'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as Actions from './actions'
-import { Redirect } from 'react-router-dom'
+import { Spin } from 'antd'
+import { AUTH_LOGOUT } from './constants/ActionTypes'
 export class App extends Component {
+  state = {
+    loaded: true,
+  }
+  componentDidMount() {
+    this.checkLogin()
+  }
+  checkLogin = async () => {
+    await this.props.actions.checkLogin().then((res) => {
+      this.setState({
+        loaded: false,
+      })
+      if (res.error) {
+        this.props.logout()
+      }
+    })
+  }
   render() {
     return (
       <Fragment>
-        <Router>
-          {!this.props.auth && <Redirect to="/home"></Redirect>}
-          <Switch>
-            {this.props.user && this.props.user.is_admin === 1 && (
-              <Route path={routes_auth.map((item) => item.path)}>
-                <MasterLayoutAdmin>
+        {!this.state.loaded ? (
+          <Router>
+            <Switch>
+              {this.props.user && this.props.user.is_admin === 1 && (
+                <Route path={routes_auth.map((item) => item.path)}>
+                  <MasterLayoutAdmin>
+                    <Switch>
+                      {routes_auth.map((route, index) => {
+                        return (
+                          <Route key={`auth-${index}`} path={route.path} exact={route.exact} component={route.main} />
+                        )
+                      })}
+                    </Switch>
+                  </MasterLayoutAdmin>
+                </Route>
+              )}
+              <Route path={routes_not_auth.map((item) => item.path)}>
+                <MasterLayout>
                   <Switch>
-                    {routes_auth.map((route, index) => {
+                    {routes_not_auth.map((route, index) => {
                       return (
-                        <Route key={`auth-${index}`} path={route.path} exact={route.exact} component={route.main} />
+                        <Route key={`not-auth-${index}`} exact={route.exact} path={route.path} component={route.main} />
                       )
                     })}
                   </Switch>
-                </MasterLayoutAdmin>
+                </MasterLayout>
               </Route>
-            )}
-            <Route path={routes_not_auth.map((item) => item.path)}>
               <MasterLayout>
-                <Switch>
-                  {routes_not_auth.map((route, index) => {
-                    return (
-                      <Route key={`not-auth-${index}`} exact={route.exact} path={route.path} component={route.main} />
-                    )
-                  })}
-                </Switch>
+                <Route path="*" component={NotFoundPage} />
               </MasterLayout>
-            </Route>
-            <MasterLayout>
-              <Route path="*" component={NotFoundPage} />
-            </MasterLayout>
-          </Switch>
-        </Router>
+            </Switch>
+          </Router>
+        ) : (
+          <Spin spinning>
+            <div>Đang tải....</div>
+          </Spin>
+        )}
       </Fragment>
     )
   }
@@ -62,6 +84,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  logout: () => dispatch({ type: AUTH_LOGOUT }),
   actions: bindActionCreators(Actions, dispatch),
 })
 

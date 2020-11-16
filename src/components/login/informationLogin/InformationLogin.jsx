@@ -41,9 +41,6 @@ export class InformationLogin extends Component {
   handleAuth = (res) => {
     if (res.error) {
       let msg = 'Đăng nhập không thành công, vui lòng thử lại'
-      if (res.error.response.status === 500) {
-        msg = 'Mất kết nối internet, vui lòng thử lại'
-      }
       return this.setState({ error: msg, loading: false })
     }
   }

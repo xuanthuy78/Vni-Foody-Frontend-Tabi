@@ -68,12 +68,7 @@ export class ProductCreateEditAdminPage extends Component {
     return (
       <div>
         <h3>Product</h3>
-        <Form
-          layout="vertical"
-          name="basic"
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-        >
+        <Form layout="vertical" name="basic" onFinish={onFinish} onFinishFailed={onFinishFailed}>
           <Form.Item
             label="Danh mục"
             name="category"
@@ -85,11 +80,7 @@ export class ProductCreateEditAdminPage extends Component {
               },
             ]}
           >
-            <Cascader
-              options={options}
-              onChange={this.handleCascader}
-              placeholder="Please select"
-            />
+            <Cascader options={options} onChange={this.handleCascader} placeholder="Please select" />
           </Form.Item>
           <Form.Item
             label="Tên sản phẩm"
@@ -174,10 +165,7 @@ export class ProductCreateEditAdminPage extends Component {
             <Input />
           </Form.Item>
           <Form.Item label="Chi tiết sản phẩm" name="content">
-            <CKEditor
-              data="<p>Hello from CKEditor 4!</p>"
-              onChange={this.onEditorChange}
-            />
+            <CKEditor data="<p>Hello from CKEditor 4!</p>" onChange={this.onEditorChange} />
           </Form.Item>
 
           <Form.Item>
