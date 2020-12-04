@@ -171,7 +171,7 @@ export const routes_auth = [
   {
     path: '/admin/category',
     exact: true,
-    main: () => <CategoryAdminPage />,
+    main: ({location, history}) => <CategoryAdminPage location={location} history={history} />,
   },
   {
     path: '/admin/category/created',

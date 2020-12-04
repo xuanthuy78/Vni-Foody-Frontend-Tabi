@@ -103,3 +103,13 @@ export const register = (user) => (dispatch) =>
       },
     },
   })
+  export const categoryList = (page=1, limit = 10) => (dispatch) =>
+  dispatch({
+    types: [types.API_REQUEST_SEND, types.CATEGORY_LIST, types.API_REQUEST_ERROR],
+    payload: {
+      request: {
+        url: `api/categories?page=${page}&limit=${limit}`,
+        method: 'GET',
+      },
+    },
+  })
