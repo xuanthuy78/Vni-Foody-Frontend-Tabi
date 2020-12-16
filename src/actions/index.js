@@ -114,7 +114,7 @@ export const register = (user) => (dispatch) =>
     },
   })
 
-  export const categoryCreate = (data) => (dispatch) =>
+export const categoryCreate = (data) => (dispatch) =>
   dispatch({
     types: [types.API_REQUEST_SEND, types.CATEGORY_CREATE, types.API_REQUEST_ERROR],
     payload: {
@@ -124,4 +124,14 @@ export const register = (user) => (dispatch) =>
         data,
       },
     },
-  })
+})
+export const categoryDelete = (id) => (dispatch) =>
+  dispatch({
+    types: [types.API_REQUEST_SEND, types.CATEGORY_DELETE, types.API_REQUEST_ERROR],
+    payload: {
+      request: {
+        url: `api/categories/${id}`,
+        method: 'DELETE',
+      },
+    },
+})

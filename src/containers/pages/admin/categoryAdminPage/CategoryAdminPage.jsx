@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Space, Modal } from 'antd'
+import { Table, Space, Modal, message } from 'antd'
 import { Link } from 'react-router-dom'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'
@@ -68,16 +68,20 @@ export class CategoryAdminPage extends Component {
     })
   }
 
-  showConfirm = (data) => {
-    console.log(data)
+  showConfirm = (id) => {
     confirm({
       title: 'Do you want to delete these items?',
       icon: <ExclamationCircleOutlined />,
       content: 'When clicked the OK button, this dialog will be closed after 1 second',
-      onOk() {
-        return new Promise((resolve, reject) => {
-          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
-        }).catch(() => console.log('Oops errors!'))
+      onOk: () => {
+        this.props.actions.categoryDelete(id).then((res) => {
+          if (res.payload.status === 200) {
+            const search = qs.parse(this.props.location.search.substr(1))
+            this.callApiCategory(search.page, search.limit).then((res) => {
+              message.success('Xóa tin tức thành công')
+            })
+          }
+        })
       },
       onCancel() {},
     })
@@ -108,13 +112,13 @@ export class CategoryAdminPage extends Component {
         key: 'action',
         render: (text, record) => (
           <Space size="middle" className="icon-btn">
-            <Link className="btn btn-success" to={`/admin/category/created/${text.id}`}>
+            <Link className="btn btn-success" to={`/admin/category/created/${record.id}`}>
               <i className="fa fa-plus" aria-hidden="true"></i>
             </Link>
             <Link className="btn btn-info" to="/admin/category/1/edit">
               <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
             </Link>
-            <button type="button" className="btn btn-danger" onClick={this.showConfirm}>
+            <button type="button" className="btn btn-danger" onClick={() => this.showConfirm(record.id)}>
               <i className="fa fa-trash-o" aria-hidden="true"></i>
             </button>
           </Space>
