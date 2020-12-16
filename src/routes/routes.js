@@ -38,6 +38,7 @@ import CheckOrderPage from '../containers/pages/checkOrderPage/CheckOrderPage'
 import MyCartPage from '../containers/pages/myCartPage/MyCartPage'
 import MyCartDetailPage from '../containers/pages/myCartDetailPage/MyCartDetailPage'
 import ChangePassWordPage from '../containers/pages/changePassWordPage/ChangePassWordPage'
+import CategoryAddAdminPage from '../containers/pages/admin/categoryAddAdminPage/CategoryAddAdminPage'
 
 export const routes_not_auth = [
   {
@@ -175,6 +176,11 @@ export const routes_auth = [
   },
   {
     path: '/admin/category/created',
+    exact: true,
+    main: ({history,location, match}) => <CategoryAddAdminPage history={history} location={location} match={match}/>,
+  },
+  {
+    path: '/admin/category/created/:id',
     exact: true,
     main: () => <CategoryCreatedEditAdminPage />,
   },

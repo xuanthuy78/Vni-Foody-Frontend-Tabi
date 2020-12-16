@@ -13,18 +13,11 @@ export class CategoryCreatedEditAdminPage extends Component {
     return (
       <div>
         <h3>Category</h3>
-        <Form
-          layout="vertical"
-          name="basic"
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-        >
-          <Form.Item label="Danh mục cha:" name="parent">
-            Thực đơn chính
-          </Form.Item>
+        <Form layout="vertical" onFinish={onFinish} onFinishFailed={onFinishFailed}>
+          <Form.Item label="Danh mục cha:">Thực đơn chính</Form.Item>
           <Form.Item
             label="Tên sản phẩm:"
-            name="name"
+            name="caterogy"
             rules={[
               {
                 required: true,

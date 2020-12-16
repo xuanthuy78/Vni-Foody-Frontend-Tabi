@@ -7,62 +7,6 @@ import { bindActionCreators } from 'redux'
 import * as Actions from '../../../../actions/index'
 import qs from 'qs'
 
-// const dataSource = [
-//   {
-//     key: 1,
-//     id: 1,
-//     name: 'Thực đơn chính',
-//     children: [
-//       {
-//         key: 11,
-//         id: 2,
-//         name: 'John Brown',
-//       },
-//       {
-//         key: 12,
-//         id: 3,
-//         name: 'John Brown jr.',
-//         children: [
-//           {
-//             key: 121,
-//             id: 4,
-//             name: 'Jimmy Brown',
-//           },
-//         ],
-//       },
-//       {
-//         key: 13,
-//         id: 6,
-//         name: 'Jim Green sr.',
-//         children: [
-//           {
-//             key: 131,
-//             id: 7,
-//             name: 'Jim Green',
-//             children: [
-//               {
-//                 key: 1311,
-//                 id: 8,
-//                 name: 'Jim Green jr.',
-//               },
-//               {
-//                 key: 1312,
-//                 id: 9,
-//                 name: 'Jimmy Green sr.',
-//               },
-//             ],
-//           },
-//         ],
-//       },
-//     ],
-//   },
-//   {
-//     key: 2,
-//     name: 'Joe Black',
-//     id: 10,
-//   },
-// ]
-
 const { confirm } = Modal
 
 export class CategoryAdminPage extends Component {
@@ -75,24 +19,12 @@ export class CategoryAdminPage extends Component {
     }
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     let search = qs.parse(this.props.location.search.substr(1))
-    await this.props.actions.categoryList(search.page, search.limit).then((res) => {
-      if (res.payload && res.payload.data && res.payload.data.data) {
-        this.getListCatetory(res.payload.data.data)
-        let dataTotal = res.payload.data.data
-        this.setState({
-          pagination: {
-            current: parseInt(search.page) || 1,
-            total: dataTotal,
-            pageSize: parseInt(search.limit) || 10,
-          },
-        })
-      }
-    })
+    this.callApiCategory(search.page, search.limit)
   }
 
-  async componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     //check trường hợp phân trang thay đổi thì gọi api
     const oldSearch = prevProps.location && qs.parse(prevProps.location.search.substr(1))
     const newSearch = this.props.location && qs.parse(this.props.location.search.substr(1))
@@ -100,23 +32,25 @@ export class CategoryAdminPage extends Component {
       this.setState({
         loading: true,
       })
-      console.log('vao')
-      await this.props.actions.categoryList(newSearch.page, newSearch.limit).then((res) => {
-        if (res.payload && res.payload.data && res.payload.data.data) {
-          this.getListCatetory(res.payload.data.data)
-          let dataTotal = res.payload.data.data
-          this.setState({
-            pagination: {
-              current: parseInt(newSearch.page) || 1,
-              total: dataTotal,
-              pageSize: parseInt(newSearch.limit) || 10,
-            },
-          })
-        }
-      })
+      this.callApiCategory(newSearch.page, newSearch.limit)
     }
   }
 
+  callApiCategory = async (page, limit) => {
+    await this.props.actions.categoryList(page, limit).then((res) => {
+      if (res.payload && res.payload.data && res.payload.data.data) {
+        this.getListCatetory(res.payload.data.data)
+        let dataTotal = res.payload.data.data
+        this.setState({
+          pagination: {
+            current: parseInt(page) || 1,
+            total: dataTotal,
+            pageSize: parseInt(limit) || 10,
+          },
+        })
+      }
+    })
+  }
   getListCatetory = (data) => {
     let lengthData = data.length
     for (let i = 0; i < lengthData; i++) {
@@ -134,7 +68,8 @@ export class CategoryAdminPage extends Component {
     })
   }
 
-  showConfirm = () => {
+  showConfirm = (data) => {
+    console.log(data)
     confirm({
       title: 'Do you want to delete these items?',
       icon: <ExclamationCircleOutlined />,
@@ -157,7 +92,6 @@ export class CategoryAdminPage extends Component {
   }
 
   render() {
-    console.log('to', this.props.history)
     const columns = [
       {
         title: 'ID',
@@ -165,7 +99,7 @@ export class CategoryAdminPage extends Component {
         key: 'id',
       },
       {
-        title: 'Name',
+        title: 'Danh mục',
         dataIndex: 'name',
         key: 'name',
       },
@@ -174,7 +108,7 @@ export class CategoryAdminPage extends Component {
         key: 'action',
         render: (text, record) => (
           <Space size="middle" className="icon-btn">
-            <Link className="btn btn-success" to="/admin/category/created">
+            <Link className="btn btn-success" to={`/admin/category/created/${text.id}`}>
               <i className="fa fa-plus" aria-hidden="true"></i>
             </Link>
             <Link className="btn btn-info" to="/admin/category/1/edit">

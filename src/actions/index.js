@@ -113,3 +113,15 @@ export const register = (user) => (dispatch) =>
       },
     },
   })
+
+  export const categoryCreate = (data) => (dispatch) =>
+  dispatch({
+    types: [types.API_REQUEST_SEND, types.CATEGORY_CREATE, types.API_REQUEST_ERROR],
+    payload: {
+      request: {
+        url: `api/categories`,
+        method: 'POST',
+        data,
+      },
+    },
+  })
